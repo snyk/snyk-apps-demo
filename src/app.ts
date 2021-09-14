@@ -1,5 +1,6 @@
 import express from 'express';
 import { reqError } from './lib/middlewares';
+import * as path from 'path';
 import type { Application, Request, Response } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
@@ -31,6 +32,9 @@ class App {
 
   private initGlobalMiddlewares() {
     this.app.use(express.json());
+    this.app.set('views', path.join(__dirname, 'views'));
+    this.app.set('view engine', 'ejs');
+    this.app.use(express.static(path.join(__dirname, 'public')));
   }
 
   private initErrorHandler() {

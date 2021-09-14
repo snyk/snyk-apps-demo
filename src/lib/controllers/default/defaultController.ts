@@ -15,6 +15,6 @@ export class DefaultController implements Controller {
   }
 
   private notFound(req: Request, res: Response, next: NextFunction) {
-    return res.send('PAGE NOT FOUND');
+    return res.render('default');
   }
 }

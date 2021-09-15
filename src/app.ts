@@ -11,8 +11,8 @@ class App {
 
   constructor(controllers: Controller[], port: number) {
     this.app = express();
-    this.initRoutes(controllers);
     this.initGlobalMiddlewares();
+    this.initRoutes(controllers);
     this.initErrorHandler();
     this.server = this.listen(port);
   }
@@ -32,9 +32,9 @@ class App {
 
   private initGlobalMiddlewares() {
     this.app.use(express.json());
-    this.app.set('views', path.join(__dirname, 'views'));
+    this.app.set('views', path.join(__dirname, '/views'));
     this.app.set('view engine', 'ejs');
-    this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use(express.static(path.join(__dirname, '/public')));
   }
 
   private initErrorHandler() {

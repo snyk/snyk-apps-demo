@@ -1,12 +1,12 @@
-### Snyk Demo App
+## Snyk Demo App
 
-## Start the App
+### Start the App
 
 First install all the dependencies:
 
 `npm install`
 
-# With TS Node
+### With TS Node
 
 `ts-node src/index.ts` or use script `npm run dev`
 

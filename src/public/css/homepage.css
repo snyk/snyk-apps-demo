@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body, html{
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  background: #F6FAFD;;
+}
+
+.snyk-main-headings{
+  /* Page Title */
+font-family: 'Poppins', sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 48px;
+line-height: 64px;
+/* identical to box height, or 133% */
+text-align: center;
+letter-spacing: -1px;
+/* Brand / Navy #1B1B3E */
+color: #1B1B3E;
+}
+
+.snyk-top-nav {
+    overflow: hidden;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .snyk-top-nav a{
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .snyk-top-nav a:hover{
+    background: #F9F9F9;
+
+  }
+  
+  
+.snyk-center-box{
+  margin: 2rem auto;
+  width: 25rem;
+  height: 30rem;
+  /* background: linear-gradient(90deg, #E555AC -28.14%, #9043C6 97.85%); */
+  background: linear-gradient(237.71deg, #24033A 15.28%, #4E0380 103.39%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.snyk-con-img-container{
+  margin: auto 1rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.snyk-con-img{
+  margin: 1rem auto;
+}
+
+.snyk-button-main{
+  background: #FFDD64;
+  border-radius: 10px 6px 20px 8px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+.snyk-main-footer{
+  background-color: #FFFFFF;
+  position: absolute;
+  padding: 0.5rem;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}

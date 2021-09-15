@@ -1,6 +1,7 @@
 import type { Controller } from '../../types';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
+import { generateUrl } from '../../utils';
 
 export class HomepageController implements Controller {
   public path = '/';
@@ -15,6 +16,7 @@ export class HomepageController implements Controller {
   }
 
   private homepage(req: Request, res: Response, next: NextFunction) {
-    return res.render('homepage');
+    const authorizeUrl = generateUrl();
+    return res.render('homepage', { authorizeUrl });
   }
 }

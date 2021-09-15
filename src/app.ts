@@ -1,6 +1,7 @@
 import express from 'express';
 import { reqError } from './lib/middlewares';
 import * as path from 'path';
+import * as dotenv from 'dotenv';
 import type { Application, Request, Response } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
@@ -11,10 +12,12 @@ class App {
 
   constructor(controllers: Controller[], port: number) {
     this.app = express();
+    this.initDotEnv();
     this.initGlobalMiddlewares();
     this.initRoutes(controllers);
     this.initErrorHandler();
-    this.server = this.listen(port);
+    // Start the server
+    this.server = this.listen(process.env.PORT);
   }
 
   private initRoutes(controllers: Controller[]) {
@@ -23,7 +26,7 @@ class App {
     });
   }
 
-  private listen(port: number) {
+  private listen(port: any) {
     this.server = this.app.listen(port, () => {
       console.log(`App listening on port: ${port}`);
     });
@@ -41,6 +44,10 @@ class App {
     // The function reqError itself returns an error handler
     // Should always be used at last
     this.app.use(reqError());
+  }
+  // Initial dotenv to load the environmental variables
+  private initDotEnv() {
+    dotenv.config({ path: path.join(__dirname, '../.env') });
   }
 }
 

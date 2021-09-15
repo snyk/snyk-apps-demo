@@ -76,9 +76,20 @@ color: #1B1B3E;
   margin: 1rem;
 }
 
+.snyk-button-main:hover{
+  background: #FFDDDD;
+}
+
+.snyk-button-main a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #461D9E;
+}
+
 .snyk-main-footer{
   background-color: #FFFFFF;
-  position: absolute;
+  position: fixed;
   padding: 0.5rem;
   width: 100%;
   left: 0;

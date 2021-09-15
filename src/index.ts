@@ -1,4 +1,11 @@
-import { ExampleController, DefaultController } from './lib/controllers';
+import {
+  HomepageController,
+  ExampleController,
+  DefaultController,
+} from './lib/controllers';
 import App from './app';
 
-new App([new ExampleController(), new DefaultController()], 3000);
+new App(
+  [new HomepageController(), new ExampleController(), new DefaultController()],
+  3000,
+);

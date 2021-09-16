@@ -6,5 +6,5 @@ export function generateUrl(): string {
   const scopes = process.env.SCOPES;
   const nonce = crypto.randomBytes(16).toString('base64');
   const state = crypto.randomBytes(16).toString('base64');
-  return `https://snyk.io/apps/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code&scope=${scopes}&nonce=${nonce}&state=${state}`;
+  return `http://localhost:8000/apps/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code&scope=${scopes}&nonce=${nonce}&state=${state}`;
 }

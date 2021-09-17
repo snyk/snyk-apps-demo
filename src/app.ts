@@ -59,17 +59,13 @@ class App {
   private checkEnvVars() {
     envCheck(
       [
-        'PORT',
         'CLIENT_ID',
         'CLIENT_SECRET',
         'REDIRECT_URI',
         'SCOPES',
-        'APP_NAME',
-        'SNYK_API_TOKEN',
       ],
       Severity.FATAL,
     );
-    envCheck(['SNYK_API_URL'], Severity.WARN);
   }
 
   private initDatabaseFile() {

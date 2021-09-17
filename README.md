@@ -22,18 +22,8 @@ Test to confirm, go to: http://localhost:3000/example and you should see a Hello
 
 ### .env File
 
-The `.env` file is used to store all the environmental variables
+The `.env` file is used to store all the environmental variables. Ensure this remains secret!
 
-To create one from the example file run
+To create one from the example file run:
 
 `$ cp ./.env.example ./.env`
-
-Example contents of the file:
-
-```
-PORT=3000
-CLIENT_ID=
-CLIENT_SECRET=
-REDIRECT_URI=
-SCOPES=
-```

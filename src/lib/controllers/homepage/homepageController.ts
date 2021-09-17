@@ -17,6 +17,6 @@ export class HomepageController implements Controller {
 
   private homepage(req: Request, res: Response, next: NextFunction) {
     const authorizeUrl = generateUrl();
-    return res.render('homepage', { authorizeUrl });
+    return res.render('homepage', { authorizeUrl, loading: false });
   }
 }

@@ -6,7 +6,7 @@
 body, html{
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  background: #F6FAFD;;
+  background: #E5E5E5;
 }
 
 .snyk-main-headings{
@@ -22,39 +22,22 @@ letter-spacing: -1px;
 /* Brand / Navy #1B1B3E */
 color: #1B1B3E;
 }
-
-.snyk-top-nav {
-    overflow: hidden;
-    background-color: #FFFFFF;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
-
-  .snyk-top-nav a{
-    padding: 1rem;
-    border-radius: 10px;
-  }
-
-  .snyk-top-nav a:hover{
-    background: #F9F9F9;
-
-  }
-  
   
 .snyk-center-box{
-  margin: 2rem auto;
-  width: 25rem;
-  height: 30rem;
-  /* background: linear-gradient(90deg, #E555AC -28.14%, #9043C6 97.85%); */
-  background: linear-gradient(237.71deg, #24033A 15.28%, #4E0380 103.39%);
   border-radius: 10px;
+  display: block;
+  margin: 2rem auto;
+  width: 20rem;
+  padding: 4rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: linear-gradient(119.21deg, #7530A6 0%, #461D9E 100%);
+  color: #FFFFFF;
+  line-height: 4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* background: rgba(255, 255, 255, 0.5); */
 }
 
 .snyk-con-img-container{
@@ -68,24 +51,7 @@ color: #1B1B3E;
   margin: 1rem auto;
 }
 
-.snyk-button-main{
-  background: #FFDD64;
-  border-radius: 10px 6px 20px 8px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  margin: 1rem;
-}
 
-.snyk-button-main:hover{
-  background: #FFDDDD;
-}
-
-.snyk-button-main a {
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #461D9E;
-}
 
 .snyk-main-footer{
   background-color: #FFFFFF;

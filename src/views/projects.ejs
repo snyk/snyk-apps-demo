@@ -1,0 +1,30 @@
+<%- include('./partials/header.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/projects.css" />
+    <title>Snyk Demo App</title>
+  </head>
+  <body>
+    <%- include('./partials/topnav.ejs') %>
+
+    <div>
+      <h2 class="snyk-main-headings">Projects</h2>
+    </div>
+    <div class="snyk-center-box">
+      <% for(var i=0; i < projects.length; i++){ %>
+          <div class="snyk-project-holder">
+            <div class="project-holder-left">
+              <p class="project-element">Project Name: <%= projects[i].name %></p>
+              <p class="project-element">Project ID: <%= projects[i].id %></p>
+              <p class="project-element">Origin: <%= projects[i].origin %></p>
+              <p class="project-element">Type: <%= projects[i].type %></p>
+            </div>
+            <div class="project-holder-right">
+              <p class="project-element">Test Frequency: <%= projects[i].testFrequency %></p>
+              <p class="project-element">Monitored: <%= projects[i].isMonitored %></p>
+              <p class="project-element">Last Test Date: <%= projects[i].lastTestedDate %></p>
+              <a class="snyk-button-main" href="<%= projects[i].browseUrl %>">View In Snyk</a>
+            </div>
+          </div>
+          <% } %>
+    </div>
+    <%- include('./partials/footer.ejs') %>

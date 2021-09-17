@@ -3,21 +3,20 @@
     <title>Snyk Demo App</title>
   </head>
   <body>
-    <div class="snyk-top-nav">
-      <a href="https://snyk.io"><img src="/images/snyk_logo.svg" alt="" /></a>
-    </div>
+
+    <%- include('./partials/topnav.ejs') %>
 
     <div>
-      <h2 class="snyk-main-headings">Snyk Demo App</h2>
+      <h2 class="snyk-main-headings">Your Awesome App</h2>
     </div>
-
     <div class="snyk-center-box">
       <div class="snyk-con-img-container">
         <img class="snyk-con-img" src="/images/snyk_con.svg" alt="" />
       </div>
-      <button class="snyk-button-main">
-        <a href="<%= authorizeUrl %>">Sign Up</a>
-      </button>
+      <div>
+        <a class="snyk-button-main" href="<%= authorizeUrl %>">Install App</a>
+      </div>
+
     </div>
     <%- include('./partials/footer.ejs') %>
 

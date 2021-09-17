@@ -1,0 +1,20 @@
+<%- include('./partials/header.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+    <link rel="stylesheet" ype="text/css" href="/css/error.css">
+    <title>Snyk Demo App</title>
+  </head>
+  <body>
+    <%- include('./partials/topnav.ejs') %>
+
+    <div>
+      <h2 class="snyk-main-headings">Snyk Demo App</h2>
+    </div>
+    <div class="snyk-center-box">
+        <img class="snyk-error-img" src="/images/snyk_error.svg" alt="">
+        <h3>Error Occurred</h3>
+        <p><%= errorMessage %></p>
+    </div>
+    
+      
+    </div>
+    <%- include('./partials/footer.ejs') %>

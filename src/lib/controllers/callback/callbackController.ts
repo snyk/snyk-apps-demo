@@ -1,10 +1,13 @@
 import type { Controller } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
+import { writeToDb } from '../../utils/db';
+import axios from 'axios';
+import qs from 'qs';
 
 export class CallbackController implements Controller {
-  public path = '/callback';
-  public router = Router();
+  public path: string = '/callback';
+  public router: Router = Router();
 
   constructor() {
     this.initRoutes();
@@ -14,27 +17,40 @@ export class CallbackController implements Controller {
     this.router.get(`${this.path}`, this.callback);
   }
 
-  private callback(req: Request, res: Response, next: NextFunction) {
+  private async callback(req: Request, res: Response, next: NextFunction) {
+    const redirect_uri = process.env.REDIRECT_URI;
+    const client_id = process.env.CLIENT_ID;
+    const client_secret = process.env.CLIENT_SECRET;
     // Callback related verifications can be done here
-    console.log('Return params: ', req.query);
-    /**
-     * Example:
-     * {
-            code: '8ghYHKGfqIi1Gahgu5i8riOhHBtkJgyISLVS846Mbmc.WvBFMCLWOGp0hzjsd9xCG4clt9CMj1vd-RewRnxCqjY',
-            scope: '',
-            state: 'Qy8 QWoi4qOw4l5SE7aEgw=='
-        }
-     */
-    // TODO: call https://snyk.io/api/v3/apps/oauth2/token
-    // {
-    //     grant_type: authorization_code,
-    //     code: code,
-    //     redirect_uri: redirect URI - must match above,
-    //     client_id: clientId,
-    //     client_secret: clientSecret
-    //     }
-    // TODO: Fetch the access_token and refresh_token
-
-    return res.render('callback');
+    const { code, scope, state } = req.query;
+    // Using local oauth server, should be replaced with snyk
+    try {
+      const result = await axios({
+        method: 'POST',
+        url: 'http://localhost:3846/oauth2/token',
+        data: qs.stringify({
+          grant_type: 'authorization_code',
+          code,
+          client_id,
+          client_secret,
+          redirect_uri,
+        }),
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      });
+      const { access_token, expires_in, scope, token_type, refresh_token } =
+        result.data;
+      // We should encrypt before saving
+      await writeToDb({
+        access_token,
+        expires_in,
+        scope,
+        token_type,
+        refresh_token,
+      });
+    } catch (error) {
+      console.error(error);
+      return next(new Error('Error occurred while fetching the token!'));
+    }
+    return res.render('callback', { loading: false });
   }
 }

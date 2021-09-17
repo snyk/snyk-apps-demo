@@ -9,10 +9,11 @@ import type {
  */
 export function reqError(): ErrorRequestHandler {
   return (error: any, req: Request, res: Response, next: NextFunction) => {
+    console.error(error);
     const httpStatusCode: number = error.httpStatusCode || 500;
     const message: string =
       error.message || 'Internal server error, please try again';
 
-    return res.status(httpStatusCode).send(message);
+    return res.render('error', { loading: false, errorMessage: message });
   };
 }

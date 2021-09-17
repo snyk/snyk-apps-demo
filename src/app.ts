@@ -2,22 +2,28 @@ import express from 'express';
 import { reqError } from './lib/middlewares';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
+import { envCheck, Severity } from 'envar-check';
+import * as fs from 'fs';
+import { join } from 'path';
 import type { Application, Request, Response } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
 
 class App {
   public app: Application;
+  public redis: any;
   private server: Server;
 
-  constructor(controllers: Controller[], port: number) {
+  constructor(controllers: Controller[], port: any) {
     this.app = express();
     this.initDotEnv();
+    this.checkEnvVars();
+    this.initDatabaseFile();
     this.initGlobalMiddlewares();
     this.initRoutes(controllers);
     this.initErrorHandler();
     // Start the server
-    this.server = this.listen(process.env.PORT);
+    this.server = this.listen(port);
   }
 
   private initRoutes(controllers: Controller[]) {
@@ -48,6 +54,34 @@ class App {
   // Initial dotenv to load the environmental variables
   private initDotEnv() {
     dotenv.config({ path: path.join(__dirname, '../.env') });
+  }
+
+  private checkEnvVars() {
+    envCheck(
+      [
+        'PORT',
+        'CLIENT_ID',
+        'CLIENT_SECRET',
+        'REDIRECT_URI',
+        'SCOPES',
+        'APP_NAME',
+        'SNYK_API_TOKEN',
+      ],
+      Severity.FATAL,
+    );
+    envCheck(['SNYK_API_URL'], Severity.WARN);
+  }
+
+  private initDatabaseFile() {
+    try {
+      if (!fs.existsSync(join(__dirname, '../db/db.json'))) {
+        const pathToDb = join(__dirname, '../db/db.json');
+        fs.openSync(pathToDb, 'w');
+        console.log('File created successfully');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 

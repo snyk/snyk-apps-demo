@@ -2,6 +2,21 @@
 
 This is a demo app that can be used as a guide on how to create Snyk Apps. Created in NodeJS with TypeScript and EJS provides a simple implementation.
 
+### Create new SnykApp
+
+If you haven't already created a Snyk App, you can do so via:
+
+`$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"`
+
+(note the extra `--` between `create-app` and the parameters)
+
+* `authToken`: your personal Snyk auth token, obtained from [your account settings page](https://app.snyk.io/account)
+* `orgId`: the organization id that you want to own the Snyk App (obtained by clicking the cog in the upper right corner of the Snyk console)
+* `scopes`: a comma separated list of scopes you want your App to be able to request at install time (see Snyk Apps docs for allowed values)
+* `name`: the friendly name of your Snyk App
+
+This will register your new app with Snyk and create the `.env` file (see below) with your new client-id & client-secret. Keep these values secure!
+
 ### Start the App
 
 Install all the dependencies using `npm`:
@@ -18,12 +33,10 @@ To run the app in watch mode using `nodemon`, you can use `$ npm run dev:watch`
 
 You will see a message similar to: `App listening on port: 3000`
 
-Test to confirm, go to: http://localhost:3000/example and you should see a Hello World message.
+Test to confirm, go to: [http://localhost:3000](http://localhost:3000).
 
 ### .env File
 
 The `.env` file is used to store all the environmental variables. Ensure this remains secret!
 
-To create one from the example file run:
-
-`$ cp ./.env.example ./.env`
+If you've already created a Snyk App, you can copy `.env.example` and set the values.

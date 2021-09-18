@@ -69,10 +69,16 @@ class App {
 
   private initDatabaseFile() {
     try {
-      if (!fs.existsSync(join(__dirname, '../db/db.json'))) {
-        const pathToDb = join(__dirname, '../db/db.json');
-        fs.openSync(pathToDb, 'w');
-        console.log('File created successfully');
+      const dbFolder = join(__dirname, '../db');
+      dbPath = join(dbFolder, 'db.json');
+      console.log('Using db: ' + dbPath);
+
+      if (!fs.existsSync(dbPath)) {
+        if (!fs.existsSync(dbFolder)) {
+          fs.mkdirSync(dbFolder);
+        }
+
+        fs.openSync(dbPath, 'w');
       }
     } catch (error) {
       console.error(error);
@@ -80,4 +86,5 @@ class App {
   }
 }
 
+export let dbPath: string;
 export default App;

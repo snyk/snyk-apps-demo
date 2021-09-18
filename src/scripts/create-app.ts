@@ -38,4 +38,6 @@ SCOPES=${scopes.join(',')}`
   console.log("Congratulations, you have a new App setup and ready to develop! Your client-id & client-secret have already been set in .env, which should stay secret and out of git. Enjoy!")
 }
 
-createApp(args).then(handleResult);
+createApp(args)
+  .then(handleResult)
+  .catch(err => console.log(`Error creating app: "${err}", details: "${JSON.stringify(err.response.data)}"`));

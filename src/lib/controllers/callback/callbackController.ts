@@ -48,8 +48,8 @@ export class CallbackController implements Controller {
         refresh_token,
       });
     } catch (error) {
-      console.error(error);
-      return next(new Error('Error occurred while fetching the token!'));
+      console.error('Error fetching token: ' + error);
+      return next(error);
     }
     return res.render('callback', { loading: false });
   }

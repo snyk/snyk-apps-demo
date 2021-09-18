@@ -5,13 +5,12 @@ import * as dotenv from 'dotenv';
 import { envCheck, Severity } from 'envar-check';
 import * as fs from 'fs';
 import { join } from 'path';
-import type { Application, Request, Response } from 'express';
+import type { Application } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
 
 class App {
   public app: Application;
-  public redis: any;
   private server: Server;
 
   constructor(controllers: Controller[], port: any) {

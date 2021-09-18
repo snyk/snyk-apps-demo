@@ -27,7 +27,7 @@ export class CallbackController implements Controller {
     try {
       const result = await axios({
         method: 'POST',
-        url: 'http://localhost:3846/oauth2/token',
+        url: 'https://api.snyk.io/v3/apps/oauth2/token',
         data: qs.stringify({
           grant_type: 'authorization_code',
           code,

@@ -1,0 +1,23 @@
+<%- include('./partials/header.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/projects.css" />
+    <title>Snyk Demo App</title>
+  </head>
+  <body>
+    <%- include('./partials/topnav.ejs') %>
+
+    <div>
+      <h2 class="snyk-main-headings">Admin</h2>
+      <h5>Install count: <%= installs.length %></h5>
+    </div>
+    <div class="snyk-center-box">
+      <% for(var i=0; i < installs.length; i++){ %>
+        <div class="snyk-project-holder">
+          <div class="project-holder-left">
+            <p class="project-element">Org Id: <%= installs[i].orgId %></p>
+            <p class="project-element">Org Name: <%= installs[i].orgName %></p>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    <%- include('./partials/footer.ejs') %>

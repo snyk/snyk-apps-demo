@@ -1,12 +1,14 @@
 import { Low, JSONFile } from 'lowdb';
-import { join } from 'path';
-import { AuthData } from '../../types';
+import { DB } from '../../types';
 import { dbPath } from '../../../app';
 
-export async function readFromDb() {
-  const dbFile = join(__dirname, dbPath);
-  const adapter = new JSONFile<AuthData>(dbFile);
-  const db = new Low<AuthData>(adapter);
+export async function readFromDb(): Promise<DB> {
+  const adapter = new JSONFile<DB>(dbPath);
+  const db = new Low<DB>(adapter);
   await db.read();
-  return db.data;
+  return db.data ?? buildNewDb();
+}
+
+function buildNewDb(): DB {
+  return { installs: [] };
 }

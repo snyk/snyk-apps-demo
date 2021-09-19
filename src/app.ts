@@ -9,6 +9,9 @@ import type { Application } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
 
+export const API_BASE = "https://snyk.io/api";
+export const APP_BASE = "https://snyk.io";
+
 class App {
   public app: Application;
   private server: Server;

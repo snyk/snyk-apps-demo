@@ -16,7 +16,7 @@ class App {
   public app: Application;
   private server: Server;
 
-  constructor(controllers: Controller[], port: any) {
+  constructor(controllers: Controller[], port: number) {
     this.app = express();
     this.initDotEnv();
     this.checkEnvVars();
@@ -34,7 +34,7 @@ class App {
     });
   }
 
-  private listen(port: any) {
+  private listen(port: number) {
     this.server = this.app.listen(port, () => {
       console.log(`App listening on port: ${port}`);
     });

@@ -1,4 +1,4 @@
-import type { Controller } from '../../types';
+import type { AuthData, Controller } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
 import { readFromDb } from '../../utils/db';
@@ -19,7 +19,8 @@ export class ProjectsController implements Controller {
 
   private async getProjects(req: Request, res: Response, next: NextFunction) {
     try {
-      const data = await readFromDb();
+      const db = await readFromDb();
+      const data = ProjectsController.mostRecent(db.installs);
       const access_token = data?.access_token;
       const token_type = data?.token_type;
 
@@ -38,5 +39,9 @@ export class ProjectsController implements Controller {
     } catch (error) {
       return next(error);
     }
+  }
+
+  private static mostRecent(installs: AuthData[]): AuthData {
+    return installs[installs.length - 1];
   }
 }

@@ -1,2 +1,2 @@
 export * from './Controller';
-export * from './authData';
+export * from './db';

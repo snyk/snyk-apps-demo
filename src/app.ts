@@ -80,8 +80,6 @@ class App {
         if (!fs.existsSync(dbFolder)) {
           fs.mkdirSync(dbFolder);
         }
-
-        fs.openSync(dbPath, 'w');
       }
     } catch (error) {
       console.error(error);

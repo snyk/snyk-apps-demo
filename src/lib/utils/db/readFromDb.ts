@@ -1,10 +1,12 @@
 import { Low, JSONFile } from 'lowdb';
-import { AuthData } from '../../types';
+import { DB } from '../../types';
 import { dbPath } from '../../../app';
 
-export async function readFromDb() {
-  const adapter = new JSONFile<AuthData>(dbPath);
-  const db = new Low<AuthData>(adapter);
+export async function readFromDb(): Promise<DB> {
+  const adapter = new JSONFile<DB>(dbPath);
+  const db = new Low<DB>(adapter);
   await db.read();
-  return db.data;
+  return db.data ?? {
+    installs: []
+  };
 }

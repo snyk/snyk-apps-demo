@@ -9,6 +9,9 @@
     <div>
       <h2 class="snyk-main-headings">Projects</h2>
     </div>
+    <% if (!projects || projects.length === 0 ) { %>
+      <div class="no-projects-box">No projects available</div>
+      <% } else { %>
     <div class="snyk-center-box">
       <% for(var i=0; i < projects.length; i++){ %>
           <div class="snyk-project-holder">
@@ -27,4 +30,5 @@
           </div>
           <% } %>
     </div>
+    <% } %>
     <%- include('./partials/footer.ejs') %>

@@ -40,8 +40,12 @@ export class CallbackController implements Controller {
       });
       const { access_token, expires_in, scope, token_type, refresh_token } =
         result.data;
+      const { orgId, orgName } = await CallbackController.getOrgInfo(access_token, token_type);
+
       // We should encrypt before saving
       await writeToDb({
+        orgId,
+        orgName,
         access_token,
         expires_in,
         scope,
@@ -53,5 +57,27 @@ export class CallbackController implements Controller {
       return next(error);
     }
     return res.render('callback', { loading: false });
+  }
+
+  private static async getOrgInfo(access_token: string, token_type: string): Promise<any> {
+    try {
+      const result = await axios({
+        method: 'GET',
+        url: `${API_BASE}/v1/user/me`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${token_type} ${access_token}`,
+        },
+      });
+
+      const org = result.data.orgs[0];
+      return {
+        orgId: org.id,
+        orgName: org.name,
+      };
+    } catch (error) {
+      console.error('Error fetching org info: ' + error);
+      throw error;
+    }
   }
 }

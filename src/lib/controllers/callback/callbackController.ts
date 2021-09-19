@@ -1,4 +1,4 @@
-import type { Controller } from '../../types';
+import type { AuthData, Controller } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
 import { writeToDb } from '../../utils/db';
@@ -47,7 +47,7 @@ export class CallbackController implements Controller {
         scope,
         token_type,
         refresh_token,
-      });
+      } as AuthData);
     } catch (error) {
       console.error('Error fetching token: ' + error);
       return next(error);

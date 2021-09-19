@@ -24,6 +24,8 @@ export class ProjectsController implements Controller {
       const access_token = data?.access_token;
       const token_type = data?.token_type;
 
+      if (!data) return res.render('projects', { loading: false, projects: [] });
+
       const result = await axios({
         method: 'POST',
         url: `${API_BASE}/v1/org/${data?.orgId}/projects`,
@@ -34,14 +36,17 @@ export class ProjectsController implements Controller {
       });
       return res.render('projects', {
         loading: false,
-        projects: result.data.projects,
+        projects: result.data.projects || [],
       });
     } catch (error) {
       return next(error);
     }
   }
 
-  private static mostRecent(installs: AuthData[]): AuthData {
-    return installs[installs.length - 1];
+  private static mostRecent(installs: AuthData[]): AuthData | void {
+    if (installs) {
+      return installs[installs.length - 1];
+    }
+    return;
   }
 }

@@ -1,7 +1,7 @@
 import type { Controller } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
-import { readFromDb} from '../../utils/db';
+import { readFromDb } from '../../utils/db';
 
 export class AdminController implements Controller {
   public path: string = '/admin';
@@ -19,7 +19,7 @@ export class AdminController implements Controller {
     const db = await readFromDb();
     return res.render('admin', {
       loading: false,
-      installs: db.installs,
+      installs: db.installs || [],
     });
   }
 }

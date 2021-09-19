@@ -33,7 +33,9 @@
         </div>
 
         <h2 class="projects-page__sub-heading">Projects</h2>
-
+        <% if (!projects || projects.length === 0 ) { %>
+          <div class="no-projects-box">No projects available</div>
+          <% } else { %>
         <% for(var i=0; i < projects.length; i++){ %>
         <div class="card">
           <h3 class="card__heading projects-page__card-heading">
@@ -78,5 +80,5 @@
         <% } %>
       </div>
     </div>
-
+    <% } %>
     <%- include('./partials/footer.ejs') %>

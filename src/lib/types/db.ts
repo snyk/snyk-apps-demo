@@ -1,3 +1,7 @@
+export interface DB {
+  installs: AuthData[];
+}
+
 export interface AuthData {
   orgId: string;
   orgName: string;

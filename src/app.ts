@@ -5,16 +5,18 @@ import * as dotenv from 'dotenv';
 import { envCheck, Severity } from 'envar-check';
 import * as fs from 'fs';
 import { join } from 'path';
-import type { Application, Request, Response } from 'express';
+import type { Application } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
 
+export const API_BASE = "https://snyk.io/api";
+export const APP_BASE = "https://snyk.io";
+
 class App {
   public app: Application;
-  public redis: any;
   private server: Server;
 
-  constructor(controllers: Controller[], port: any) {
+  constructor(controllers: Controller[], port: number) {
     this.app = express();
     this.initDotEnv();
     this.checkEnvVars();
@@ -32,7 +34,7 @@ class App {
     });
   }
 
-  private listen(port: any) {
+  private listen(port: number) {
     this.server = this.app.listen(port, () => {
       console.log(`App listening on port: ${port}`);
     });
@@ -59,25 +61,25 @@ class App {
   private checkEnvVars() {
     envCheck(
       [
-        'PORT',
         'CLIENT_ID',
         'CLIENT_SECRET',
         'REDIRECT_URI',
         'SCOPES',
-        'APP_NAME',
-        'SNYK_API_TOKEN',
       ],
       Severity.FATAL,
     );
-    envCheck(['SNYK_API_URL'], Severity.WARN);
   }
 
   private initDatabaseFile() {
     try {
-      if (!fs.existsSync(join(__dirname, '../db/db.json'))) {
-        const pathToDb = join(__dirname, '../db/db.json');
-        fs.openSync(pathToDb, 'w');
-        console.log('File created successfully');
+      const dbFolder = join(__dirname, '../db');
+      dbPath = join(dbFolder, 'db.json');
+      console.log('Using db: ' + dbPath);
+
+      if (!fs.existsSync(dbPath)) {
+        if (!fs.existsSync(dbFolder)) {
+          fs.mkdirSync(dbFolder);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -85,4 +87,5 @@ class App {
   }
 }
 
+export let dbPath: string;
 export default App;

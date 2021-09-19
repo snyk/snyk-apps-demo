@@ -1,10 +1,16 @@
 import * as crypto from 'crypto';
+import qs from 'qs';
+import { APP_BASE } from '../../app';
 
 export function generateUrl(): string {
-  const clientId = process.env.CLIENT_ID;
-  const redirectURI = process.env.REDIRECT_URI;
-  const scopes = process.env.SCOPES;
-  const nonce = crypto.randomBytes(16).toString('base64');
-  const state = crypto.randomBytes(16).toString('base64');
-  return `http://localhost:8000/apps/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code&scope=${scopes}&nonce=${nonce}&state=${state}`;
+  const params = {
+    client_id: process.env.CLIENT_ID,
+    response_type: 'code',
+    redirect_uri: process.env.REDIRECT_URI,
+    scope: process.env.SCOPES,
+    nonce: crypto.randomBytes(16).toString('base64'),
+    state: crypto.randomBytes(16).toString('base64'),
+  };
+
+  return `${APP_BASE}/apps/oauth2/authorize?${qs.stringify(params)}`;
 }

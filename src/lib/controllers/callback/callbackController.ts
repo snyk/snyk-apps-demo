@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { writeToDb } from '../../utils/db';
 import axios from 'axios';
 import qs from 'qs';
+import { API_BASE } from '../../../app';
 
 export class CallbackController implements Controller {
   public path: string = '/callback';
@@ -23,11 +24,11 @@ export class CallbackController implements Controller {
     const client_secret = process.env.CLIENT_SECRET;
     // Callback related verifications can be done here
     const { code, scope, state } = req.query;
-    // Using local oauth server, should be replaced with snyk
+
     try {
       const result = await axios({
         method: 'POST',
-        url: 'https://api.snyk.io/v3/apps/oauth2/token',
+        url: `${API_BASE}/v3/apps/oauth2/token`,
         data: qs.stringify({
           grant_type: 'authorization_code',
           code,

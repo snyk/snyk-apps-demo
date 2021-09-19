@@ -1,5 +1,6 @@
 import * as crypto from 'crypto';
 import qs from 'qs';
+import { APP_BASE } from '../../app';
 
 export function generateUrl(): string {
   const params = {
@@ -11,5 +12,5 @@ export function generateUrl(): string {
     state: crypto.randomBytes(16).toString('base64'),
   };
 
-  return `https://snyk.io/apps/oauth2/authorize?${qs.stringify(params)}`;
+  return `${APP_BASE}/apps/oauth2/authorize?${qs.stringify(params)}`;
 }

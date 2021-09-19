@@ -1,10 +1,14 @@
 import { Low, JSONFile } from 'lowdb';
-import { join } from 'path';
+import { dbPath } from '../../../app';
+import { AuthData } from '../../types';
+import { readFromDb } from './readFromDb';
 
-export async function writeToDb(data: any) {
-  const dbFile = join(__dirname, '../../../../db/db.json');
-  const adapter = new JSONFile(dbFile);
+export async function writeToDb(data: AuthData) {
+  const existingData = await readFromDb();
+  existingData.installs.push(data);
+
+  const adapter = new JSONFile(dbPath);
   const db = new Low(adapter);
-  db.data = data;
+  db.data = existingData;
   await db.write();
 }

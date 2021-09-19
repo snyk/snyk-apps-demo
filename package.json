@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node src/index.ts",
     "dev:watch": "nodemon src/index.ts",
-    "lint:ejs": "find src/views -type f -iname '*.ejs' -exec bash -c \"./node_modules/.bin/ejslint '{}'\" \\;"
+    "lint:ejs": "find src/views -type f -iname '*.ejs' -exec bash -c \"./node_modules/.bin/ejslint '{}'\" \\;",
+    "create-app": "ts-node src/scripts/create-app.ts"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,12 @@
     "@types/form-data": "^2.5.0",
     "@types/lowdb": "^1.0.11",
     "@types/node": "^16.9.1",
+    "@types/yargs": "^17.0.2",
     "ejs-lint": "^1.2.1",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "yargs": "^17.1.1"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -38,8 +41,7 @@
     "envar-check": "0.0.3",
     "express": "^4.17.1",
     "form-data": "^4.0.0",
-    "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB",
-    "redis": "^4.0.0-rc.1"
+    "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB"
   },
   "nodemonConfig": {
     "ignore": [

@@ -19,14 +19,30 @@ body, html{
 }
 
 .snyk-top-nav a{
-  padding: 1rem;
+  padding: 0.2rem;
   border-radius: 10px;
-  margin: 0.5rem;
+  margin: 0.2rem;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .snyk-top-nav a:hover{
   background: #F9F9F9;
 
+}
+
+.top-right{
+  display: flex;
+}
+.top-right a{
+ padding-left: 0.2rem;
+}
+
+.top-right a img {
+  padding: 0 0.2rem;
 }
 
 .snyk-button-main{

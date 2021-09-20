@@ -45,14 +45,13 @@
           </tr>
         </thead>
         <tbody>
-          <!-- TODO iterate this section to add new entry -->
-          <tr class="admin-page__table-row">
-            <td class="admin-page__table-row--body">Test App</td>
-            <td class="admin-page__table-row--body">
-              5bdd7a8d-4aae-405a-9956-3b3cb99612cc
-            </td>
-            <td class="admin-page__table-row--body">10-05-2021</td>
-          </tr>
+          <% for(var i = 0; i < installs.length; i++) { %>
+            <tr class="admin-page__table-row">
+              <td class="admin-page__table-row--body"><%= installs[i].orgName %></td>
+              <td class="admin-page__table-row--body"><%= installs[i].orgId %></td>
+              <td class="admin-page__table-row--body">20-09-2021</td>
+            </tr>
+          <% } %>
         </tbody>
       </table>
     </div>

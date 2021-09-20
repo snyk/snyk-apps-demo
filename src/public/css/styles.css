@@ -424,16 +424,22 @@ body {
   width: 100%;
 }
 
-.projects-page__logo {
+/* .projects-page__logo {
   width: 2.4rem;
   height: 2.4rem;
   margin-right: 1.2rem;
+} */
+
+.projects-page__heading{
+    margin-left: 2.4rem;
 }
 
 .projects-page__title {
   color: var(--color-base-heading);
   font-size: 2.3rem;
   line-height: 3rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  margin-bottom: 0.8rem;
 }
 
 .projects-page__sub-heading {

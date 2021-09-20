@@ -9,5 +9,7 @@
   "sourceMap": true,
   "strict": true,
   "esModuleInterop": true,
-  }
+  },
+  "include": ["./src"],
+  "exclude": ["./tests"]
 }

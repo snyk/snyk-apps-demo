@@ -1,10 +1,12 @@
 import type { AuthData, Controller } from '../../types';
+import { Envars } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
 import { writeToDb } from '../../utils/db';
 import axios from 'axios';
 import qs from 'qs';
 import { API_BASE } from '../../../app';
+import { EncryptDecrypt } from '../../encrypt-decrypt';
 
 export class CallbackController implements Controller {
   public path: string = '/callback';
@@ -41,16 +43,17 @@ export class CallbackController implements Controller {
       const { access_token, expires_in, scope, token_type, refresh_token } = result.data;
       const { orgId, orgName } = await CallbackController.getOrgInfo(access_token, token_type);
 
-      // We should encrypt before saving
+      const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
+
       await writeToDb({
         date: new Date(),
         orgId,
         orgName,
-        access_token,
+        access_token: ed.encryptString(access_token),
         expires_in,
         scope,
         token_type,
-        refresh_token,
+        refresh_token: ed.encryptString(refresh_token),
       } as AuthData);
     } catch (error) {
       console.error('Error fetching token: ' + error);

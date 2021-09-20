@@ -1,7 +1,7 @@
 /*----------------------------------- Colours ------------------------------------*/
 
 :root {
-  --color-base-bg: #f6fafd;
+  --color-base-bg: #E5E5E5;;
   --color-base-body: #555463;
   --color-base-heading: #1c1c21;
   --color-base-dimmed: #727184;
@@ -219,6 +219,7 @@ body {
   padding: 4rem 3.2rem;
   border: 1px solid var(--color-neutral-84);
   border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .index-page__title {
@@ -423,16 +424,22 @@ body {
   width: 100%;
 }
 
-.projects-page__logo {
+/* .projects-page__logo {
   width: 2.4rem;
   height: 2.4rem;
   margin-right: 1.2rem;
+} */
+
+.projects-page__heading{
+    margin-left: 2.4rem;
 }
 
 .projects-page__title {
   color: var(--color-base-heading);
   font-size: 2.3rem;
   line-height: 3rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  margin-bottom: 0.8rem;
 }
 
 .projects-page__sub-heading {
@@ -453,4 +460,34 @@ body {
 
 .projects-page__card-text:not(:last-child) {
   margin-bottom: 1.2rem;
+}
+
+/*-----------------------------------footer----------------------------*/
+.snyk-main-footer{
+  background-color: #FFFFFF;
+  position: fixed;
+  padding: 15px 20px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #FFFFFF;
+  box-shadow: 0px -1px 0px #D3D3D9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer_link{
+  position: static;
+  width: 48px;
+  height: 18px;
+  left: 6px;
+  top: 0px;
+  text-decoration: none;
+  color: #727184;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
 }

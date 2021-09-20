@@ -10,34 +10,23 @@ body, html{
 }
 
 .snyk-main-headings{
-  /* Page Title */
-font-family: 'Poppins', sans-serif;
-font-style: normal;
-font-weight: bold;
-font-size: 48px;
-line-height: 64px;
-/* identical to box height, or 133% */
-text-align: center;
-letter-spacing: -1px;
-/* Brand / Navy #1B1B3E */
-color: #1B1B3E;
+  margin-top: 13.5rem;
+  color: var(--color-base-body);
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  text-align: center;
 }
   
 .snyk-center-box{
-  border-radius: 10px;
-  display: block;
-  margin: 2rem auto;
-  width: 20rem;
-  padding: 4rem;
-  text-align: center;
-  font-size: 1.2rem;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background: linear-gradient(119.21deg, #7530A6 0%, #461D9E 100%);
-  color: #FFFFFF;
-  line-height: 4rem;
   display: flex;
   flex-direction: column;
-  /* background: rgba(255, 255, 255, 0.5); */
+  align-items: center;
+  margin: 4rem auto;
+  padding: 4rem 3.2rem;
+  border: 1px solid var(--color-neutral-84);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  width: 30%;
 }
 
 .snyk-con-img-container{
@@ -49,15 +38,4 @@ color: #1B1B3E;
 
 .snyk-con-img{
   margin: 1rem auto;
-}
-
-
-
-.snyk-main-footer{
-  background-color: #FFFFFF;
-  position: fixed;
-  padding: 0.5rem;
-  width: 100%;
-  left: 0;
-  bottom: 0;
 }

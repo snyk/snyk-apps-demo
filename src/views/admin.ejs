@@ -24,38 +24,32 @@
         <img class="admin-page__logo" src="images/avatar.svg" alt="" />
         <div class="admin-page__heading">
           <h1 class="admin-page__title">Demo App</h1>
-          <p class="admin-page__text">
-            This is a representation of data you could store in a database.
-          </p>
+          <p class="admin-page__text">This is a representation of data you could store in a database.</p>
         </div>
       </div>
       <h3 class="admin-page__sub-heading">Installations</h3>
+      <% if(installs.length === 0){ %>
+      <div class="card">No installs available</div>
+      <% } else { %>
       <table class="admin-page__table">
         <thead>
           <tr class="admin-page__table-row">
-            <th scope="col" class="admin-page__table-row--head">
-              Organization name
-            </th>
-            <th scope="col" class="admin-page__table-row--head">
-              Organization ID
-            </th>
-            <th scope="col" class="admin-page__table-row--head">
-              Date installed
-            </th>
+            <th scope="col" class="admin-page__table-row--head">Organization name</th>
+            <th scope="col" class="admin-page__table-row--head">Organization ID</th>
+            <th scope="col" class="admin-page__table-row--head">Date installed</th>
           </tr>
         </thead>
         <tbody>
           <% for(var i = 0; i < installs.length; i++) { %>
-            <tr class="admin-page__table-row">
-              <td class="admin-page__table-row--body"><%= installs[i].orgName %></td>
-              <td class="admin-page__table-row--body"><%= installs[i].orgId %></td>
-              <td class="admin-page__table-row--body"><%= installs[i].date %></td>
-            </tr>
+          <tr class="admin-page__table-row">
+            <td class="admin-page__table-row--body"><%= installs[i].orgName %></td>
+            <td class="admin-page__table-row--body"><%= installs[i].orgId %></td>
+            <td class="admin-page__table-row--body"><%= installs[i].date %></td>
+          </tr>
           <% } %>
         </tbody>
       </table>
+      <% } %> <%- include('./partials/footer.ejs') %>
     </div>
   </div>
-
-  <%- include('./partials/footer.ejs') %>
 </body>

@@ -38,8 +38,7 @@ export class CallbackController implements Controller {
         }),
         headers: { 'content-type': 'application/x-www-form-urlencoded' },
       });
-      const { access_token, expires_in, scope, token_type, refresh_token } =
-        result.data;
+      const { access_token, expires_in, scope, token_type, refresh_token } = result.data;
       const { orgId, orgName } = await CallbackController.getOrgInfo(access_token, token_type);
 
       // We should encrypt before saving

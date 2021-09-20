@@ -50,14 +50,3 @@ color: #1B1B3E;
 .snyk-con-img{
   margin: 1rem auto;
 }
-
-
-
-.snyk-main-footer{
-  background-color: #FFFFFF;
-  position: fixed;
-  padding: 0.5rem;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-}

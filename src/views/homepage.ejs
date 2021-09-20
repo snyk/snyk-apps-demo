@@ -1,22 +1,18 @@
 <%- include('./partials/header.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
-    <title>Snyk Demo App</title>
-  </head>
-  <body>
 
-    <%- include('./partials/topnav.ejs') %>
+<body>
+  <%- include('./partials/topnav.ejs') %>
 
-    <div>
-      <h2 class="snyk-main-headings">Your Awesome App</h2>
+  <div class="index-page">
+    <img class="index-page__snyk-logo" src="images/snykLogoWithDog.svg" />
+    <div class="index-page__card">
+      <h1 class="index-page__title">Add Demo App</h1>
+      <p class="index-page__description">
+        Authorize this App to connect to your Snyk account.
+      </p>
+      <button class="button" onclick="location.href='<%= authorizeUrl %>';">Connect to Snyk</button>
     </div>
-    <div class="snyk-center-box">
-      <div class="snyk-con-img-container">
-        <img class="snyk-con-img" src="/images/snyk_con.svg" alt="" />
-      </div>
-      <div>
-        <a class="snyk-button-main" href="<%= authorizeUrl %>">Install App</a>
-      </div>
+  </div>
 
-    </div>
-    <%- include('./partials/footer.ejs') %>
-
+  <%- include('./partials/footer.ejs') %>
+</body>

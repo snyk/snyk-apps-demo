@@ -5,12 +5,91 @@
   <body>
     <%- include('./partials/topnav.ejs') %>
 
-    <div>
-      <h2 class="snyk-main-headings">User Settings</h2>
-    </div>
-    <div class="snyk-center-box">
-        <a class="snyk-button-main" href="">Change Permissions</a>
+    <div class="settings-page">
+      <ul class="sidebar-nav">
+        <!-- TODO add nav links and update select to be dynamic -->
+        <li class="sidebar-nav__item">
+          <img
+            class="sidebar-nav__icon"
+            src="images/book-multiple.svg"
+            alt=""
+          />
+          <p class="sidebar-nav__text" onclick="location.href='/projects';">Projects</p>
 
-        <a class="snyk-button-main" href="">Uninstall App</a>
+        </li>
+        <li class="sidebar-nav__item sidebar-nav__item-selected">
+          <img class="sidebar-nav__icon" src="images/cog.svg" alt="" />
+          <p class="sidebar-nav__text" onclick="location.href='/settings';">Settings</p>
+        </li>
+        <li class="sidebar-nav__item">
+          <img class="sidebar-nav__icon" src="images/wrench.svg" alt="" />
+          <p class="sidebar-nav__text" onclick="location.href='/admin';">Admin</p>
+        </li>
+      </ul>
+      <div class="settings-page__content">
+        <div class="settings-page__description">
+          <img class="settings-page__logo" src="images/avatar.svg" alt="" />
+          <h1 class="settings-page__title">Demo App</h1>
+        </div>
+        <div class="settings-page__author-info">
+          <img
+            src="images/alert-circle-outline.svg"
+            alt=""
+            class="settings-page__author-info--icon"
+          />
+          <p class="settings-page__author-info--text">
+            You are the author of this app
+          </p>
+        </div>
+        <h2 class="settings-page__sub-heading">Settings</h2>
+        <div class="card settings-page__card">
+          <div>
+            <h3 class="card__heading">Permissions</h3>
+            <p class="card__text">
+              Set granular permissions for the App within this organization
+            </p>
+            <!-- TODO update link to public docs -->
+            <a href="#" class="link-button settings-page__docs-button">
+              <img
+                src="images/book-outline.svg"
+                alt=""
+                class="link-button-icon"
+              />
+              View docs
+            </a>
+          </div>
+          <div>
+            <h4 class="settings-page__card--secondary-heading">
+              What scopes does this App have access to?
+            </h4>
+            <div class="settings-page__scope-list">Everything</div>
+          </div>
+        </div>
+        <h2 class="settings-page__sub-heading">Danger Zone</h2>
+        <div class="card danger-card settings-page__card">
+          <div>
+            <h3 class="card__heading">Revoke access for this org</h3>
+            <p class="card__text">
+              Revoking access to this App will remove all functionality
+              associated with this integration.
+            </p>
+            <!-- TODO update link to public docs -->
+            <a href="#" class="view-docs-button settings-page__docs-button">
+              <img
+                src="images/book-outline.svg"
+                alt=""
+                class="view-docs-icon"
+              />
+              View docs
+            </a>
+          </div>
+          <div>
+            <button class="button danger-button settings-page__revoke-button">
+              Revoke Access
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+
     <%- include('./partials/footer.ejs') %>

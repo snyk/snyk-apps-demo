@@ -3,6 +3,7 @@ export interface DB {
 }
 
 export interface AuthData {
+  date: Date;
   orgId: string;
   orgName: string;
   access_token: string;

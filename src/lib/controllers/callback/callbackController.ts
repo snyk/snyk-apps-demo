@@ -44,6 +44,7 @@ export class CallbackController implements Controller {
 
       // We should encrypt before saving
       await writeToDb({
+        date: new Date(),
         orgId,
         orgName,
         access_token,

@@ -1,13 +1,12 @@
 .snyk-error-message{
-    display: block;
-    margin: 2rem auto;
-    padding: 2rem;
-    text-align: center;
-    font-size: 2rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background: linear-gradient(119.21deg, #7530A6 0%, #461D9E 100%);
-    color: #FFFFFF;
-    line-height: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4rem 1rem;
+    padding: 4rem 3.2rem;
+    border: 1px solid var(--color-neutral-84);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .snyk-error-img{

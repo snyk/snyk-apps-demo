@@ -19,7 +19,7 @@ async function createApp(args: any) {
       name: args.name,
     },
     headers: {
-      'authorization': `token ${args.authToken}`,
+      authorization: `token ${args.authToken}`,
       'content-type': 'application/vnd.api+json',
     },
   });
@@ -27,17 +27,20 @@ async function createApp(args: any) {
 
 function handleResult(result: any) {
   const { clientId, clientSecret, redirectUris, scopes } = result.data.data.attributes;
-  const envContent =
-`CLIENT_ID=${clientId}
+  const envContent = `PORT=3000
+CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}
 REDIRECT_URI=${redirectUris.join(',')}
-SCOPES=${scopes.join(',')}`
+SCOPES=${scopes.join(',')}
+ENCRYPTION_SECRET=`;
 
   fs.writeFileSync('.env', envContent);
 
-  console.log("Congratulations, you have a new App setup and ready to develop! Your client-id & client-secret have already been set in .env, which should stay secret and out of git. Enjoy!")
+  console.log(
+    'Congratulations, you have a new App setup and ready to develop! Your client-id & client-secret have already been set in .env, which should stay secret and out of git. Enjoy!',
+  );
 }
 
 createApp(args)
   .then(handleResult)
-  .catch(err => console.log(`Error creating app: "${err}", details: "${JSON.stringify(err.response.data)}"`));
+  .catch((err) => console.log(`Error creating app: "${err}", details: "${JSON.stringify(err.response.data)}"`));

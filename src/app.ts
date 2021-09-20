@@ -8,9 +8,10 @@ import { join } from 'path';
 import type { Application } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
+import { Envars } from './lib/types';
 
-export const API_BASE = "https://snyk.io/api";
-export const APP_BASE = "https://snyk.io";
+export const API_BASE = 'https://snyk.io/api';
+export const APP_BASE = 'https://snyk.io';
 
 class App {
   public app: Application;
@@ -60,12 +61,7 @@ class App {
 
   private checkEnvVars() {
     envCheck(
-      [
-        'CLIENT_ID',
-        'CLIENT_SECRET',
-        'REDIRECT_URI',
-        'SCOPES',
-      ],
+      [Envars.ClientId, Envars.ClientSecret, Envars.RedirectUri, Envars.Scopes, Envars.EncryptionSecret],
       Severity.FATAL,
     );
   }

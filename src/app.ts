@@ -61,7 +61,10 @@ class App {
   }
 
   private checkEnvVars() {
-    envCheck(['CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URI', 'SCOPES', 'ENCRYPTION_SECRET'], Severity.FATAL);
+    envCheck(
+      [Envars.ClientId, Envars.ClientSecret, Envars.RedirectUri, Envars.Scopes, Envars.EncryptionSecret],
+      Severity.FATAL,
+    );
   }
 
   private initDatabaseFile() {

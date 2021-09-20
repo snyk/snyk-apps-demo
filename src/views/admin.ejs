@@ -1,23 +1,62 @@
 <%- include('./partials/header.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
-    <link rel="stylesheet" type="text/css" href="/css/projects.css" />
-    <title>Snyk Demo App</title>
-  </head>
-  <body>
-    <%- include('./partials/topnav.ejs') %>
 
-    <div>
-      <h2 class="snyk-main-headings">Admin</h2>
-      <h5>Install count: <%= installs.length %></h5>
-    </div>
-    <div class="snyk-center-box">
-      <% for(var i=0; i < installs.length; i++){ %>
-        <div class="snyk-project-holder">
-          <div class="project-holder-left">
-            <p class="project-element">Org Id: <%= installs[i].orgId %></p>
-            <p class="project-element">Org Name: <%= installs[i].orgName %></p>
-          </div>
+<body>
+  <%- include('./partials/topnav.ejs') %>
+
+  <div class="admin-page">
+    <ul class="sidebar-nav">
+      <!-- TODO add nav links and update select to be dynamic -->
+      <li class="sidebar-nav__item">
+        <img class="sidebar-nav__icon" src="images/book-multiple.svg" alt="" />
+        <p class="sidebar-nav__text">Projects</p>
+      </li>
+      <li class="sidebar-nav__item">
+        <img class="sidebar-nav__icon" src="images/cog.svg" alt="" />
+        <p class="sidebar-nav__text">Settings</p>
+      </li>
+      <li class="sidebar-nav__item sidebar-nav__item-selected">
+        <img class="sidebar-nav__icon" src="images/wrench.svg" alt="" />
+        <p class="sidebar-nav__text">Admin</p>
+      </li>
+    </ul>
+    <div class="admin-page__content">
+      <div class="admin-page__description">
+        <img class="admin-page__logo" src="images/avatar.svg" alt="" />
+        <div class="admin-page__heading">
+          <h1 class="admin-page__title">Demo App</h1>
+          <p class="admin-page__text">
+            This is a representation of data you could store in a database.
+          </p>
         </div>
-      <% } %>
+      </div>
+      <h3 class="admin-page__sub-heading">Installations</h3>
+      <table class="admin-page__table">
+        <thead>
+          <tr class="admin-page__table-row">
+            <th scope="col" class="admin-page__table-row--head">
+              Organization name
+            </th>
+            <th scope="col" class="admin-page__table-row--head">
+              Organization ID
+            </th>
+            <th scope="col" class="admin-page__table-row--head">
+              Date installed
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- TODO iterate this section to add new entry -->
+          <tr class="admin-page__table-row">
+            <td class="admin-page__table-row--body">Test App</td>
+            <td class="admin-page__table-row--body">
+              5bdd7a8d-4aae-405a-9956-3b3cb99612cc
+            </td>
+            <td class="admin-page__table-row--body">10-05-2021</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <%- include('./partials/footer.ejs') %>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+</body>

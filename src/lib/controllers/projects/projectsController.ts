@@ -1,9 +1,10 @@
-import type { AuthData, Controller } from '../../types';
+import { AuthData, Controller, Envars } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
 import { readFromDb } from '../../utils/db';
 import axios from 'axios';
 import { API_BASE } from '../../../app';
+import { EncryptDecrypt } from '../../../lib/encrypt-decrypt';
 
 export class ProjectsController implements Controller {
   public path = '/projects';
@@ -21,10 +22,12 @@ export class ProjectsController implements Controller {
     try {
       const db = await readFromDb();
       const data = ProjectsController.mostRecent(db.installs);
-      const access_token = data?.access_token;
-      const token_type = data?.token_type;
-
       if (!data) return res.render('projects', { loading: false, projects: [] });
+
+      // Decrypt data
+      const eD = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
+      const access_token = eD.decryptString(data?.access_token);
+      const token_type = data?.token_type;
 
       const result = await axios({
         method: 'POST',

@@ -70,6 +70,11 @@ body {
   height: 5.2rem;
 }
 
+.top-nav__user{
+  background: linear-gradient(90deg, #7530A6 0.17%, #461D9F 44.06%);
+  font-family: 'Poppins', sans-serif;
+}
+
 .top-nav__logo {
   display: flex;
   flex-direction: row;
@@ -115,6 +120,18 @@ body {
   border-radius: 0.4rem;
   padding: 0.6rem 1.4rem;
   cursor: pointer;
+}
+
+.button:disabled{
+  color: var(--color-base-bg);
+  background-color: var(--color-ui-white);
+  border: 1px solid var(--color-base-bg);
+}
+
+.button-light{
+  color: var(--color-base-body);
+  background-color: var(--color-ui-white);
+  border: 1px solid var(--color-base-bg);
 }
 
 .danger-button {
@@ -164,6 +181,23 @@ body {
   line-height: 1.8rem;
 }
 
+.light__underline {
+  margin: 12px 0px;
+  height: 2px;
+  background-color: rgba(75, 69, 161, 0.1);
+}
+
+.m1{
+  margin: 1rem;
+}
+
+.mx-1{
+  margin: 1rem o;
+}
+
+.px-1{
+  padding: 1rem 0;
+}
 /*------------------------------ Sidebar Nav ------------------------------------*/
 
 .sidebar-nav {
@@ -191,8 +225,8 @@ body {
 }
 
 .sidebar-nav__item-selected {
-  background-color: var(--color-base-anchor-dimmed);
-  color: var(--color-base-anchor);
+  background-color: var(--color-base-anchor);
+  color: var(--color-input-bg);
 }
 
 .sidebar-nav__icon {
@@ -250,6 +284,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 8rem;
 }
 
 .admin-page__description {
@@ -269,11 +304,30 @@ body {
   margin-bottom: 0.8rem;
 }
 
+.admin-page__sub-heading-container{
+  display: flex;
+  column-gap: 2rem;
+}
+
+.admin-page__sub-heading-box{
+  margin-bottom: 2rem;
+}
+
+.admin-page__sub-heading-selected{
+  border-bottom: 1px solid var(--color-base-anchor);
+}
+
 .admin-page__sub-heading {
+  font-family: Roboto;
+  font-style: normal;
   font-size: 1.7rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 2.4rem;
-  margin: 4.4rem 0 1rem 0;
+  padding: 1.75rem 0.75rem;
+}
+
+.admin-page__sub-heading:hover{
+  cursor: pointer;
 }
 
 .admin-page__table {
@@ -302,6 +356,50 @@ body {
   font-weight: 500;
   line-height: 2rem;
   padding: 1.6rem 1.2rem;
+}
+
+.admin-page__card{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.admin-page__app-name{
+  font-size: 1.5rem;
+  line-height: 2rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--color-neutral-78);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+.admin-page__icon-card{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.admin-page__app-icon{
+  height: 12rem;
+  width: 12rem;
+  margin-bottom: 2rem;
+}
+
+.admin-page__app-desc{
+  font-size: 1.5rem;
+  line-height: 2rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--color-neutral-78);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  padding-bottom: 8rem;
+}
+
+.admin-page__light-heading{
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: lighter;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 /*----------------------------------------- Settings Page ----------------------------------------------*/

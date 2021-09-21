@@ -1,0 +1,79 @@
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <%- include('./partials/topnav-admin-settings.ejs') %>
+
+  <div class="admin-page">
+    <div class="admin-page__content">
+      <div class="admin-page__description">
+        <img class="admin-page__logo" src="images/avatar.svg" alt="" />
+        <div class="admin-page__heading">
+          <h1 class="admin-page__title">Demo App</h1>
+          <p class="admin-page__text">This is a representation of data you could store in a database.</p>
+        </div>
+      </div>
+      <div class="light__underline"></div>
+      <div class="admin-page__sub-heading-container">
+        <div class="admin-page__sub-heading-box admin-page__sub-heading-selected">
+          <h3 class="admin-page__sub-heading" onclick="location.href='/admin'">Settings</h3>
+        </div>
+        <div class="admin-page__sub-heading-box">
+          <h3 class="admin-page__sub-heading" onclick="location.href='/admin/installs'">Installs</h3>
+        </div>
+      </div>
+      <div class="card admin-page__card">
+        <div>
+          <h3 class="card__heading">App Name</h3>
+          <p class="card__text">What users will see when they install your app</p>
+        </div>
+        <div class="px-1">
+          <div class="admin-page__app-name">Demo App</div>
+          <button class="button" disabled="true">Publish changes</button>
+        </div>
+      </div>
+      <div class="card admin-page__card">
+        <div>
+          <h3 class="card__heading">Icon</h3>
+          <p class="card__text">You logo or icon.</p>
+        </div>
+        <div class="px-1 admin-page__icon-card">
+          <img class="admin-page__app-icon" src="/images/avatar.svg" alt="" />
+          <button class="button button-light">Choose image file</button>
+        </div>
+      </div>
+      <div class="card admin-page__card">
+        <div>
+          <h3 class="card__heading">Description</h3>
+        </div>
+        <div class="px-1">
+          <div class="admin-page__app-desc">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Et rem sit est voluptates incidunt! Sint
+              laboriosam dolore assumenda, ullam nesciunt commodi delectus provident officia earum necessitatibus
+              impedit quas dolorum nihil rem consequatur itaque tempore expedita neque quam pariatur iure! Hic ex
+              debitis modi beatae fugit illo porro dolor doloremque possimus.
+            </p>
+          </div>
+          <button class="button" disabled="true">Publish changes</button>
+        </div>
+      </div>
+
+      <h2 class="admin-page__light-heading">Danger Zone</h2>
+      <div class="card danger-card admin-page__card">
+        <div>
+          <h3 class="card__heading">Permenantly remove app</h3>
+          <p class="card__text">Removing this integration will remove it for all users.</p>
+          <!-- TODO update link to public docs -->
+          <a href="#" class="link-button settings-page__docs-button">
+            <img src="images/book-outline.svg" alt="" class="link-button-icon" />
+            View docs
+          </a>
+        </div>
+        <div>
+          <button class="button danger-button settings-page__revoke-button">Delete App</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('./partials/footer.ejs') %>
+</body>

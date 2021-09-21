@@ -10,8 +10,8 @@ import type { Server } from 'http';
 import type { Controller } from './lib/types';
 import { Envars } from './lib/types';
 
-export const API_BASE = 'https://snyk.io/api';
-export const APP_BASE = 'https://snyk.io';
+export const API_BASE = 'https://api.snyk.io';
+export const APP_BASE = 'https://app.snyk.io';
 
 class App {
   public app: Application;

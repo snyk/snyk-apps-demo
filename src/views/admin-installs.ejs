@@ -1,35 +1,28 @@
 <%- include('./partials/header.ejs') %>
 
 <body>
-  <%- include('./partials/topnav.ejs') %>
+  <%- include('./partials/topnav-admin-installs.ejs') %>
 
   <div class="admin-page">
-    <ul class="sidebar-nav">
-      <!-- TODO add nav links and update select to be dynamic -->
-      <li class="sidebar-nav__item">
-        <img class="sidebar-nav__icon" src="images/book-multiple.svg" alt="" />
-        <p class="sidebar-nav__text" onclick="location.href='/projects';">Projects</p>
-      </li>
-      <li class="sidebar-nav__item">
-        <img class="sidebar-nav__icon" src="images/cog.svg" alt="" />
-        <p class="sidebar-nav__text" onclick="location.href='/settings';">Settings</p>
-      </li>
-      <li class="sidebar-nav__item sidebar-nav__item-selected">
-        <img class="sidebar-nav__icon" src="images/wrench.svg" alt="" />
-        <p class="sidebar-nav__text" onclick="location.href='/admin';">Admin</p>
-      </li>
-    </ul>
     <div class="admin-page__content">
       <div class="admin-page__description">
-        <img class="admin-page__logo" src="images/avatar.svg" alt="" />
+        <img class="admin-page__logo" src="../images/avatar.svg" alt="" />
         <div class="admin-page__heading">
           <h1 class="admin-page__title">Demo App</h1>
           <p class="admin-page__text">This is a representation of data you could store in a database.</p>
         </div>
       </div>
-      <h3 class="admin-page__sub-heading">Installations</h3>
+      <div class="light__underline"></div>
+      <div class="admin-page__sub-heading-container">
+        <div class="admin-page__sub-heading-box">
+          <h3 class="admin-page__sub-heading" onclick="location.href='/admin'">Settings</h3>
+        </div>
+        <div class="admin-page__sub-heading-box admin-page__sub-heading-selected">
+          <h3 class="admin-page__sub-heading" onclick="location.href='/admin/installs'">Installs</h3>
+        </div>
+      </div>
       <% if(installs.length === 0){ %>
-      <div class="card">No installs available</div>
+      <div class="card">No installs available. Copy the <a href="http://localhost:3000">link</a> to invite users.</div>
       <% } else { %>
       <table class="admin-page__table">
         <thead>

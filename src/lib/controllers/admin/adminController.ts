@@ -12,14 +12,19 @@ export class AdminController implements Controller {
   }
 
   private initRoutes() {
-    this.router.get(`${this.path}`, this.admin);
+    this.router.get(`${this.path}`, this.settings);
+    this.router.get(`${this.path}/installs`, this.installs);
   }
 
-  private async admin(req: Request, res: Response, next: NextFunction) {
+  private async installs(req: Request, res: Response, next: NextFunction) {
     const db = await readFromDb();
-    return res.render('admin', {
+    return res.render('admin-installs', {
       loading: false,
       installs: db.installs || [],
     });
+  }
+
+  private async settings(req: Request, res: Response, next: NextFunction) {
+    return res.render('admin-settings', { loading: false });
   }
 }

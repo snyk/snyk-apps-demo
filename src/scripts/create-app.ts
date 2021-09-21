@@ -2,6 +2,7 @@ import yargs from 'yargs/yargs';
 import axios from 'axios';
 import fs from 'fs';
 import { API_BASE } from '../app';
+import { v4 as uuidv4 } from 'uuid';
 
 const args = yargs(process.argv.slice(2)).options({
   authToken: { type: 'string', demandOption: true },
@@ -33,7 +34,7 @@ CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}
 REDIRECT_URI=${redirectUris.join(',')}
 SCOPES=${scopes.join(',')}
-ENCRYPTION_SECRET=`;
+ENCRYPTION_SECRET=${uuidv4()}`;
 
   fs.writeFileSync('.env', envContent);
 

@@ -7,6 +7,7 @@ import axios from 'axios';
 import qs from 'qs';
 import { API_BASE } from '../../../app';
 import { EncryptDecrypt } from '../../encrypt-decrypt';
+import passport from 'passport';
 
 export class CallbackController implements Controller {
   public path: string = '/callback';
@@ -17,48 +18,50 @@ export class CallbackController implements Controller {
   }
 
   private initRoutes() {
-    this.router.get(`${this.path}`, this.callback);
+    this.router.get(
+      `${this.path}`,
+      passport.authenticate('oauth2', { successRedirect: '/callback/success', failureRedirect: '/' }),
+    );
+    this.router.get(`${this.path}/success`, this.callback);
   }
 
   private async callback(req: Request, res: Response, next: NextFunction) {
-    const redirect_uri = process.env.REDIRECT_URI;
-    const client_id = process.env.CLIENT_ID;
-    const client_secret = process.env.CLIENT_SECRET;
-    // Callback related verifications can be done here
-    const { code, scope, state } = req.query;
-
-    try {
-      const result = await axios({
-        method: 'POST',
-        url: `${API_BASE}/v3/apps/oauth2/token`,
-        data: qs.stringify({
-          grant_type: 'authorization_code',
-          code,
-          client_id,
-          client_secret,
-          redirect_uri,
-        }),
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      });
-      const { access_token, expires_in, scope, token_type, refresh_token } = result.data;
-      const { orgId, orgName } = await CallbackController.getOrgInfo(access_token, token_type);
-
-      const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
-
-      await writeToDb({
-        date: new Date(),
-        orgId,
-        orgName,
-        access_token: ed.encryptString(access_token),
-        expires_in,
-        scope,
-        token_type,
-        refresh_token: ed.encryptString(refresh_token),
-      } as AuthData);
-    } catch (error) {
-      console.error('Error fetching token: ' + error);
-      return next(error);
-    }
+    // const redirect_uri = process.env.REDIRECT_URI;
+    // const client_id = process.env.CLIENT_ID;
+    // const client_secret = process.env.CLIENT_SECRET;
+    // // Callback related verifications can be done here
+    // const { code, scope, state } = req.query;
+    // try {
+    //   const result = await axios({
+    //     method: 'POST',
+    //     url: `${API_BASE}/v3/apps/oauth2/token`,
+    //     data: qs.stringify({
+    //       grant_type: 'authorization_code',
+    //       code,
+    //       client_id,
+    //       client_secret,
+    //       redirect_uri,
+    //     }),
+    //     headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    //   });
+    //   const { access_token, expires_in, scope, token_type, refresh_token } = result.data;
+    //   const { orgId, orgName } = await CallbackController.getOrgInfo(access_token, token_type);
+    //   const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
+    //   await writeToDb({
+    //     date: new Date(),
+    //     orgId,
+    //     orgName,
+    //     access_token: ed.encryptString(access_token),
+    //     expires_in,
+    //     scope,
+    //     token_type,
+    //     refresh_token: ed.encryptString(refresh_token),
+    //   } as AuthData);
+    // } catch (error) {
+    //   console.error('Error fetching token: ' + error);
+    //   return next(error);
+    // }
+    console.log('Response body: ', req.query);
     return res.render('callback', { loading: false });
   }
 

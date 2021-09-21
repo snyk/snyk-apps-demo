@@ -10,6 +10,9 @@ import type { Server } from 'http';
 import type { Controller } from './lib/types';
 import { Envars, Config } from './lib/types';
 import config from 'config';
+import passport from 'passport';
+import expressSession from 'express-session';
+import { getOAuth2 } from './lib/utils/OAuth2Strategy';
 
 export const API_BASE = config.get(Config.ApiBase);
 export const APP_BASE = config.get(Config.AppBase);
@@ -19,8 +22,8 @@ class App {
   private server: Server;
 
   constructor(controllers: Controller[], port: number) {
-    this.app = express();
     this.initDotEnv();
+    this.app = express();
     this.checkEnvVars();
     this.initDatabaseFile();
     this.initGlobalMiddlewares();
@@ -45,9 +48,30 @@ class App {
 
   private initGlobalMiddlewares() {
     this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.set('views', path.join(__dirname, '/views'));
     this.app.set('view engine', 'ejs');
     this.app.use(express.static(path.join(__dirname, '/public')));
+    this.app.use(expressSession({ secret: 'test', resave: false, saveUninitialized: true }));
+    const clientID = process.env[Envars.ClientId] as string;
+    const clientSecret = process.env[Envars.ClientSecret] as string;
+    const callbackURL = process.env[Envars.RedirectUri] as string;
+    const scope = process.env[Envars.Scopes] as string;
+
+    passport.use(
+      getOAuth2({
+        authorizationURL: 'http://localhost:8000/apps/oauth2/authorize',
+        tokenURL: 'http://localhost:3846/oauth2/token',
+        clientID,
+        clientSecret,
+        callbackURL,
+        scope,
+        state: 'test',
+        nonce: 'test',
+      }),
+    );
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
   }
 
   private initErrorHandler() {

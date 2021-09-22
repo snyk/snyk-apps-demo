@@ -1,0 +1,9 @@
+{
+    "api": {
+        "base": "https://api.snyk.io"
+    },
+    "app": {
+        "base": "https://app.snyk.io"
+    },
+    "port": 3000
+}

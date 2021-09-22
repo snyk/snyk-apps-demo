@@ -8,10 +8,11 @@ import { join } from 'path';
 import type { Application } from 'express';
 import type { Server } from 'http';
 import type { Controller } from './lib/types';
-import { Envars } from './lib/types';
+import { Envars, Config } from './lib/types';
+import config from 'config';
 
-export const API_BASE = 'https://api.snyk.io';
-export const APP_BASE = 'https://app.snyk.io';
+export const API_BASE = config.get(Config.ApiBase);
+export const APP_BASE = config.get(Config.AppBase);
 
 class App {
   public app: Application;

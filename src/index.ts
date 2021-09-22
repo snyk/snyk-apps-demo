@@ -8,6 +8,8 @@ import {
 } from './lib/controllers';
 import App from './app';
 import { AdminController } from './lib/controllers/admin/adminController';
+import config from 'config';
+import { Config } from '../src/lib/types';
 
 new App(
   [
@@ -19,5 +21,5 @@ new App(
     new ExampleController(),
     new DefaultController(),
   ],
-  3000,
+  config.get(Config.Port),
 );

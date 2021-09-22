@@ -1,5 +1,10 @@
 import OAuth2Strategy from 'passport-oauth2';
 import type { Request } from 'express';
+import { writeToDb } from '../db';
+import { EncryptDecrypt } from '../encrypt-decrypt';
+import { Envars, AuthData } from '../../types';
+import axios from 'axios';
+import { API_BASE } from '../../../app';
 
 interface GetOAuthParams {
   authorizationURL: string;
@@ -25,10 +30,48 @@ export function getOAuth2(params: GetOAuthParams) {
       state,
       passReqToCallback: true,
     },
-    function (req: Request, access_token: string, refresh_token: string, params: any, profile: any, done: any) {
-      console.log(access_token, refresh_token, profile);
-      console.log('Expiry: ', params.expires_in);
+    async function (req: Request, access_token: string, refresh_token: string, params: any, profile: any, done: any) {
+      // TODO: params has expires_in, scope, token_type
+      try {
+        const { expires_in, scope, token_type } = params;
+        const { orgId, orgName } = await getOrgInfo(access_token, token_type);
+        const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
+        await writeToDb({
+          date: new Date(),
+          orgId,
+          orgName,
+          access_token: ed.encryptString(access_token),
+          expires_in,
+          scope,
+          token_type,
+          refresh_token: ed.encryptString(refresh_token),
+        } as AuthData);
+      } catch (error) {
+        return done(error, profile);
+      }
       return done(null, profile);
     },
   );
+}
+
+async function getOrgInfo(access_token: string, token_type: string): Promise<any> {
+  try {
+    const result = await axios({
+      method: 'GET',
+      url: `${API_BASE}/v1/user/me`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${token_type} ${access_token}`,
+      },
+    });
+
+    const org = result.data.orgs[0];
+    return {
+      orgId: org.id,
+      orgName: org.name,
+    };
+  } catch (error) {
+    console.error('Error fetching org info: ' + error);
+    throw error;
+  }
 }

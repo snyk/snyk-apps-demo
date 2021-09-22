@@ -53,25 +53,7 @@ class App {
     this.app.set('view engine', 'ejs');
     this.app.use(express.static(path.join(__dirname, '/public')));
     this.app.use(expressSession({ secret: 'test', resave: false, saveUninitialized: true }));
-    const clientID = process.env[Envars.ClientId] as string;
-    const clientSecret = process.env[Envars.ClientSecret] as string;
-    const callbackURL = process.env[Envars.RedirectUri] as string;
-    const scope = process.env[Envars.Scopes] as string;
-
-    passport.use(
-      getOAuth2({
-        authorizationURL: 'http://localhost:8000/apps/oauth2/authorize',
-        tokenURL: 'http://localhost:3846/oauth2/token',
-        clientID,
-        clientSecret,
-        callbackURL,
-        scope,
-        state: 'test',
-        nonce: 'test',
-      }),
-    );
-    this.app.use(passport.initialize());
-    this.app.use(passport.session());
+    this.setupPassport();
   }
 
   private initErrorHandler() {
@@ -105,6 +87,35 @@ class App {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  private setupPassport() {
+    const clientID = process.env[Envars.ClientId] as string;
+    const clientSecret = process.env[Envars.ClientSecret] as string;
+    const callbackURL = process.env[Envars.RedirectUri] as string;
+    const scope = process.env[Envars.Scopes] as string;
+
+    passport.use(
+      getOAuth2({
+        authorizationURL: 'http://localhost:8000/apps/oauth2/authorize',
+        tokenURL: 'http://localhost:3846/oauth2/token',
+        clientID,
+        clientSecret,
+        callbackURL,
+        scope,
+        state: 'test',
+        nonce: 'test',
+      }),
+    );
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
+    passport.serializeUser((user, done) => {
+      console.log('User: ', user);
+      done(null, user);
+    });
+    passport.deserializeUser((user: any, done) => {
+      done(null, user);
+    });
   }
 }
 

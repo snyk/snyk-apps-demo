@@ -1,6 +1,6 @@
 export * from './example/exampleController';
 export * from './default/defaultController';
-export * from './homepage/homepageController';
+export * from './index/indexController';
 export * from './callback/callbackController';
 export * from './projects/projectsController';
 export * from './settings/settingsController';

@@ -1,12 +1,7 @@
-import type { AuthData, Controller } from '../../types';
-import { Envars } from '../../types';
+import type { Controller } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
-import { writeToDb } from '../../utils/db';
-import axios from 'axios';
-import qs from 'qs';
-import { API_BASE } from '../../../app';
-import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
+import { HttpException } from '../../exceptions';
 import passport from 'passport';
 
 export class CallbackController implements Controller {
@@ -18,72 +13,23 @@ export class CallbackController implements Controller {
   }
 
   private initRoutes() {
-    this.router.get(
-      `${this.path}`,
-      passport.authenticate('oauth2', { successRedirect: '/callback/success', failureRedirect: '/' }),
-    );
-    this.router.get(`${this.path}/success`, this.callback);
+    this.router.get(`${this.path}`, this.passportAuthenticatte());
+    this.router.get(`${this.path}/success`, this.success);
+    this.router.get(`${this.path}/failure`, this.failure);
   }
 
-  private async callback(req: Request, res: Response, next: NextFunction) {
-    const redirect_uri = process.env.REDIRECT_URI;
-    const client_id = process.env.CLIENT_ID;
-    const client_secret = process.env.CLIENT_SECRET;
-    // Callback related verifications can be done here
-    const { code, scope, state } = req.query;
-    try {
-      const result = await axios({
-        method: 'POST',
-        url: `${API_BASE}/v3/apps/oauth2/token`,
-        data: qs.stringify({
-          grant_type: 'authorization_code',
-          code,
-          client_id,
-          client_secret,
-          redirect_uri,
-        }),
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      });
-      const { access_token, expires_in, scope, token_type, refresh_token } = result.data;
-      const { orgId, orgName } = await CallbackController.getOrgInfo(access_token, token_type);
-      const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
-      await writeToDb({
-        date: new Date(),
-        orgId,
-        orgName,
-        access_token: ed.encryptString(access_token),
-        expires_in,
-        scope,
-        token_type,
-        refresh_token: ed.encryptString(refresh_token),
-      } as AuthData);
-    } catch (error) {
-      console.error('Error fetching token: ' + error);
-      return next(error);
-    }
-    console.log('Response body: ', req.query);
-    return res.render('callback', { loading: false });
+  private passportAuthenticatte() {
+    return passport.authenticate('oauth2', {
+      successRedirect: '/callback/success',
+      failureRedirect: '/callback/failure',
+    });
   }
 
-  private static async getOrgInfo(access_token: string, token_type: string): Promise<any> {
-    try {
-      const result = await axios({
-        method: 'GET',
-        url: `${API_BASE}/v1/user/me`,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${token_type} ${access_token}`,
-        },
-      });
+  private success(req: Request, res: Response, next: NextFunction) {
+    return res.render('callback');
+  }
 
-      const org = result.data.orgs[0];
-      return {
-        orgId: org.id,
-        orgName: org.name,
-      };
-    } catch (error) {
-      console.error('Error fetching org info: ' + error);
-      throw error;
-    }
+  private failure(req: Request, res: Response, next: NextFunction) {
+    return next(new HttpException(401, 'Authentication failed'));
   }
 }

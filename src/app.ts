@@ -1,7 +1,6 @@
 import express from 'express';
 import { reqError } from './lib/middlewares';
 import * as path from 'path';
-import * as dotenv from 'dotenv';
 import { envCheck, Severity } from 'envar-check';
 import * as fs from 'fs';
 import { join } from 'path';
@@ -13,6 +12,7 @@ import config from 'config';
 import passport from 'passport';
 import expressSession from 'express-session';
 import { getOAuth2 } from './lib/utils/OAuth2Strategy';
+import { v4 as uuidv4 } from 'uuid';
 
 export const API_BASE = config.get(Config.ApiBase);
 export const APP_BASE = config.get(Config.AppBase);
@@ -22,7 +22,6 @@ class App {
   private server: Server;
 
   constructor(controllers: Controller[], port: number) {
-    this.initDotEnv();
     this.app = express();
     this.checkEnvVars();
     this.initDatabaseFile();
@@ -61,10 +60,6 @@ class App {
     // Should always be used at last
     this.app.use(reqError());
   }
-  // Initial dotenv to load the environmental variables
-  private initDotEnv() {
-    dotenv.config({ path: path.join(__dirname, '../.env') });
-  }
 
   private checkEnvVars() {
     envCheck(
@@ -90,27 +85,18 @@ class App {
   }
 
   private setupPassport() {
-    const clientID = process.env[Envars.ClientId] as string;
-    const clientSecret = process.env[Envars.ClientSecret] as string;
-    const callbackURL = process.env[Envars.RedirectUri] as string;
-    const scope = process.env[Envars.Scopes] as string;
+    const nonce = uuidv4();
+    const state = uuidv4();
 
     passport.use(
       getOAuth2({
-        authorizationURL: 'http://localhost:8000/apps/oauth2/authorize',
-        tokenURL: 'http://localhost:3846/oauth2/token',
-        clientID,
-        clientSecret,
-        callbackURL,
-        scope,
-        state: 'test',
-        nonce: 'test',
+        state,
+        nonce,
       }),
     );
     this.app.use(passport.initialize());
     this.app.use(passport.session());
-    passport.serializeUser((user, done) => {
-      console.log('User: ', user);
+    passport.serializeUser((user: any, done) => {
       done(null, user);
     });
     passport.deserializeUser((user: any, done) => {

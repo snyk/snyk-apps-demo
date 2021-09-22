@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snyk Apps Demo</title>
-  </head>
-  <body></body>
-</html>
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <%- include('./partials/topnav.ejs') %>
+
+  <div class="index-page">
+    <img class="index-page__snyk-logo" src="images/snykLogoWithDog.svg" />
+    <div class="index-page__card">
+      <h1 class="index-page__title">Add Demo App</h1>
+      <p class="index-page__description">Authorize this App to connect to your Snyk account.</p>
+      <button class="button" onclick="location.href='/auth';">Install App</button>
+    </div>
+  </div>
+  <%- include('./partials/footer.ejs') %>
+</body>

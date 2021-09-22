@@ -1,12 +1,13 @@
 import Cryptr from 'cryptr';
-import { Envars } from '../types';
+import { Envars, Config } from '../types';
+import config from 'config';
 
 export class EncryptDecrypt {
   private secret: string;
   private cryptr: Cryptr;
 
   constructor(secret: string) {
-    this.secret = secret || (process.env[Envars.EncryptionSecret] as string);
+    this.secret = secret || config.get(Config.EncryptionSecret);
     this.cryptr = new Cryptr(this.secret);
   }
 

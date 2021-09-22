@@ -4,34 +4,35 @@ import { writeToDb } from '../db';
 import { EncryptDecrypt } from '../encrypt-decrypt';
 import { Envars, AuthData } from '../../types';
 import axios from 'axios';
-import { API_BASE } from '../../../app';
+import { API_BASE, APP_BASE } from '../../../app';
 
 interface GetOAuthParams {
-  authorizationURL: string;
-  tokenURL: string;
-  clientID: string;
-  clientSecret: string;
-  callbackURL: string;
-  scope: string;
   state: any;
   nonce: any;
 }
 
 export function getOAuth2(params: GetOAuthParams) {
-  const { authorizationURL, tokenURL, clientID, clientSecret, callbackURL, scope, state, nonce } = params;
+  const clientID = process.env[Envars.ClientId] as string;
+  const clientSecret = process.env[Envars.ClientSecret] as string;
+  const callbackURL = process.env[Envars.RedirectUri] as string;
+  const scopeFromEnv = process.env[Envars.Scopes] as string;
+  const scope = scopeFromEnv.split(',');
+  console.log(scope);
+  const { state, nonce } = params;
+
   return new OAuth2Strategy(
     {
-      authorizationURL: `${authorizationURL}?nonce=${nonce}`,
-      tokenURL,
+      authorizationURL: `${APP_BASE}/apps/oauth2/authorize?nonce=${nonce}`,
+      tokenURL: `${API_BASE}/v3/apps/oauth2/token`,
       clientID,
       clientSecret,
       callbackURL,
       scope,
+      scopeSeparator: ' ',
       state,
       passReqToCallback: true,
     },
     async function (req: Request, access_token: string, refresh_token: string, params: any, profile: any, done: any) {
-      // TODO: params has expires_in, scope, token_type
       try {
         const { expires_in, scope, token_type } = params;
         const { orgId, orgName } = await getOrgInfo(access_token, token_type);
@@ -47,9 +48,9 @@ export function getOAuth2(params: GetOAuthParams) {
           refresh_token: ed.encryptString(refresh_token),
         } as AuthData);
       } catch (error) {
-        return done(error, profile);
+        return done(error, null);
       }
-      return done(null, profile);
+      return done(null, { nonce, state });
     },
   );
 }

@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/default.css" />
-    <title>Page Not Found</title>
-  </head>
-  <body>
-    <h1>Sorry, we couldn't find the page you are looking for</h1>
-  </body>
-</html>
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <%- include('./partials/topnav-common.ejs') %>
+
+  <div class="index-page">
+    <div class="index-page__card">
+      <h1 class="index-page__title">Page not found.</h1>
+      <p class="index-page__description">Sorry we are unable to find the page you are looking for</p>
+    </div>
+  </div>
+  <%- include('./partials/footer.ejs') %>
+</body>

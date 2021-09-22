@@ -4,7 +4,7 @@ import { Router } from 'express';
 import { readFromDb } from '../../utils/db';
 import axios from 'axios';
 import { API_BASE } from '../../../app';
-import { EncryptDecrypt } from '../../../lib/encrypt-decrypt';
+import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
 
 export class ProjectsController implements Controller {
   public path = '/projects';

@@ -1,0 +1,9 @@
+{
+    "client": {
+        "id": "CLIENT_ID",
+        "secret": "CLIENT_SECRET"
+    },
+    "ecryptionSecret": "ENCRYPTION_SECRET",
+    "redirectUri": "REDIRECT_URI",
+    "scopes": "SCOPES"
+}

@@ -591,8 +591,10 @@ body {
 }
 
 .callback-page__success-text{
+  color: var(--color-base-dimmed);
+  font-size: 1.5rem;
+  line-height: 2rem;
   padding: 2rem 0;
-  color: var(--color-base-heading);
 }
 
 /*------------------------------------ Error Page ------------------------*/

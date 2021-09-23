@@ -51,7 +51,7 @@ class App {
     this.app.set('views', path.join(__dirname, '/views'));
     this.app.set('view engine', 'ejs');
     this.app.use('/public', express.static(path.join(__dirname, '/public')));
-    this.app.use(expressSession({ secret: 'test', resave: false, saveUninitialized: true }));
+    this.app.use(expressSession({ secret: uuidv4(), resave: false, saveUninitialized: true }));
     this.setupPassport();
   }
 
@@ -88,12 +88,7 @@ class App {
     const nonce = uuidv4();
     const state = uuidv4();
 
-    passport.use(
-      getOAuth2({
-        state,
-        nonce,
-      }),
-    );
+    passport.use(getOAuth2(nonce));
     this.app.use(passport.initialize());
     this.app.use(passport.session());
     passport.serializeUser((user: any, done) => {

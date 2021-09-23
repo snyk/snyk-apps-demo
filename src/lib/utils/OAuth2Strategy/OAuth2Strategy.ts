@@ -17,7 +17,6 @@ export function getOAuth2(params: GetOAuthParams) {
   const callbackURL = process.env[Envars.RedirectUri] as string;
   const scopeFromEnv = process.env[Envars.Scopes] as string;
   const scope = scopeFromEnv.split(',');
-  console.log(scope);
   const { state, nonce } = params;
 
   return new OAuth2Strategy(

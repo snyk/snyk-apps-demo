@@ -50,7 +50,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.set('views', path.join(__dirname, '/views'));
     this.app.set('view engine', 'ejs');
-    this.app.use(express.static(path.join(__dirname, '/public')));
+    this.app.use('/public', express.static(path.join(__dirname, '/public')));
     this.app.use(expressSession({ secret: 'test', resave: false, saveUninitialized: true }));
     this.setupPassport();
   }

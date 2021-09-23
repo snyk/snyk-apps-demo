@@ -1,7 +1,7 @@
 import type { Controller } from '../../types';
+import { Envars } from '../../types';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
-import { generateUrl } from '../../utils';
 
 export class HomepageController implements Controller {
   public path = '/';
@@ -16,7 +16,7 @@ export class HomepageController implements Controller {
   }
 
   private homepage(req: Request, res: Response, next: NextFunction) {
-    const authorizeUrl = generateUrl();
-    return res.render('homepage', { authorizeUrl, loading: false });
+    if (req.user) return res.redirect('/projects');
+    return res.render('index');
   }
 }

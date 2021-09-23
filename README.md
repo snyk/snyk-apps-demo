@@ -8,11 +8,13 @@ If you haven't already created a Snyk App, you can do so via:
 
 `$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"`
 
+Ex: `npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes="photos" "offline" --name="test-snyk-app"`
+
 (note the extra `--` between `create-app` and the parameters)
 
 - `authToken`: your personal Snyk auth token, obtained from [your account settings page](https://app.snyk.io/account)
 - `orgId`: the organization id that you want to own the Snyk App (obtained by clicking the cog in the upper right corner of the Snyk console)
-- `scopes`: a comma separated list of scopes you want your App to be able to request at install time (see Snyk Apps docs for allowed values)
+- `scopes`: a space separated list of scopes you want your App to be able to request at install time (see Snyk Apps docs for allowed values)
 - `name`: the friendly name of your Snyk App
 
 This will register your new app with Snyk and create the `.env` file (see below) with your new client-id & client-secret. Keep these values secure!

@@ -1,6 +1,4 @@
 <%- include('./partials/header.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
-    <link rel="stylesheet" type="text/css" href="/css/projects.css" />
     <title>Snyk Demo App</title>
   </head>
   <body>
@@ -12,7 +10,7 @@
       </ul>
       <div class="projects-page__content">
         <div class="projects-page__description">
-          <img class="projects-page__logo" src="images/avatar.svg" alt="" />
+          <img class="projects-page__logo" src="/public/images/avatar.svg" alt="avatar" />
           <div class="projects-page__heading">
             <h1 class="projects-page__title">Demo App</h1>
             <p class="projects-page__text">List of all your projects</p>
@@ -44,8 +42,8 @@
                 href="<%= projects[i].browseUrl %>"
               >
                 <img
-                  src="images/book-multiple.svg"
-                  alt=""
+                  src="/public/images/book-multiple.svg"
+                  alt="books"
                   class="link-button-icon"
                 />
                 View in Snyk

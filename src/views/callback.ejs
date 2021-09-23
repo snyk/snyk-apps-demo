@@ -1,21 +1,20 @@
 <%- include('./partials/header.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
-    <link rel="stylesheet" type="text/css" href="/css/callback.css" />
     <title>Snyk Demo App</title>
   </head>
   <body>
     <%- include('./partials/topnav.ejs') %>
     <div>
-        <h2 class="snyk-main-headings">Snyk Demo App</h2>
+        <h2 class="main__heading">Snyk Demo App</h2>
       </div>
-    <div class="snyk-center-box">
-    <img class="snyk-con-img" src="/images/success_check.svg" alt="" />
-    <div>
-      <h2 style="margin-bottom: 1rem;">Success!</h2>
-    </div>
-    <button class="button" onclick="location.href='/projects';">List Projects</button>
+    <div class="card__30">
+        <div class="callback-page__success-box">
+          <img class="snyk-con-img" src="/public/images/success_check.svg" alt="success" />
+          <div>
+            <h2 class="callback-page__success-text">Successfully connected to Snyk!</h2>
+          </div>
+          <button class="button" onclick="location.href='/projects';">List Projects</button>
+        </div>
 </div> 
-
 
     </div>
     <%- include('./partials/footer.ejs') %>

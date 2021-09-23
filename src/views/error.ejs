@@ -1,12 +1,12 @@
 <%- include('./partials/header.ejs') %>
   <body>
-    <%- include('./partials/topnav-common.ejs') %>
+    <%- include('./partials/topnav.ejs') %>
 
     <div>
       <h2 class="main__heading">Snyk Demo App</h2>
     </div>
     <div class="error-page__container-box">
-        <img class="error-page__img" src="/images/snyk_error.svg" alt="">
+        <img class="error-page__img" src="/public/images/snyk_error.svg" alt="error">
         <h3 class="error-page__sub-heading">Error Occurred</h3>
         <p class="error-page__text"><%= errorMessage %></p>
     </div>

@@ -19,7 +19,6 @@ export class AdminController implements Controller {
   private async installs(req: Request, res: Response, next: NextFunction) {
     const db = await readFromDb();
     return res.render('admin-installs', {
-      loading: false,
       installs: db.installs || [],
     });
   }

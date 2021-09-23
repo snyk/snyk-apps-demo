@@ -1,12 +1,12 @@
 <%- include('./partials/header.ejs') %>
 
 <body>
-  <%- include('./partials/topnav-admin-settings.ejs') %>
+  <%- include('./partials/topnav-admin.ejs') %>
 
   <div class="admin-page">
     <div class="admin-page__content">
       <div class="admin-page__description">
-        <img class="admin-page__logo" src="images/avatar.svg" alt="" />
+        <img class="admin-page__logo" src="/public/images/avatar.svg" alt="avatar" />
         <div class="admin-page__heading">
           <h1 class="admin-page__title">Demo App</h1>
           <p class="admin-page__text">This is a representation of data you could store in a database.</p>
@@ -37,7 +37,7 @@
           <p class="card__text">You logo or icon.</p>
         </div>
         <div class="px-1 admin-page__icon-card">
-          <img class="admin-page__app-icon" src="/images/avatar.svg" alt="" />
+          <img class="admin-page__app-icon" src="/public/images/avatar.svg" alt="avatar" />
           <button class="button button-light">Choose image file</button>
         </div>
       </div>
@@ -65,7 +65,7 @@
           <p class="card__text">Removing this integration will remove it for all users.</p>
           <!-- TODO update link to public docs -->
           <a href="#" class="link-button settings-page__docs-button">
-            <img src="images/book-outline.svg" alt="" class="link-button-icon" />
+            <img src="/public/images/book-outline.svg" alt="book" class="link-button-icon" />
             View docs
           </a>
         </div>

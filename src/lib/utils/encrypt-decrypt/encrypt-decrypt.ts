@@ -1,5 +1,5 @@
 import Cryptr from 'cryptr';
-import { Envars, Config } from '../types';
+import { Config } from '../../types';
 import config from 'config';
 
 export class EncryptDecrypt {

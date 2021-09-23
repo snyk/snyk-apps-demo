@@ -15,6 +15,6 @@ export class SettingsController implements Controller {
   }
 
   private displaySettings(req: Request, res: Response, next: NextFunction) {
-    return res.render('settings', { loading: false });
+    return res.render('settings');
   }
 }

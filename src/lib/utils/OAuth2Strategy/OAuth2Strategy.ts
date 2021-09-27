@@ -15,8 +15,8 @@ export function getOAuth2(nonce: string) {
 
   return new OAuth2Strategy(
     {
-      authorizationURL: `${APP_BASE}/apps/oauth2/authorize?nonce=${nonce}`,
-      tokenURL: `${API_BASE}/v3/apps/oauth2/token`,
+      authorizationURL: `${APP_BASE}/oauth2/authorize?nonce=${nonce}`,
+      tokenURL: `${API_BASE}/oauth2/token`,
       clientID,
       clientSecret,
       callbackURL,

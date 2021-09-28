@@ -6,5 +6,7 @@ export const enum Config {
   Scopes = 'scopes',
   ApiBase = 'api.base',
   AppBase = 'app.base',
+  AuthURL = 'authorizationUrl',
+  TokenURL = 'tokenUrl',
   Port = 'port',
 }

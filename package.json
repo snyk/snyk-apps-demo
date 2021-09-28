@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "build": "npx tsc",
     "dev": "ts-node src/index.ts",
     "dev:watch": "nodemon src/index.ts",
+    "dev:js": "node dist/index.js",
+    "dev:js-watch": "nodemon dist/index.ts",
     "lint:ejs": "find src/views -type f -iname '*.ejs' -exec bash -c \"./node_modules/.bin/ejslint '{}'\" \\;",
     "create-app": "ts-node src/scripts/create-app.ts"
   },

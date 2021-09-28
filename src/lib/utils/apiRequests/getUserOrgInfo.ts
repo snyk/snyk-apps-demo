@@ -1,6 +1,13 @@
 import axios from 'axios';
-import { API_BASE, APP_BASE } from '../../../app';
+import { API_BASE } from '../../../app';
 
+/**
+ * Function to get user's Snyk Org ID and Name that may be used in
+ * other API requests
+ * @param {String} access_token access token fetched on users behalf
+ * @param {String} token_type token type which is normally going to be bearer
+ * @returns Org data or throws and error
+ */
 export async function getUserOrgInfo(access_token: string, token_type: string): Promise<any> {
   try {
     const result = await axios({
@@ -11,7 +18,7 @@ export async function getUserOrgInfo(access_token: string, token_type: string): 
         Authorization: `${token_type} ${access_token}`,
       },
     });
-
+    // Fetch the first org for demo purposes
     const org = result.data.orgs[0];
     return {
       orgId: org.id,

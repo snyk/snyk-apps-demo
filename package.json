@@ -57,6 +57,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "form-data": "^4.0.0",
+    "jwt-decode": "^3.1.2",
     "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB",
     "passport": "^0.4.1",
     "passport-oauth2": "^1.6.0"

@@ -1,1 +1,1 @@
-export * from './generateUrl';
+export * from './OAuth2Strategy';

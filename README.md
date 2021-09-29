@@ -23,7 +23,7 @@ This will register your new app with Snyk and create the `.env` file (see below)
 - `client-id` or `CLIENT_ID`: the client id associated with your Snyk app
 - `client-secret` or `CLIENT_SECRET`: super secret client secret associated with you Snyk app
 - `redirect-uri` or `REDIRECT_URI`: the redirect uri or the callback url used by your Snyk app
-- `scopes` or `SCOPES`: the scopes for your Snyk app
+- `scopes` or `SCOPES`: the space separated list of scopes for your Snyk app
 - `encryption-key` or `ENCRYPTION_KEY`: secret encryption key used by the demo app to encrypt sensitive data
 
 ### Start the App

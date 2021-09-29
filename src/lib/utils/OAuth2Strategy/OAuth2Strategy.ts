@@ -30,8 +30,7 @@ export function getOAuth2(nonce: string) {
   const clientID = process.env[Envars.ClientId] as string;
   const clientSecret = process.env[Envars.ClientSecret] as string;
   const callbackURL = process.env[Envars.RedirectUri] as string;
-  const scopeFromEnv = process.env[Envars.Scopes] as string;
-  const scope = scopeFromEnv.split(',');
+  const scope = process.env[Envars.Scopes] as string;
   // Note nonce value manually being added to the authorization URL
   return new OAuth2Strategy(
     {

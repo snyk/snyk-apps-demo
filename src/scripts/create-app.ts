@@ -32,7 +32,7 @@ function handleResult(result: any) {
   const envContent = `CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}
 REDIRECT_URI=${redirectUris.join(',')}
-SCOPES=${scopes.join(',')}
+SCOPES=${scopes}
 ENCRYPTION_SECRET=${uuidv4()}`;
 
   fs.writeFileSync('.env', envContent);

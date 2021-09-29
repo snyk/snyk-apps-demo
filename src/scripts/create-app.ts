@@ -29,8 +29,7 @@ async function createApp(args: any) {
 
 function handleResult(result: any) {
   const { clientId, clientSecret, redirectUris, scopes } = result.data.data.attributes;
-  const envContent = `PORT=3000
-CLIENT_ID=${clientId}
+  const envContent = `CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}
 REDIRECT_URI=${redirectUris.join(',')}
 SCOPES=${scopes.join(',')}

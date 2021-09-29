@@ -1,6 +1,5 @@
 import { readFromDb } from '../../utils/db';
-import axios from 'axios';
-import { API_BASE } from '../../../app';
+import { callSnykApi } from '../../utils/api';
 import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
 import { AuthData, Envars } from '../../types';
 
@@ -22,16 +21,9 @@ export async function getProjectsFromApi() {
   const eD = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
   const access_token = eD.decryptString(data?.access_token);
   const token_type = data?.token_type;
-  // Call Snyk API to get projects for the user
-  const result = await axios({
-    method: 'POST',
-    url: `${API_BASE}/v1/org/${data?.orgId}/projects`,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `${token_type} ${access_token}`,
-    },
-  });
-  // Return projects array or an empty array
+  // Call the axios instance configured for Snyk API v1
+  const result = await callSnykApi(access_token, token_type).post(`/org/${data?.orgId}/projects`);
+
   return result.data.projects || [];
 }
 
@@ -40,7 +32,7 @@ export async function getProjectsFromApi() {
  * @param {AuthData[]} installs get most recent install from list of installs
  * @returns the latest install or void
  */
-function mostRecent(installs: AuthData[]): AuthData | void {
+export function mostRecent(installs: AuthData[]): AuthData | void {
   if (installs) {
     return installs[installs.length - 1];
   }

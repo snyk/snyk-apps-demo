@@ -20,9 +20,8 @@ or
 - `scopes`: a space separated list of scopes you want your App to be able to request at install time (see Snyk Apps docs for allowed values)
 - `name`: the friendly name of your Snyk App
 
-This will register your new app with Snyk and create the `.env` file (see below) with your new `port`, `client-id`, `client-secret`, `redirect-uri`, `scopes` and `encryption-key`. Keep these values secure!
+This will register your new app with Snyk and create the `.env` file (see below) with your new `client-id`, `client-secret`, `redirect-uri`, `scopes` and `encryption-key`. Keep these values secure!
 
-- `port` or `PORT`: will be used to run the app on the specified port
 - `client-id` or `CLIENT_ID`: the client id associated with your Snyk app
 - `client-secret` or `CLIENT_SECRET`: super secret client secret associated with you Snyk app
 - `redirect-uri` or `REDIRECT_URI`: the redirect uri or the callback url used by your Snyk app

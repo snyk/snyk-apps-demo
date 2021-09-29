@@ -39,9 +39,11 @@
     "@types/form-data": "^2.5.0",
     "@types/jest": "^27.0.1",
     "@types/lowdb": "^1.0.11",
+    "@types/luxon": "^2.0.4",
     "@types/node": "^16.9.1",
     "@types/passport": "^1.0.7",
     "@types/passport-oauth2": "^1.4.11",
+    "@types/qs": "^6.9.7",
     "@types/uuid": "^8.3.1",
     "@types/yargs": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "4.32.0",
@@ -71,8 +73,10 @@
     "form-data": "^4.0.0",
     "jwt-decode": "^3.1.2",
     "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB",
+    "luxon": "^2.0.2",
     "passport": "^0.4.1",
-    "passport-oauth2": "^1.6.0"
+    "passport-oauth2": "^1.6.0",
+    "qs": "^6.10.1"
   },
   "nodemonConfig": {
     "ignore": [

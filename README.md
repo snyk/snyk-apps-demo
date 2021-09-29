@@ -4,13 +4,11 @@ This is a demo app that can be used as a guide on how to create Snyk Apps. Creat
 
 ### Create new SnykApp
 
-The first thing you need to do is create a app. If you haven't already created a Snyk App, you can do so via:
+The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via:
 
 `$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"`
 
 Ex:
-`$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes="photos" "offline" --name="test-snyk-app"`
-or
 `$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=photos offline --name=test-snyk-app`
 
 (note the extra `--` between `create-app` and the parameters)

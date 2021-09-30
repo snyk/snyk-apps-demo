@@ -1,4 +1,4 @@
-import { EncryptDecrypt } from '../../../../src/lib/utils/encrypt-decrypt';
+import { EncryptDecrypt } from '../../../../src/lib/utils';
 
 describe('Encrypt and decrypt the string', () => {
   const stringToEncrypt: string = 'test';

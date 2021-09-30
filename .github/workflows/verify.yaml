@@ -1,13 +1,10 @@
 name: Release
 
-on:
-  push:
-    branches:
-      - main
+on: pull_request
 
 jobs:
   push:
-    name: Push to production
+    name: Lint and test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +17,7 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
-      - name: Run Snyk to check for vulnerabilities
+      - name: Scan for vulnerabilities
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

@@ -32,17 +32,7 @@ export function callSnykApi(tokenType: string, token: string, version: APIVersio
     });
   }
 
-  axiosInstance.interceptors.request.use(
-    async (request) => {
-      await refreshTokenInterceptor(request);
-      // Always return request to prevent unintended errors
-      return request;
-    },
-    (err) => {
-      // If error, reject the promise i.e the call made with axios instance
-      return Promise.reject(err);
-    },
-  );
+  axiosInstance.interceptors.request.use(refreshTokenInterceptor, Promise.reject);
   // Returns the axios instance
   return axiosInstance;
 }

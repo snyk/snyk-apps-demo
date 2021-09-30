@@ -1,5 +1,7 @@
 import type { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
 /**
+ * This function returns an error handling express
+ * middleware. That can be configured according to need
  * @returns an error handler middleware function
  */
 export function reqError(): ErrorRequestHandler {

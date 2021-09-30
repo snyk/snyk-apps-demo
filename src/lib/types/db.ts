@@ -11,4 +11,5 @@ export interface AuthData {
   scope: string;
   token_type: string;
   nonce: string;
+  refresh_token: string;
 }

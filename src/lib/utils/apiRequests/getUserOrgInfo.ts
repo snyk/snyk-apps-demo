@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { API_BASE } from '../../../app';
+import { callSnykApi } from '../api';
 
 /**
  * Function to get user's Snyk Org ID and Name that may be used in
@@ -10,13 +9,12 @@ import { API_BASE } from '../../../app';
  */
 export async function getUserOrgInfo(access_token: string, token_type: string): Promise<any> {
   try {
-    const result = await axios({
+    const result = await callSnykApi(
+      access_token,
+      token_type,
+    )({
       method: 'GET',
-      url: `${API_BASE}/v1/user/me`,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${token_type} ${access_token}`,
-      },
+      url: `/user/me`,
     });
     // Fetch the first org for demo purposes
     const org = result.data.orgs[0];

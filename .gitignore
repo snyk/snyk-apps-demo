@@ -4,8 +4,7 @@ node_modules/
 .cache
 dist/
 .DS_Store
-.env
-.env.dev
-.env.local
+.env*
 db/*
 config/development.json
+config/local.json

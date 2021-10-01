@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import { GrantType } from '../../types/grantType';
-import { Config, Envars } from '../../types';
+import { AuthData, Config, Envars } from '../../types';
 import { API_BASE } from '../../../app';
 import config from 'config';
 
@@ -12,7 +12,7 @@ import config from 'config';
  * @param {String} refreshToken required to refresh the user auth token when it expires
  * @returns Promise that will return data or throw an error
  */
-export async function refreshAuthToken(refreshToken: string): Promise<any> {
+export async function refreshAuthToken(refreshToken: string): Promise<AuthData> {
   const querystring = qs.stringify({
     grant_type: GrantType.RefreshToken,
     client_id: process.env[Envars.ClientId],
@@ -27,8 +27,8 @@ export async function refreshAuthToken(refreshToken: string): Promise<any> {
       data: querystring,
     });
     return result.data;
-  } catch (error: any) {
-    if (error.response) {
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error) && error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
       console.log(error.response.data);

@@ -11,7 +11,7 @@ import { readFromDb } from '../../utils/db';
  */
 export class AdminController implements Controller {
   // The base URL path for this controller
-  public path: string = '/admin';
+  public path = '/admin';
   // Express router for this controller
   public router: Router = Router();
 

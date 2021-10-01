@@ -10,7 +10,7 @@
     "rules": {
         "prettier/prettier": "error",
         "@typescript-eslint/indent": ["error", 2],
-        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "next" }],
         "@typescript-eslint/no-inferrable-types": "warn"
     }
 }

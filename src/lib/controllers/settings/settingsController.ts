@@ -10,7 +10,7 @@ import { Router } from 'express';
  */
 export class SettingsController implements Controller {
   // The base URL path for this controller
-  public path: string = '/settings';
+  public path = '/settings';
   // Express router for this controller
   public router: Router = Router();
 

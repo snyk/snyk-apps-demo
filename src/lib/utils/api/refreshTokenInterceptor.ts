@@ -14,7 +14,7 @@ import { updateDb } from '../db';
  * for conditional checks
  * @returns Axios request interceptor
  */
-export async function refreshTokenInterceptor(request: AxiosRequestConfig) {
+export async function refreshTokenInterceptor(request: AxiosRequestConfig): Promise<AxiosRequestConfig> {
   // Read the latest data(auth token, refresh token and expiry)
   const db = await readFromDb();
   const data = mostRecent(db.installs);

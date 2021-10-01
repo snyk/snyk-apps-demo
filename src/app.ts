@@ -164,10 +164,10 @@ class App {
     passport.use(getOAuth2(nonce));
     this.app.use(passport.initialize());
     this.app.use(passport.session());
-    passport.serializeUser((user: any, done) => {
+    passport.serializeUser((user: Express.User, done) => {
       done(null, user);
     });
-    passport.deserializeUser((user: any, done) => {
+    passport.deserializeUser((user: Express.User, done) => {
       done(null, user);
     });
   }

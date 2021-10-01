@@ -1,5 +1,5 @@
 import type { Request } from 'express';
-import OAuth2Strategy from 'passport-oauth2';
+import OAuth2Strategy, { VerifyCallback } from 'passport-oauth2';
 import { writeToDb } from '../db';
 import { EncryptDecrypt } from '../encrypt-decrypt';
 import { Envars, AuthData, Config } from '../../types';
@@ -7,6 +7,14 @@ import { API_BASE, APP_BASE } from '../../../app';
 import { getUserOrgInfo } from '../apiRequests';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
+
+type Params = {
+  expires_in: number;
+  scope: string;
+  token_type: string;
+};
+// There is more data here but we only care about the nonce
+type JWT = { nonce: string };
 
 /**
  * Generating the passport strategy is the first step in setting up passportjs
@@ -18,7 +26,7 @@ import jwt_decode from 'jwt-decode';
  * moment. So we are verifying the nonce value manually in this application
  * @returns Passport strategy for OAuth2
  */
-export function getOAuth2(nonce: string) {
+export function getOAuth2(nonce: string): OAuth2Strategy {
   /**
    * All the required values are read from environmental variables
    * as these values are to be kept confidential
@@ -45,9 +53,16 @@ export function getOAuth2(nonce: string) {
       state: true,
       passReqToCallback: true,
     },
-    async function (req: Request, access_token: string, refresh_token: string, params: any, profile: any, done: any) {
+    async function (
+      req: Request,
+      access_token: string,
+      refresh_token: string,
+      params: Params,
+      profile: unknown,
+      done: VerifyCallback,
+    ) {
       try {
-        const decoded: any = jwt_decode(access_token);
+        const decoded: JWT = jwt_decode(access_token);
         if (nonce !== decoded.nonce) throw new Error('Nonce values do not match');
         const { expires_in, scope, token_type } = params;
         const { orgId, orgName } = await getUserOrgInfo(access_token, token_type);
@@ -64,7 +79,7 @@ export function getOAuth2(nonce: string) {
           nonce,
         } as AuthData);
       } catch (error) {
-        return done(error, false);
+        return done(error as Error, false);
       }
       return done(null, { nonce });
     },

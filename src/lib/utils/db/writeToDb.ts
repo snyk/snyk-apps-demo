@@ -8,12 +8,12 @@ import { readFromDb } from './readFromDb';
  * in this case
  * @param {AuthData} data to be written to the DB
  */
-export async function writeToDb(data: AuthData) {
+export async function writeToDb(data: AuthData): Promise<void> {
   const existingData = await readFromDb();
   existingData.installs.push(data);
   // Creates a new DB if one doesn't already exists
   const adapter = new JSONFile(dbPath);
   const db = new Low(adapter);
   db.data = existingData;
-  await db.write();
+  return db.write();
 }

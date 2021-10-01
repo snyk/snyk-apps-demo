@@ -4,14 +4,34 @@ import fs from 'fs';
 import { API_BASE } from '../app';
 import { v4 as uuidv4 } from 'uuid';
 
+type Args = {
+  authToken: string;
+  orgId: string;
+  scopes: string[];
+  name: string;
+};
+type APIResult<T> = {
+  data: {
+    data: {
+      attributes: T;
+    };
+  };
+};
+type CreatedApp = {
+  clientId: string;
+  clientSecret: string;
+  redirectUris: string[];
+  scopes: string;
+};
+
 const args = yargs(process.argv.slice(2)).options({
   authToken: { type: 'string', demandOption: true },
   orgId: { type: 'string', demandOption: true },
   scopes: { type: 'array', demandOption: true },
   name: { type: 'string', demandOption: true },
-}).argv;
+}).argv as Args;
 
-async function createApp(args: any) {
+async function createApp(args: Args) {
   return axios({
     method: 'POST',
     url: `${API_BASE}/v3/orgs/${args.orgId}/apps?version=2021-08-11~experimental`,
@@ -27,7 +47,7 @@ async function createApp(args: any) {
   });
 }
 
-function handleResult(result: any) {
+function handleResult(result: APIResult<CreatedApp>) {
   const { clientId, clientSecret, redirectUris, scopes } = result.data.data.attributes;
   const envContent = `CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}

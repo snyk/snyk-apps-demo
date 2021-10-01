@@ -10,7 +10,7 @@ import { AuthData, Envars } from '../../types';
  * token scopes on what you can and can not access
  * @returns List of user project or an empty array
  */
-export async function getProjectsFromApi() {
+export async function getProjectsFromApi(): Promise<unknown[]> {
   // Read data from DB
   const db = await readFromDb();
   const data = mostRecent(db.installs);

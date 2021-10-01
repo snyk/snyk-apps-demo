@@ -4,13 +4,11 @@ This is a demo app that can be used as a guide on how to create Snyk Apps. Creat
 
 ### Create new SnykApp
 
-The first thing you need to do is create a app. If you haven't already created a Snyk App, you can do so via:
+The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via:
 
 `$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"`
 
 Ex:
-`$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes="photos" "offline" --name="test-snyk-app"`
-or
 `$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=photos offline --name=test-snyk-app`
 
 (note the extra `--` between `create-app` and the parameters)
@@ -20,13 +18,12 @@ or
 - `scopes`: a space separated list of scopes you want your App to be able to request at install time (see Snyk Apps docs for allowed values)
 - `name`: the friendly name of your Snyk App
 
-This will register your new app with Snyk and create the `.env` file (see below) with your new `port`, `client-id`, `client-secret`, `redirect-uri`, `scopes` and `encryption-key`. Keep these values secure!
+This will register your new app with Snyk and create the `.env` file (see below) with your new `client-id`, `client-secret`, `redirect-uri`, `scopes` and `encryption-key`. Keep these values secure!
 
-- `port` or `PORT`: will be used to run the app on the specified port
 - `client-id` or `CLIENT_ID`: the client id associated with your Snyk app
 - `client-secret` or `CLIENT_SECRET`: super secret client secret associated with you Snyk app
 - `redirect-uri` or `REDIRECT_URI`: the redirect uri or the callback url used by your Snyk app
-- `scopes` or `SCOPES`: the scopes for your Snyk app
+- `scopes` or `SCOPES`: the space separated list of scopes for your Snyk app
 - `encryption-key` or `ENCRYPTION_KEY`: secret encryption key used by the demo app to encrypt sensitive data
 
 ### Start the App

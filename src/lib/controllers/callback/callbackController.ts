@@ -13,7 +13,7 @@ import passport from 'passport';
  */
 export class CallbackController implements Controller {
   // The base URL path for this controller
-  public path: string = '/callback';
+  public path = '/callback';
   // Express router for this controller
   public router: Router = Router();
 

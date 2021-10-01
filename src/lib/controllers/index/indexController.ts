@@ -1,5 +1,4 @@
 import type { Controller } from '../../types';
-import { Envars } from '../../types';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 

@@ -7,7 +7,10 @@ import { callSnykApi } from '../api';
  * @param {String} token_type token type which is normally going to be bearer
  * @returns Org data or throws and error
  */
-export async function getUserOrgInfo(access_token: string, token_type: string): Promise<any> {
+export async function getUserOrgInfo(
+  access_token: string,
+  token_type: string,
+): Promise<{ orgId: string; orgName: string }> {
   try {
     const result = await callSnykApi(
       access_token,

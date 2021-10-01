@@ -30,12 +30,12 @@ export function getOAuth2(nonce: string) {
   const clientID = process.env[Envars.ClientId] as string;
   const clientSecret = process.env[Envars.ClientSecret] as string;
   const callbackURL = process.env[Envars.RedirectUri] as string;
-  const scopeFromEnv = process.env[Envars.Scopes] as string;
-  const scope = scopeFromEnv.split(',');
-  // Note nonce value manually being added to the authorization URL
+  const scope = process.env[Envars.Scopes] as string;
+
+  // Note version and nonce values manually being added to the authorization URL
   return new OAuth2Strategy(
     {
-      authorizationURL: `${APP_BASE}${config.get(Config.AuthURL)}?nonce=${nonce}`,
+      authorizationURL: `${APP_BASE}${config.get(Config.AuthURL)}?version=2021-08-11~experimental&nonce=${nonce}`,
       tokenURL: `${API_BASE}${config.get(Config.TokenURL)}`,
       clientID,
       clientSecret,

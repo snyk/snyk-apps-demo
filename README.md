@@ -1,8 +1,18 @@
-## Snyk Demo App
+# Snyk Demo App
+
 
 This is a demo app that can be used as a guide on how to create Snyk Apps. Created in NodeJS with TypeScript and EJS templates provides a simple implementation.
 
-### Create new SnykApp
+
+## Requirements:
+
+
+- `node` version 10 or greater
+- `npm` verion 6 or greater
+- Install all the dependencies using `$ npm install or npm ci`
+
+## Create new Snyk App:
+
 
 The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via:
 
@@ -26,49 +36,20 @@ This will register your new app with Snyk and create the `.env` file (see below)
 - `scopes` or `SCOPES`: the space separated list of scopes for your Snyk app
 - `encryption-key` or `ENCRYPTION_KEY`: secret encryption key used by the demo app to encrypt sensitive data
 
-### Start the App
 
-Install all the dependencies using `npm`:
+## Running the Demo Snyk App:
 
-`$ npm install` or `$ npm ci`
 
-### NodeJS and JavaScript
+1. Run the following command to compile TypeScript into JavaScript
 
-Run the following command to compile TypeScript into JavaScript
+    `$ npm run build`
 
-`$ npm run build`
+2. Once the TypeScript has been compiled to JavaScript(into `./dist` directory) run
 
-Once the TypeScript has been compiled to JavaScript(`./dist`) run
+    `$ npm run dev` or in the watch mode `$ npm run dev:watch`
 
-`$ npm run dev:js`
 
-or in the watch mode
+## The .env File:
 
-`$ npm run dev:js-watch`
 
-### With TS Node
-
-TS Node enables you to run the app in TypeScript without having to compile the application to JavaScript.
-
-`$ ts-node src/index.ts` or use script `$ npm run dev`
-
-To run the app in watch mode using `nodemon`, you can use `$ npm run dev:watch`
-
-You will see a message similar to: `App listening on port: 3000`
-
-Test to confirm, go to: [http://localhost:3000](http://localhost:3000).
-
-### .env File
-
-The `.env` file is used to store all the environmental variables. Ensure this remains secret!
-
-If you've already created a Snyk App, you can copy `.env.example` and set the values.
-
-### Overriding the default API URLs
-
-The defaults for the required API URLs are in the `./config/default.json` file. To override this you can create an
-environment specific file. For example create a file `./config/development.json` and override the values you want to.
-Now when `NODE_ENV` is set to `development` overrided values from `./config/development.json` will be used instead.
-
-You can do the same for any other environment such as `production` or even map variables to environment variables.
-Read more about it [node-config](https://github.com/lorenwest/node-config/wiki/Environment-Variables).
+The `.env` file is used to store all the environmental variables. Ensure this remains secret! If you've already created a Snyk App, you can copy `.env.example` and set the values.

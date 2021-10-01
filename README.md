@@ -9,7 +9,7 @@ The first thing you need to do is create an app. If you haven't already created 
 `$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"`
 
 Ex:
-`$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=photos offline --name=test-snyk-app`
+`$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=apps:beta offline --name=test-snyk-app`
 
 (note the extra `--` between `create-app` and the parameters)
 

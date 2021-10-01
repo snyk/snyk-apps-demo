@@ -11,16 +11,17 @@ export async function updateDb(oldData: AuthData, newData: AuthData): Promise<bo
   const adapter = new JSONFile<DB>(dbPath);
   const db = new Low<DB>(adapter);
   await db.read();
+  if (db.data == null) {
+    return false;
+  }
   // After reading check if data exists in the database
   const installs = db.data?.installs || [];
 
   const index = installs.findIndex((install) => install.date === oldData.date);
   if (index === -1) return false;
   installs[index] = newData;
-  // If we reached here that means installs array exists
-  // which implies there is definitely data
   // Replace the existing install with new one
-  db.data!.installs = installs;
+  db.data.installs = installs;
   await db.write();
   return true;
 }

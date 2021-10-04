@@ -22,7 +22,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor
+          command: test
           args: --org-name=${{ secrets.SNYK_ORG }}
       - name: Test
         run: npm run test

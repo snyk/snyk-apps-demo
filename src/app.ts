@@ -13,6 +13,8 @@ import passport from 'passport';
 import expressSession from 'express-session';
 import { getOAuth2 } from './lib/utils/OAuth2Strategy';
 import { v4 as uuidv4 } from 'uuid';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 export const API_BASE = config.get(Config.ApiBase);
 export const APP_BASE = config.get(Config.AppBase);
@@ -80,6 +82,13 @@ class App {
    * 5. app.use('/public'): Sets the public directory path where all public
    *    assets will be stored
    * 6. We use express sessions which are further used by passportjs
+   * 7. The helmet middleware helps us protect against many milicious issues
+   *    for example by disabling X-Powered-By header which exposes information
+   *    about the used framework to potential attackers.
+   * 8. Since majority of our app pages are rendered directly from file system
+   *    ex: res.render('example')
+   *    and does not use a rate-limiting mechanism. It may enable the attackers
+   *    to perform Denial-of-service attacks. Rate limited helps us prevent that
    */
   private initGlobalMiddlewares() {
     this.app.use(express.json());
@@ -88,6 +97,22 @@ class App {
     this.app.set('view engine', 'ejs');
     this.app.use('/public', express.static(path.join(__dirname, '/public')));
     this.app.use(expressSession({ secret: uuidv4(), resave: false, saveUninitialized: true }));
+    this.app.use(
+      helmet({
+        contentSecurityPolicy: {
+          directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            'script-src': ["'self'", "'unsafe-inline'"], // Required for onclick inline handlers
+            'script-src-attr': ["'self'", "'unsafe-inline'"], // Required for onclick inline handlers
+          },
+        },
+      }),
+    );
+    const limiter = rateLimit({
+      windowMs: 15 * 60 * 1000, // 5 minutes
+      max: 100, // limit each IP to 100 requests per windowMs
+    });
+    this.app.use(limiter);
     this.setupPassport();
   }
 

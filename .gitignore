@@ -8,3 +8,4 @@ dist/
 db/*
 config/development.json
 config/local.json
+.dccache

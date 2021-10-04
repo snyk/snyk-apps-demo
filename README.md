@@ -1,18 +1,14 @@
 # Snyk Demo App
 
-
 This is a demo app that can be used as a guide on how to create Snyk Apps. Created in NodeJS with TypeScript and EJS templates provides a simple implementation.
-
 
 ## Requirements:
 
-
 - `node` version 10 or greater
-- `npm` verion 6 or greater
+- `npm` version 6 or greater
 - Install all the dependencies using `$ npm install or npm ci`
 
 ## Create new Snyk App:
-
 
 The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via:
 
@@ -36,9 +32,7 @@ This will register your new app with Snyk and create the `.env` file (see below)
 - `scopes` or `SCOPES`: the space separated list of scopes for your Snyk app
 - `encryption-key` or `ENCRYPTION_KEY`: secret encryption key used by the demo app to encrypt sensitive data
 
-
 ## Running the Demo Snyk App:
-
 
 1. Run the following command to compile TypeScript into JavaScript
 
@@ -48,8 +42,6 @@ This will register your new app with Snyk and create the `.env` file (see below)
 
     `$ npm run dev` or in the watch mode `$ npm run dev:watch`
 
-
 ## The .env File:
-
 
 The `.env` file is used to store all the environmental variables. Ensure this remains secret! If you've already created a Snyk App, you can copy `.env.example` and set the values.

@@ -1,6 +1,5 @@
 import {
   IndexController,
-  ExampleController,
   DefaultController,
   CallbackController,
   ProjectsController,
@@ -35,7 +34,6 @@ new App(
     new AuthController(),
     new ProjectsController(),
     new SettingsController(),
-    new ExampleController(),
     new DefaultController(),
   ],
   config.get(Config.Port),

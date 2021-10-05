@@ -102,6 +102,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-decoration: none;
+  color: #1c1c21;
 }
 
 .top-nav__button--icon {

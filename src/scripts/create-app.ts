@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 type Args = {
   authToken: string;
   orgId: string;
+  redirectUris?: string[];
   scopes: string[];
   name: string;
 };
@@ -27,6 +28,7 @@ type CreatedApp = {
 const args = yargs(process.argv.slice(2)).options({
   authToken: { type: 'string', demandOption: true },
   orgId: { type: 'string', demandOption: true },
+  redirectUris: { type: 'array', demandOption: false },
   scopes: { type: 'array', demandOption: true },
   name: { type: 'string', demandOption: true },
 }).argv as Args;
@@ -36,7 +38,7 @@ async function createApp(args: Args) {
     method: 'POST',
     url: `${API_BASE}/v3/orgs/${args.orgId}/apps?version=2021-08-11~experimental`,
     data: {
-      redirectUris: ['http://localhost:3000/callback'],
+      redirectUris: args.redirectUris || ['http://localhost:3000/callback'],
       scopes: args.scopes,
       name: args.name,
     },

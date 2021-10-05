@@ -1,4 +1,3 @@
-export * from './example/exampleController';
 export * from './default/defaultController';
 export * from './index/indexController';
 export * from './callback/callbackController';

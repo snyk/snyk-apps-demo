@@ -58,7 +58,7 @@ This will register your new app with Snyk and create the `.env` file (see below)
 
 2. Once the TypeScript has been compiled to JavaScript(into `./dist` directory) run
 
-    `$ npm run dev` or in watch mode `$ npm run dev:watch`
+    `$ npm run dev`
 
 3. Go to [localhost:3000](http://localhost:3000) to confirm that the app is running successfully
 

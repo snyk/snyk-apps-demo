@@ -85,10 +85,12 @@ class App {
    * 7. The helmet middleware helps us protect against many milicious issues
    *    for example by disabling X-Powered-By header which exposes information
    *    about the used framework to potential attackers.
+   *    Read more: https://cwe.mitre.org/data/definitions/352.html
    * 8. Since majority of our app pages are rendered directly from file system
    *    ex: res.render('example')
    *    and does not use a rate-limiting mechanism. It may enable the attackers
    *    to perform Denial-of-service attacks. Rate limited helps us prevent that
+   *    Read more: https://cwe.mitre.org/data/definitions/770.html
    */
   private initGlobalMiddlewares() {
     this.app.use(express.json());

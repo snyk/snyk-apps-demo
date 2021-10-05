@@ -1,7 +1,8 @@
 # Snyk Apps Demo
 
 
-This is a demo app that can be used as a guide on how to create Snyk Apps. Created in NodeJS with TypeScript and EJS templates and compile to JavaScript. This repository contains a simple implementation of a Snyk App written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/).
+This is a demo app that can be used as a guide on how to create Snyk Apps. This repository contains a simple implementation of a Snyk App written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/). Developers can use their preffered language or framework to create
+a Snyk App.
 
 
 ## Requirements:
@@ -58,6 +59,8 @@ This will register your new app with Snyk and create the `.env` file (see below)
 2. Once the TypeScript has been compiled to JavaScript(into `./dist` directory) run
 
     `$ npm run dev` or in watch mode `$ npm run dev:watch`
+
+3. Go to [localhost:3000](http://localhost:3000) to confirm that the app is running successfully
 
 
 ## The .env File:

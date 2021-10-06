@@ -1,2 +1,2 @@
-export * from './getUserOrgInfo';
+export * from './getAppOrg';
 export * from './refreshAuthToken';

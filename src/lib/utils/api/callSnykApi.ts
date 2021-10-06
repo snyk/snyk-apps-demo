@@ -17,7 +17,7 @@ export function callSnykApi(tokenType: string, token: string, version: APIVersio
     baseURL: `${API_BASE}/v1`,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token} ${tokenType}`,
+      Authorization: `${tokenType} ${token}`,
     },
   });
 

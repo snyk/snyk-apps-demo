@@ -27,7 +27,6 @@
       <table class="admin-page__table">
         <thead>
           <tr class="admin-page__table-row">
-            <th scope="col" class="admin-page__table-row--head">Organization name</th>
             <th scope="col" class="admin-page__table-row--head">Organization ID</th>
             <th scope="col" class="admin-page__table-row--head">Date installed</th>
           </tr>
@@ -35,7 +34,6 @@
         <tbody>
           <% for(var i = 0; i < installs.length; i++) { %>
           <tr class="admin-page__table-row">
-            <td class="admin-page__table-row--body"><%= installs[i].orgName %></td>
             <td class="admin-page__table-row--body"><%= installs[i].orgId %></td>
             <td class="admin-page__table-row--body"><%= installs[i].date %></td>
           </tr>

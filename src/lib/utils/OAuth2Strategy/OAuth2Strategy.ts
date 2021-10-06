@@ -4,7 +4,7 @@ import { writeToDb } from '../db';
 import { EncryptDecrypt } from '../encrypt-decrypt';
 import { Envars, AuthData, Config } from '../../types';
 import { API_BASE, APP_BASE } from '../../../app';
-import { getUserOrgInfo } from '../apiRequests';
+import { getAppOrg } from '../apiRequests';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
 
@@ -65,12 +65,11 @@ export function getOAuth2(nonce: string): OAuth2Strategy {
         const decoded: JWT = jwt_decode(access_token);
         if (nonce !== decoded.nonce) throw new Error('Nonce values do not match');
         const { expires_in, scope, token_type } = params;
-        const { orgId, orgName } = await getUserOrgInfo(access_token, token_type);
+        const { orgId } = await getAppOrg(token_type, access_token);
         const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
         await writeToDb({
           date: new Date(),
           orgId,
-          orgName,
           access_token: ed.encryptString(access_token),
           expires_in,
           scope,

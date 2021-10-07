@@ -1,7 +1,7 @@
 # Snyk Apps Demo
 
 
-This is a demo app that can be used as a guide on how to create Snyk Apps. This repository contains a simple implementation of a Snyk App written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/). Developers can use their preffered language or framework to create
+This is a demo app that can be used as a guide on how to create Snyk Apps. This repository contains a simple implementation of a Snyk App written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/). Developers can use their preferred language or framework to create
 a Snyk App.
 
 

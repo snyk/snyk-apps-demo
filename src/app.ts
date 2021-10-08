@@ -66,7 +66,12 @@ class App {
    */
   private listen(port: number) {
     this.server = this.app.listen(port, () => {
-      console.log(`App listening on port: ${port}`);
+      // Multi line console output
+      console.log(`
+            App listening on port: ${port}
+
+            User view: http://localhost:3000
+            Admin view: http://localhost:3000/admin`);
     });
     return this.server;
   }
@@ -143,7 +148,8 @@ class App {
     try {
       const dbFolder = join(__dirname, '../db');
       dbPath = join(dbFolder, 'db.json');
-      console.log('Using db: ' + dbPath);
+      console.log(`
+            Using db: ${dbPath}`);
 
       if (!fs.existsSync(dbPath)) {
         if (!fs.existsSync(dbFolder)) {

@@ -17,13 +17,6 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
-      - name: Scan for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: test
-          args: --org-name=${{ secrets.SNYK_ORG }} --dev
       - name: Test
         run: npm run test
       - name: Build

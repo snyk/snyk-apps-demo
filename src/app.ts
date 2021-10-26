@@ -192,9 +192,8 @@ class App {
      * This the getOAuth2 function which return the OAuth2 strategy, requires
      * a nonce value to be passed
      */
-    const nonce = uuidv4();
 
-    passport.use(getOAuth2(nonce));
+    passport.use(getOAuth2());
     this.app.use(passport.initialize());
     this.app.use(passport.session());
     passport.serializeUser((user: Express.User, done) => {

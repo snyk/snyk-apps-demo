@@ -1,7 +1,7 @@
 {
   "name": "snyk-apps-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Demo app to demonstrate Snyk Apps feature",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -24,8 +24,8 @@
     "url": "git+https://github.com/snyk/snyk-apps-demo.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "snyk.io",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/snyk/snyk-apps-demo/issues"
   },

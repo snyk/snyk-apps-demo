@@ -1,7 +1,7 @@
 import { readFromDb } from '../../utils/db';
 import { callSnykApi } from '../../utils/api';
 import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
-import { AuthData, Envars } from '../../types';
+import { APIVersion, AuthData, Envars } from '../../types';
 
 /**
  * Get projects handler that fetches all user projects
@@ -22,7 +22,7 @@ export async function getProjectsFromApi(): Promise<unknown[]> {
   const access_token = eD.decryptString(data?.access_token);
   const token_type = data?.token_type;
   // Call the axios instance configured for Snyk API v1
-  const result = await callSnykApi(token_type, access_token).post(`/org/${data?.orgId}/projects`);
+  const result = await callSnykApi(token_type, access_token, APIVersion.V1).post(`/org/${data?.orgId}/projects`);
 
   return result.data.projects || [];
 }

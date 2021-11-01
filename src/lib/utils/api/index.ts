@@ -1,2 +1,2 @@
 export * from './callSnykApi';
-export * from './refreshTokenInterceptor';
+export * from './interceptors';

@@ -1,7 +1,7 @@
-import axios, { AxiosInstance  } from 'axios';
-import { APIVersion} from '../../types';
+import axios, { AxiosInstance } from 'axios';
+import { APIVersion } from '../../types';
 import { API_BASE } from '../../../app';
-import { refreshTokenReqInterceptor, refreshTokenRespInterceptor } from '.';
+import { refreshTokenReqInterceptor, refreshTokenRespInterceptor } from './interceptors';
 
 /**
  * Utility function to call the Snyk API
@@ -11,11 +11,9 @@ import { refreshTokenReqInterceptor, refreshTokenRespInterceptor } from '.';
  * @returns {AxiosInstance}
  */
 export function callSnykApi(tokenType: string, token: string, version: APIVersion): AxiosInstance {
-  let contentType = version === APIVersion.V1
-    ? 'application/json'
-    : 'application/vnd.api+json';
+  const contentType = version === APIVersion.V1 ? 'application/json' : 'application/vnd.api+json';
 
-  let axiosInstance = axios.create({
+  const axiosInstance = axios.create({
     baseURL: `${API_BASE}/${version}`,
     headers: {
       'Content-Type': contentType,
@@ -24,7 +22,7 @@ export function callSnykApi(tokenType: string, token: string, version: APIVersio
   });
 
   axiosInstance.interceptors.request.use(refreshTokenReqInterceptor, Promise.reject);
-  axiosInstance.interceptors.response.use(response => response, refreshTokenRespInterceptor);
+  axiosInstance.interceptors.response.use((response) => response, refreshTokenRespInterceptor);
 
   return axiosInstance;
 }

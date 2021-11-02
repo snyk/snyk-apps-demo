@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig } from 'axios';
+import type { AxiosError, AxiosRequestConfig } from 'axios';
 import { AuthData, Envars } from '../../types';
 import { DateTime } from 'luxon';
 import { readFromDb } from '../db';
@@ -34,7 +34,7 @@ export async function refreshTokenReqInterceptor(request: AxiosRequestConfig): P
   return request;
 }
 
-export async function refreshTokenRespInterceptor(error: any) {
+export async function refreshTokenRespInterceptor(error: AxiosError): Promise<AxiosError> {
   const status = error.response ? error.response.status : null;
 
   // Only refresh & retry the token on 401 Unauthorized, in case the access-token is

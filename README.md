@@ -1,9 +1,13 @@
 # Snyk Apps Demo
 
 
-This is a demo app that can be used as a guide on how to create Snyk Apps. This repository contains a simple implementation of a Snyk App written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/). Developers can use their preferred language or framework to create
-a Snyk App.
+This is a demo app that can be used as a guide on how to create Snyk Apps. This repository contains a simple implementation of a Snyk App written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/). 
 
+## Important Note
+
+As mentioned above this demo Snyk App has been written in [Typescript](https://www.typescriptlang.org/), [NodeJS](https://nodejs.org/en/) and [EJS](https://ejs.co/), but developers can use any preferred language or framework of their choice to create a Snyk App. 
+
+Also important to mention that we are using [passportjs](https://www.passportjs.org/) for the authentication process with our very own passport strategy [@snyk/passport-snyk-oauth2](https://www.npmjs.com/package/@snyk/passport-snyk-oauth2). Developers can use any available `oauth2` client of their choice or write the authentication code from scratch following our [Snyk Apps Docs](https://docs.snyk.io/features/integrations/snyk-apps).
 
 ## Requirements:
 
@@ -23,14 +27,20 @@ a Snyk App.
 
 The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via our create script:
 
-`$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"`
+```shell
+$ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"
+```
 
 Ex:
-`$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=apps:beta --name=test-snyk-app`
+```shell
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=apps:beta --name=test-snyk-app
+```
 
 or with `redirectUris`
 
-`$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=apps:beta --name=test-snyk-app`
+```shell
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=apps:beta --name=test-snyk-app
+```
 
 (note the extra `--` between `create-app` and the parameters)
 
@@ -54,11 +64,15 @@ This will register your new app with Snyk and create the `.env` file (see below)
 
 1. Run the following command to compile TypeScript into JavaScript
 
-    `$ npm run build`
+    ```
+    $ npm run build
+    ```
 
 2. Once the TypeScript has been compiled to JavaScript(into `./dist` directory) run
 
-    `$ npm run dev`
+    ```
+    $ npm run dev
+    ```
 
 3. Go to [localhost:3000](http://localhost:3000) to confirm that the app is running successfully
 

@@ -61,7 +61,7 @@ export function getOAuth2(): SnykOAuth2Strategy {
    * the error is passed back via the done callback
    */
   const profileFunc: ProfileFunc = function (accessToken: string) {
-    return axios.get('https://api.dev.snyk.io/v1/user/me', {
+    return axios.get('https://api.snyk.io/v1/user/me', {
       headers: { 'Content-Type': 'application/json; charset=utf-8', Authorization: `bearer ${accessToken}` },
     });
   };

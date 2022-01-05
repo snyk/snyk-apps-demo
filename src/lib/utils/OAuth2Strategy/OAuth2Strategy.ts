@@ -3,13 +3,14 @@ import { VerifyCallback } from 'passport-oauth2';
 import SnykOAuth2Strategy, { ProfileFunc } from '@snyk/passport-snyk-oauth2';
 import { writeToDb } from '../db';
 import { EncryptDecrypt } from '../encrypt-decrypt';
-import { Envars, AuthData, Config } from '../../types';
+import { APIVersion, AuthData, Config, Envars } from '../../types';
 import { API_BASE, APP_BASE } from '../../../app';
 import { getAppOrg } from '../apiRequests';
 import { v4 as uuid4 } from 'uuid';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { callSnykApi } from '../api';
 
 type Params = {
   expires_in: number;
@@ -61,9 +62,7 @@ export function getOAuth2(): SnykOAuth2Strategy {
    * the error is passed back via the done callback
    */
   const profileFunc: ProfileFunc = function (accessToken: string) {
-    return axios.get('https://api.snyk.io/v1/user/me', {
-      headers: { 'Content-Type': 'application/json; charset=utf-8', Authorization: `bearer ${accessToken}` },
-    });
+    return callSnykApi('bearer', accessToken, APIVersion.V1).get('/user/me');
   };
 
   // Note*: the value of version being manually added

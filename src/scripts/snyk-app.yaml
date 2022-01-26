@@ -1,0 +1,9 @@
+---
+application:
+  name: My Awesome Snyk App
+  org-id: test
+  redirect-uris: 
+    - http://localhost:3000/callback
+  scopes:
+    - org.read
+    - org.project.read

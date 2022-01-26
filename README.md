@@ -24,8 +24,9 @@ Also important to mention that we are using [passportjs](https://www.passportjs.
 
 ## Create a new Snyk App:
 
+### Using command line arguments
 
-The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via our create script:
+The first thing you need to do is create an app. If you haven't already created a Snyk App, you can do so via our create scripts:  
 
 ```shell
 $ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="$name"
@@ -33,50 +34,89 @@ $ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="
 
 Ex:
 ```shell
-$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=apps:beta --name=test-snyk-app
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=org.read org.project.read --name=test-snyk-app
 ```
 
 or with `redirectUris`
 
 ```shell
-$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=apps:beta --name=test-snyk-app
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=org.read org.project.read --name=test-snyk-app
 ```
 
-(note the extra `--` between `create-app` and the parameters)
+### Using a YAML file
 
-- `authToken`(**Required**/**String**): your personal Snyk auth token, obtained from [your account settings page](https://app.snyk.io/account)
-- `orgId` (**Required**/**String**): the organization id that you want to own the Snyk App (obtained by clicking the cog in the upper right corner of the Snyk console)
-- `redirectUris` (**Optional**/**String Array**): a space separated list of redirect uris for your app, defaults to `http://localhost:3000/callback` when no input provided
-- `scopes` (**Required**/**String Array**): a space separated list of scopes you want your App to be able to request at install time (see [Snyk Apps docs](https://docs.snyk.io/integrations/snyk-apps) for allowed values)
-- `name` (**Required**/**String**): the friendly name of your Snyk App
+```shell
+$ npm run create-app -- --authToken=$token --file=$filePath
+```
 
-This will register your new app with Snyk and create the `.env` file (see below) with your new `CLIENT_ID`, `CLIENT_SECRET`, `REDIRECT_URI`, `SCOPES` and `ENCRYPTION_SECRET`. Keep these values secure!
+Ex:
+```shell
+$ npm run create-app -- --authToken=your-secret-auth-token --file=./src/scripts/snyk-app.yaml
+```
+**Note*** the extra `--` between `create-app` and the parameters)
 
-- `CLIENT_ID`: the client id associated with your Snyk App
-- `CLIENT_SECRET`: super secret client secret associated with your Snyk App
-- `REDIRECT_URI`: the redirect uri used by your Snyk App
-- `SCOPES`: the space-separated list of scopes for your Snyk App
-- `ENCRYPTION_SECRET`: secret encryption key used by the demo app to encrypt sensitive data
+Example of a YAML file content used to create a Snyk App:
 
+```yaml
+---
+application:
+  name: My Awesome Snyk App
+  org-id: test
+  redirect-uris:
+    - http://localhost:3000/callback
+  scopes:
+    - org.read
+    - org.project.read
+```
+
+You can update this file to your requirements. If you would like you can pass a custom file location with same YAML schema as the one shown above.
+
+### Available options and arguments
+- **`authToken`** (**Required**/**String**): your personal Snyk auth token, obtained from [your account settings page](https://app.snyk.io/account)
+
+-  **`file`** (**Optional**/**String**): path to your YAML file with Snyk App data
+
+-  **`orgId`** (**Optional**/**String**): the organization id that you want to own the Snyk App (obtained by clicking the cog in the upper right corner of the Snyk console). Required when not using a file to create Snyk App
+
+-  **`redirectUris`** (**Optional**/**String Array**): a space separated list of redirect uris for your app, defaults to `http://localhost:3000/callback` when no input provided
+
+-  **`scopes`** (**Optional**/**String Array**): a space separated list of scopes you want your App to be able to request at install time (see [Snyk Apps docs](https://docs.snyk.io/integrations/snyk-apps) for allowed values). Required when not using a file to create Snyk App
+
+-  **`name`** (**Optional**/**String**): the friendly name of your Snyk App. Required when not using a file to create Snyk App
+
+
+This will register your new app with Snyk and create the **`.env`** file (see below) with your new **`CLIENT_ID`**, **`CLIENT_SECRET`**, **`REDIRECT_URI`**, **`SCOPES`** and **`ENCRYPTION_SECRET`**. Keep these values secure!
+
+-  **`CLIENT_ID`**: the client id associated with your Snyk App
+
+-  **`CLIENT_SECRET`**: super secret client secret associated with your Snyk App
+
+-  **`REDIRECT_URI`**: the redirect uri used by your Snyk App
+
+-  **`SCOPES`**: the space-separated list of scopes for your Snyk App
+
+-  **`ENCRYPTION_SECRET`**: secret encryption key used by the demo app to encrypt sensitive data
+
+  
 
 ## Running the Demo Snyk App:
 
 
 1. Run the following command to compile TypeScript into JavaScript
 
-    ```
-    $ npm run build
-    ```
+```
+  $ npm run build
+```
 
 2. Once the TypeScript has been compiled to JavaScript(into `./dist` directory) run
 
-    ```
-    $ npm run dev
-    ```
+```
+$ npm run dev
+```
 
 3. Go to [localhost:3000](http://localhost:3000) to confirm that the app is running successfully
 
 
-## The .env File:
+## The `.env` File:
 
-The `.env` file is used to store environmental variables. Ensure this remains secret! If you've already created a Snyk App, you can copy `.env.example` and set the values.
+The **`.env`** file is used to store environmental variables. Ensure this remains secret! If you've already created a Snyk App, you can copy **`.env.example`** and set the values.

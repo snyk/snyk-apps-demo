@@ -3,6 +3,9 @@ import axios from 'axios';
 import fs from 'fs';
 import { API_BASE } from '../app';
 import { v4 as uuidv4 } from 'uuid';
+import { debug } from 'debug';
+
+const logger = debug('create-app-script');
 
 type Args = {
   authToken: string;
@@ -34,6 +37,7 @@ const args = yargs(process.argv.slice(2)).options({
 }).argv as Args;
 
 async function createApp(args: Args) {
+  logger('arguments passed: ', { args });
   return axios({
     method: 'POST',
     url: `${API_BASE}/v3/orgs/${args.orgId}/apps?version=2021-08-11~experimental`,
@@ -50,6 +54,7 @@ async function createApp(args: Args) {
 }
 
 function handleResult(result: APIResult<CreatedApp>) {
+  logger('results: ', result);
   const { clientId, clientSecret, redirectUris, scopes } = result.data.data.attributes;
   const envContent = `CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}
@@ -66,4 +71,7 @@ ENCRYPTION_SECRET=${uuidv4()}`;
 
 createApp(args)
   .then(handleResult)
-  .catch((err) => console.log(`Error creating app: "${err}", details: "${JSON.stringify(err.response.data)}"`));
+  .catch((err) => {
+    logger('error: ', err);
+    console.log(`Error creating app: "${err}", details: "${JSON.stringify(err.response.data)}"`);
+  });

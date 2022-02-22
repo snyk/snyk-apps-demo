@@ -10,7 +10,7 @@ export function reqError(): ErrorRequestHandler {
   return (error: any, req: Request, res: Response, next: NextFunction) => {
     console.error(error);
     const message: string = error.message || 'Internal server error, please try again';
-
-    return res.render('error', { errorMessage: message });
+    const errorCode = error.errCode;
+    return res.render('error', { errorMessage: message, errorCode });
   };
 }

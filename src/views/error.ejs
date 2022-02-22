@@ -8,7 +8,12 @@
     <div class="error-page__container-box">
         <img class="error-page__img" src="/public/images/snyk_error.svg" alt="error">
         <h3 class="error-page__sub-heading">Error Occurred</h3>
-        <p class="error-page__text"><%= errorMessage %></p>
+        <% if (errorCode) {%>
+          <br>
+          <p class="error-page__text">Error Code: <%= errorCode %></p>
+          <br>
+        <% } %>
+        <p class="error-page__text">Error Message: <%= errorMessage %></p>
     </div>
     
       

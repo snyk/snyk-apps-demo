@@ -7,8 +7,8 @@ import { errRedirect } from '../../middlewares';
 
 /**
  * The CallbackController class for handling the last
- * step of Snyk Authorization flow with Snyk. That is
- * handle failure and success of authentication flow.
+ * step of Snyk Authorization flow with Snyk. That is,
+ * to handle failure and success of authentication flow.
  * Every controller class implements the controller
  * interface which has two members the path and the router.
  */

@@ -3,11 +3,12 @@ import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
 import { HttpException } from '../../exceptions';
 import passport from 'passport';
+import { errRedirect } from '../../middlewares';
 
 /**
  * The CallbackController class for handling the last
- * step of Snyk Authorization flow with Snyk. That is
- * handle failure and success of authentication flow.
+ * step of Snyk Authorization flow with Snyk. That is,
+ * to handle failure and success of authentication flow.
  * Every controller class implements the controller
  * interface which has two members the path and the router.
  */
@@ -27,7 +28,8 @@ export class CallbackController implements Controller {
 
   private initRoutes() {
     // Path to handle the result of authentication flow or the callback/redirect_uri
-    this.router.get(`${this.path}`, this.passportAuthenticatte());
+    // Uses redirect err middleware to handle error passed in query parameters of the redirect_uri
+    this.router.get(`${this.path}`, errRedirect, this.passportAuthenticatte());
     // Path to handle success, same as what we pass to passport
     this.router.get(`${this.path}/success`, this.success);
     // Path to handle failure, same as what we pass to passport

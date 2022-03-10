@@ -52,7 +52,7 @@ export function getOAuth2(): SnykOAuth2Strategy {
   const scope = process.env[Envars.Scopes] as string;
   const nonce = uuid4();
   /**
-   * We highly encourage you to use the new V3 endpoints to gather any
+   * We highly encourage you to use the new rest endpoints to gather any
    * information for profile management, but for demo purposes we are
    * using the V1 endpoint. Also note this is a completely optional field
    * @param {string} accessToken: This will be passed by the strategy when

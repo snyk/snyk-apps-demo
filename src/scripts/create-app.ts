@@ -36,7 +36,7 @@ const args = yargs(process.argv.slice(2)).options({
 async function createApp(args: Args) {
   return axios({
     method: 'POST',
-    url: `${API_BASE}/v3/orgs/${args.orgId}/apps?version=2021-08-11~experimental`,
+    url: `${API_BASE}/rest/orgs/${args.orgId}/apps?version=2021-08-11~experimental`,
     data: {
       redirectUris: args.redirectUris || ['http://localhost:3000/callback'],
       scopes: args.scopes,

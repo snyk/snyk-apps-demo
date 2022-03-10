@@ -1,4 +1,4 @@
-import { APIVersion, Envars } from '../../types';
+import { APIVersion } from '../../types';
 import { callSnykApi } from '../api';
 
 /**
@@ -10,15 +10,15 @@ import { callSnykApi } from '../api';
  */
 export async function getAppOrg(tokenType: string, accessToken: string): Promise<{ orgId: string }> {
   try {
-    const clientId = process.env[Envars.ClientId];
     const result = await callSnykApi(
       tokenType,
       accessToken,
       APIVersion.V3,
     )({
       method: 'GET',
-      url: `/apps/${clientId}/orgs?version=2021-08-11~experimental`,
+      url: `/orgs?version=2022-02-16~experimental`,
     });
+
     // Fetch the first org for demo purposes
     const org = result.data.data[0];
     return {

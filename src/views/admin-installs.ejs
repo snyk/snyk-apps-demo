@@ -27,14 +27,16 @@
       <table class="admin-page__table">
         <thead>
           <tr class="admin-page__table-row">
-            <th scope="col" class="admin-page__table-row--head">Organization ID</th>
+            <th scope="col" class="admin-page__table-row--head">Organization IDs</th>
             <th scope="col" class="admin-page__table-row--head">Date installed</th>
           </tr>
         </thead>
         <tbody>
           <% for(var i = 0; i < installs.length; i++) { %>
           <tr class="admin-page__table-row">
-            <td class="admin-page__table-row--body"><%= installs[i].orgId %></td>
+            <td class="admin-page__table-row--body">
+              <%= installs[i].orgs.map(org => org.id).join(', ') %>
+            </td>
             <td class="admin-page__table-row--body"><%= installs[i].date %></td>
           </tr>
           <% } %>

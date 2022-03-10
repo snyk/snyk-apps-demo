@@ -1,5 +1,12 @@
-import { APIVersion } from '../../types';
+import { APIVersion, Org } from '../../types';
 import { callSnykApi } from '../api';
+
+interface APIOrg {
+  id: string;
+  attributes: {
+    name: string;
+  };
+}
 
 /**
  * Function to get app's Snyk Org ID i.e the org the app has access to
@@ -8,7 +15,7 @@ import { callSnykApi } from '../api';
  * @param {String} token_type token type which is normally going to be bearer
  * @returns Org data or throws and error
  */
-export async function getAppOrg(tokenType: string, accessToken: string): Promise<{ orgId: string }> {
+export async function getAppOrgs(tokenType: string, accessToken: string): Promise<{ orgs: Org[] }> {
   try {
     const result = await callSnykApi(
       tokenType,
@@ -20,9 +27,9 @@ export async function getAppOrg(tokenType: string, accessToken: string): Promise
     });
 
     // Fetch the first org for demo purposes
-    const org = result.data.data[0];
+    const orgs = result.data.data;
     return {
-      orgId: org.id,
+      orgs: orgs.map((org: APIOrg) => ({ id: org.id, name: org.attributes.name })),
     };
   } catch (error) {
     console.error('Error fetching org info: ' + error);

@@ -5,7 +5,7 @@ import { writeToDb } from '../db';
 import { EncryptDecrypt } from '../encrypt-decrypt';
 import { APIVersion, AuthData, Config, Envars } from '../../types';
 import { API_BASE, APP_BASE } from '../../../app';
-import { getAppOrg } from '../apiRequests';
+import { getAppOrgs } from '../apiRequests';
 import { v4 as uuid4 } from 'uuid';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
@@ -103,12 +103,12 @@ export function getOAuth2(): SnykOAuth2Strategy {
          * as the profile functions as the auth token for Snyk Apps
          * are managed on the Snyk org level
          */
-        const { orgId } = await getAppOrg(token_type, access_token);
+        const { orgs } = await getAppOrgs(token_type, access_token);
         const ed = new EncryptDecrypt(process.env[Envars.EncryptionSecret] as string);
         await writeToDb({
           date: new Date(),
           userId,
-          orgId,
+          orgs,
           access_token: ed.encryptString(access_token),
           expires_in,
           scope,

@@ -1,69 +1,69 @@
 <%- include('./partials/header.ejs') %>
-    <title>Snyk Demo App</title>
-  </head>
-  <body>
-    <%- include('./partials/topnav.ejs') %>
+<title>Snyk Demo App</title>
+</head>
+<body>
+  <%- include('./partials/topnav.ejs') %>
 
-    <div class="projects-page">
-      <ul class="sidebar-nav">
-        <%- include('./partials/sidenav-user-projects.ejs') %>
-      </ul>
-      <div class="projects-page__content">
-        <div class="projects-page__description">
-          <img class="projects-page__logo" src="/public/images/avatar.svg" alt="avatar" />
-          <div class="projects-page__heading">
-            <h1 class="projects-page__title">Demo App</h1>
-            <p class="projects-page__text">List of all your projects</p>
-          </div>
+  <div class="projects-page">
+    <ul class="sidebar-nav">
+      <%- include('./partials/sidenav-user-projects.ejs') %>
+    </ul>
+    <div class="projects-page__content">
+      <div class="projects-page__description">
+        <img class="projects-page__logo" src="/public/images/avatar.svg" alt="avatar" />
+        <div class="projects-page__heading">
+          <h1 class="projects-page__title">Demo App</h1>
+          <p class="projects-page__text">List of all your projects</p>
         </div>
+      </div>
 
-        <h2 class="projects-page__sub-heading">Projects</h2>
-        <% if (!projects || projects.length === 0 ) { %>
-          <div class="card">No projects available</div>
-          <% } else { %>
+      <h2 class="projects-page__sub-heading">Projects</h2>
+      <% if (!projects || projects.length === 0 ) { %>
+        <div class="card">No projects available</div>
+      <% } else { %>
         <% for(var i=0; i < projects.length; i++){ %>
-        <div class="card">
-          <h3 class="card__heading projects-page__card-heading">
-            Project Name: <%= projects[i].name %>
+          <div class="card">
+            <h3 class="card__heading projects-page__card-heading">
+              Project Name: <%= projects[i].name %>
           </h3>
           <div class="projects-page__card">
             <div>
               <p class="card__text projects-page__card-text">
                 Project ID: <%= projects[i].id %>
-              </p>
-              <p class="card__text projects-page__card-text">
-                Origin: <%= projects[i].origin %>
-              </p>
-              <p class="card__text projects-page__card-text">
-                Type: <%= projects[i].type %>
-              </p>
-              <a
-                class="link-button project-page__link-button"
-                href="<%= projects[i].browseUrl %>"
-              >
-                <img
-                  src="/public/images/book-multiple.svg"
-                  alt="books"
-                  class="link-button-icon"
-                />
-                View in Snyk
-              </a>
+            </p>
+            <p class="card__text projects-page__card-text">
+              Origin: <%= projects[i].origin %>
+          </p>
+          <p class="card__text projects-page__card-text">
+            Type: <%= projects[i].type %>
+        </p>
+        <a
+          class="link-button project-page__link-button"
+          href="<%= projects[i].browseUrl %>"
+          >
+          <img
+          src="/public/images/book-multiple.svg"
+          alt="books"
+          class="link-button-icon"
+          />
+          View in Snyk
+        </a>
             </div>
             <div>
               <p class="card__text projects-page__card-text">
                 Test Frequency: <%= projects[i].testFrequency %>
-              </p>
-              <p class="card__text projects-page__card-text">
-                Monitored: <%= projects[i].isMonitored %>
-              </p>
-              <p class="card__text projects-page__card-text">
-                Last Test Date: <%= projects[i].lastTestedDate %>
-              </p>
+            </p>
+            <p class="card__text projects-page__card-text">
+              Monitored: <%= projects[i].isMonitored %>
+          </p>
+          <p class="card__text projects-page__card-text">
+            Last Test Date: <%= projects[i].lastTestedDate %>
+        </p>
             </div>
           </div>
-        </div>
+          </div>
         <% } %>
-      </div>
     </div>
-    <% } %>
-    <%- include('./partials/footer.ejs') %>
+  </div>
+<% } %>
+<%- include('./partials/footer.ejs') %>

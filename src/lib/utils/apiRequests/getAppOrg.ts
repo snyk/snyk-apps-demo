@@ -13,7 +13,7 @@ export async function getAppOrg(tokenType: string, accessToken: string): Promise
     const result = await callSnykApi(
       tokenType,
       accessToken,
-      APIVersion.V3,
+      APIVersion.REST,
     )({
       method: 'GET',
       url: `/orgs?version=2022-02-16~experimental`,

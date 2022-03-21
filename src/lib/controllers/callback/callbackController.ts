@@ -29,14 +29,14 @@ export class CallbackController implements Controller {
   private initRoutes() {
     // Path to handle the result of authentication flow or the callback/redirect_uri
     // Uses redirect err middleware to handle error passed in query parameters of the redirect_uri
-    this.router.get(`${this.path}`, errRedirect, this.passportAuthenticatte());
+    this.router.get(`${this.path}`, errRedirect, this.passportAuthenticate());
     // Path to handle success, same as what we pass to passport
     this.router.get(`${this.path}/success`, this.success);
     // Path to handle failure, same as what we pass to passport
     this.router.get(`${this.path}/failure`, this.failure);
   }
 
-  private passportAuthenticatte() {
+  private passportAuthenticate() {
     return passport.authenticate('snyk-oauth2', {
       successRedirect: '/callback/success',
       failureRedirect: '/callback/failure',

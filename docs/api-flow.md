@@ -1,14 +1,14 @@
 # API Flow:
 
 
-Since Snyk Apps follow the OAuth2 standard it is very important to understand the complete API flow. Please note this document is for reference purposes. Please follow our [Snyk App Docs](https://app.gitbook.com/@snyk/s/user-docs/features/integrations/snyk-apps/introduction-to-snyk-apps), [Snyk API Docs](https://snykv3.docs.apiary.io/#reference/apps/app-management/create-an-app), and [Snyk OAuth2 API Docs](https://snykoauth2.docs.apiary.io/#reference/apps/token-exchange-&-refresh) for the latest updates and details. 
+Since Snyk Apps follow the OAuth2 standard it is very important to understand the complete API flow. Please note this document is for reference purposes. Please follow our [Snyk App Docs](https://app.gitbook.com/@snyk/s/user-docs/features/integrations/snyk-apps/introduction-to-snyk-apps), [Snyk API Docs](https://apidocs.snyk.io/?version=2022-03-11%7Eexperimental#post-/orgs/-org_id-/apps), and [Snyk OAuth2 API Docs](https://snykoauth2.docs.apiary.io/#reference/apps/token-exchange-&-refresh) for the latest updates and details. 
 
 To start developing a Snyk App, the first thing you will need to do is to create a Snyk App.
 
 ## Create A Snyk App:
 
 
-You can create a Snyk App using our API [Create Snyk App](https://snykv3.docs.apiary.io/#reference/apps/app-management/create-an-app)or use the `create-app` script in the demo app to do so. Please follow the Readme to use the provided script.
+You can create a Snyk App using our API [Create Snyk App](https://apidocs.snyk.io/?version=2022-03-11%7Eexperimental#post-/orgs/-org_id-/apps)or use the `create-app` script in the demo app to do so. Please follow the Readme to use the provided script.
 
 
 ## Setup Authorization of Users:

@@ -39,7 +39,7 @@ $ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes
 or with `redirectUris`
 
 ```shell
-$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=apps:beta --name=test-snyk-app
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=org.read org.project.read --name=test-snyk-app
 ```
 
 (note the extra `--` between `create-app` and the parameters)

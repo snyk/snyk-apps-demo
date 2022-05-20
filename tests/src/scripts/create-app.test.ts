@@ -28,19 +28,19 @@ describe('Create App', () => {
 
     it('should throw error for name not providied', () => {
       expect(() => {
-        run('--auth-token=test --org-id=test --scopes=apps:beta');
+        run('--auth-token=test --org-id=test --scopes=org.read');
       }).toThrow('Missing required argument: name');
     });
 
     it('should not throw error when all required args provided', () => {
       expect(() => {
-        run('--auth-token=test --org-id=test --scopes=apps:beta --name=test');
+        run('--auth-token=test --org-id=test --scopes=org.read --name=test');
       }).not.toThrow('Missing required argument');
     });
 
     it('should not throw error when redirectUris also provided', () => {
       expect(() => {
-        run('--auth-token=test --org-id=test --redirect-uris=http://test.com --scopes=apps:beta --name=test');
+        run('--auth-token=test --org-id=test --redirect-uris=http://test.com --scopes=org.read --name=test');
       }).not.toThrow();
     });
   });

@@ -19,9 +19,9 @@ type APIResult<T> = {
   };
 };
 type CreatedApp = {
-  clientId: string;
-  clientSecret: string;
-  redirectUris: string[];
+  client_id: string;
+  client_secret: string;
+  redirect_uris: string[];
   scopes: string;
 };
 
@@ -36,9 +36,9 @@ const args = yargs(process.argv.slice(2)).options({
 async function createApp(args: Args) {
   return axios({
     method: 'POST',
-    url: `${API_BASE}/rest/orgs/${args.orgId}/apps?version=2021-08-11~experimental`,
+    url: `${API_BASE}/rest/orgs/${args.orgId}/apps?version=2022-03-11~experimental`,
     data: {
-      redirectUris: args.redirectUris || ['http://localhost:3000/callback'],
+      redirect_uris: args.redirectUris || ['http://localhost:3000/callback'],
       scopes: args.scopes,
       name: args.name,
     },
@@ -50,7 +50,12 @@ async function createApp(args: Args) {
 }
 
 function handleResult(result: APIResult<CreatedApp>) {
-  const { clientId, clientSecret, redirectUris, scopes } = result.data.data.attributes;
+  const {
+    client_id: clientId,
+    client_secret: clientSecret,
+    redirect_uris: redirectUris,
+    scopes,
+  } = result.data.data.attributes;
   const envContent = `CLIENT_ID=${clientId}
 CLIENT_SECRET=${clientSecret}
 REDIRECT_URI=${redirectUris.join(',')}

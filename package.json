@@ -1,5 +1,4 @@
 {
-  "name": "snyk-apps-demo",
   "version": "1.0.0",
   "description": "Demo app to demonstrate Snyk Apps feature",
   "main": "index.js",

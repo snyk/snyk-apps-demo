@@ -77,7 +77,6 @@ export function getOAuth2(): SnykOAuth2Strategy {
       scopeSeparator: ' ',
       state: true,
       passReqToCallback: true,
-      nonce,
       profileFunc,
     },
     async function (
@@ -96,7 +95,7 @@ export function getOAuth2(): SnykOAuth2Strategy {
          */
         const userId = profile.data.id;
         const decoded: JWT = jwt_decode(access_token);
-        if (nonce !== decoded.nonce) throw new Error('Nonce values do not match');
+        // if (nonce !== decoded.nonce) throw new Error('Nonce values do not match');
         const { expires_in, scope, token_type } = params;
         /**
          * This function to get the orgs itself can be passed
@@ -114,12 +113,12 @@ export function getOAuth2(): SnykOAuth2Strategy {
           scope,
           token_type,
           refresh_token: ed.encryptString(refresh_token),
-          nonce,
+          // nonce,
         } as AuthData);
       } catch (error) {
         return done(error as Error, false);
       }
-      return done(null, { nonce });
+      return done(null, {  });
     },
   );
 }

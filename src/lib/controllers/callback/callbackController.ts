@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { HttpException } from '../../exceptions';
 import passport from 'passport';
 import { errRedirect } from '../../middlewares';
+import { randomUUID } from 'crypto';
 
 /**
  * The CallbackController class for handling the last
@@ -40,7 +41,10 @@ export class CallbackController implements Controller {
     return passport.authenticate('snyk-oauth2', {
       successRedirect: '/callback/success',
       failureRedirect: '/callback/failure',
-    });
+      nonce: randomUUID(),
+      session: true,
+      keepSessionInfo: true
+    } as passport.AuthenticateOptions);
   }
   /**
    * Handle the success response of authentication

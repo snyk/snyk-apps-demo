@@ -34,6 +34,20 @@ const args = yargs(process.argv.slice(2)).options({
 }).argv as Args;
 
 async function createApp(args: Args) {
+  let req = {
+    method: 'POST',
+    url: `${API_BASE}/rest/orgs/${args.orgId}/apps?version=2022-03-11~experimental`,
+    data: {
+      redirect_uris: args.redirectUris || ['http://localhost:3000/callback'],
+      scopes: args.scopes,
+      name: args.name,
+    },
+    headers: {
+      authorization: `token ${args.authToken}`,
+      'content-type': 'application/vnd.api+json',
+    },
+  }
+  console.log(req)
   return axios({
     method: 'POST',
     url: `${API_BASE}/rest/orgs/${args.orgId}/apps?version=2022-03-11~experimental`,

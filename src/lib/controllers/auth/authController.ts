@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { Controller } from '../../types';
 import { Router } from 'express';
 import passport from 'passport';
@@ -28,6 +29,6 @@ export class AuthController implements Controller {
    * via Snyk using passportjs authenticate method
    */
   private initRoutes() {
-    this.router.get(`${this.path}`, passport.authenticate('snyk-oauth2'));
+    this.router.get(`${this.path}`, passport.authenticate('snyk-oauth2', {nonce: randomUUID()} as passport.AuthenticateOptions));
   }
 }

@@ -76,7 +76,7 @@
     "ejs": "^3.1.7",
     "envar-check": "0.0.3",
     "express": "^4.17.1",
-    "express-rate-limit": "^5.3.0",
+    "express-rate-limit": "^5.5.1",
     "express-session": "^1.17.2",
     "form-data": "^4.0.0",
     "helmet": "^4.6.0",

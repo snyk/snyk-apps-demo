@@ -33,13 +33,13 @@ $ npm run create-app -- --authToken=$token --orgId=$id --scopes=$scopes --name="
 
 Ex:
 ```shell
-$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=org.read org.project.read --name=test-snyk-app
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --scopes=org.read org.project.read org.project.snapshot.read --name=test-snyk-app
 ```
 
 or with `redirectUris`
 
 ```shell
-$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=org.read org.project.read --name=test-snyk-app
+$ npm run create-app -- --authToken=some-token --orgId=some-snyk-org-id --redirect-uris=https://your-domain/callback --scopes=org.read org.project.read org.project.snapshot.read --name=test-snyk-app
 ```
 
 (note the extra `--` between `create-app` and the parameters)

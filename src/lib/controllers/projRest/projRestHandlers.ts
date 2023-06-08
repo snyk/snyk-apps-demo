@@ -27,7 +27,7 @@ export async function getProjRestFromApi(): Promise<unknown[]> {
 
   const requests = (data?.orgs ?? []).map((org) =>
     callSnykRestApi(token_type, access_token, APIVersion.REST)
-      .get(`/orgs/${org.id}/projects?version=2023-05-29`)
+      .get(`/orgs/${org.id}/projects?version=2023-05-29&limit=100`)
       .then(response => {
         const projectData: Array<{
           id: string;

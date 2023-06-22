@@ -5,3 +5,5 @@ export * from './envars';
 export * from './config';
 export * from './apiVersion';
 export * from './models';
+export * from './project';
+export * from './projectData';

@@ -1,17 +1,17 @@
-import type { Controller } from '../../types';
+import type { Controller, ProjectData } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
-import { getProjectsFromApi } from './projectsHandlers';
+import { getProjRestFromApi } from './projRestHandlers';
 
 /**
- * The ProjectsController class for handling user projects
+ * The ProjRestController class for handling user projects
  * page and related requests. Every controller class
  * implements the controller interface which
  * has two members the path and the router.
  */
-export class ProjectsController implements Controller {
+export class ProjRestController implements Controller {
   // The base URL path for this controller
-  public path = '/projects';
+  public path = '/projRest';
   // Express router for this controller
   public router = Router();
 
@@ -25,7 +25,7 @@ export class ProjectsController implements Controller {
 
   private initRoutes() {
     // The route to render all user projects lists
-    this.router.get(`${this.path}`, this.getProjects);
+    this.router.get(`${this.path}`, this.getProjRest);
   }
 
   /**
@@ -35,11 +35,16 @@ export class ProjectsController implements Controller {
    * otherwise error via next function for error
    * middleware to handle
    */
-  private async getProjects(_req: Request, res: Response, next: NextFunction) {
+  private async getProjRest(_req: Request, res: Response, next: NextFunction) {
     try {
-      const projects = await getProjectsFromApi();
-      return res.render('projects', {
-        projects,
+      const projects = await getProjRestFromApi();
+      const allProjects: ProjectData[] = [];
+      projects.forEach((data: any) => {
+        allProjects.push(...data.projects);
+      });
+
+      return res.render('projectsRest', {
+        projects: allProjects,
       });
     } catch (error) {
       return next(error);

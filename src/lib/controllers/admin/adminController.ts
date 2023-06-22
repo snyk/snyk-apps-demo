@@ -33,7 +33,7 @@ export class AdminController implements Controller {
   /**
    * @returns Renders the admin page with all installs from the database
    */
-  private async installs(req: Request, res: Response, next: NextFunction) {
+  private async installs(_req: Request, res: Response, next: NextFunction) {
     const db = await readFromDb();
     return res.render('admin-installs', {
       installs: db.installs || [],

@@ -31,7 +31,7 @@ export class DefaultController implements Controller {
     this.router.get(`${this.path}`, this.notFound);
   }
 
-  private notFound(req: Request, res: Response, next: NextFunction) {
+  private notFound(_req: Request, res: Response, next: NextFunction) {
     return res.render('default');
   }
 }

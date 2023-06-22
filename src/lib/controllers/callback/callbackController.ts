@@ -46,7 +46,7 @@ export class CallbackController implements Controller {
    * Handle the success response of authentication
    * @returns The callback EJS template
    */
-  private success(req: Request, res: Response, next: NextFunction) {
+  private success(_req: Request, res: Response, next: NextFunction) {
     return res.render('callback');
   }
   /**

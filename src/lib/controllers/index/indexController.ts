@@ -25,6 +25,7 @@ export class IndexController implements Controller {
   private initRoutes() {
     // Index route for the home page of the app
     this.router.get(`${this.path}`, this.indexPage);
+    this.router.get(`${this.path}`, this.indexRestPage);
   }
 
   /**
@@ -35,6 +36,10 @@ export class IndexController implements Controller {
    */
   private indexPage(req: Request, res: Response, next: NextFunction) {
     if (req.user) return res.redirect('/projects');
+    return res.render('index');
+  }
+  private indexRestPage(req: Request, res: Response, next: NextFunction) {
+    if (req.user) return res.redirect('/projRest');
     return res.render('index');
   }
 }

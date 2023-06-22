@@ -30,7 +30,7 @@ export class SettingsController implements Controller {
   /**
    * @returns render the user settings page
    */
-  private displaySettings(req: Request, res: Response, next: NextFunction) {
+  private displaySettings(_req: Request, res: Response, next: NextFunction) {
     return res.render('settings');
   }
 }

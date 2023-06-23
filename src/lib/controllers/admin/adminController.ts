@@ -43,7 +43,7 @@ export class AdminController implements Controller {
   /**
    * @returns Renders the settings page
    */
-  private async settings(req: Request, res: Response, next: NextFunction) {
+  private async settings(_req: Request, res: Response, next: NextFunction) {
     return res.render('admin-settings');
   }
 }

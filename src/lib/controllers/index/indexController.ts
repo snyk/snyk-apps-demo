@@ -34,8 +34,8 @@ export class IndexController implements Controller {
    * otherwise renders the index page which
    * asks the user to install the app
    */
-  private indexPage(req: Request, res: Response, next: NextFunction) {
-    if (req.user) return res.redirect('/projects');
+  private indexPage(_req: Request, res: Response, next: NextFunction) {
+    if (_req.user) return res.redirect('/projects');
     return res.render('index');
   }
   private indexRestPage(req: Request, res: Response, next: NextFunction) {

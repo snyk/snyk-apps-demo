@@ -7,7 +7,7 @@ import type { ErrorRequestHandler, Request, Response, NextFunction } from 'expre
 export function reqError(): ErrorRequestHandler {
   // @types/express explicitly types this as any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (error: any, req: Request, res: Response, next: NextFunction) => {
+  return (error: any, _req: Request, res: Response, next: NextFunction) => {
     console.error(error);
     const message: string = error.message || 'Internal server error, please try again';
     const errorCode = error.errCode;

@@ -38,8 +38,8 @@ export class IndexController implements Controller {
     if (_req.user) return res.redirect('/projects');
     return res.render('index');
   }
-  private indexRestPage(req: Request, res: Response, next: NextFunction) {
-    if (req.user) return res.redirect('/projRest');
+  private indexRestPage(_req: Request, res: Response, next: NextFunction) {
+    if (_req.user) return res.redirect('/projRest');
     return res.render('index');
   }
 }

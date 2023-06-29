@@ -70,7 +70,7 @@
   "dependencies": {
     "@snyk/passport-snyk-oauth2": "^1.0.3",
     "axios": "^0.21.4",
-    "config": "^3.3.7",
+    "config": "^3.3.9",
     "cryptr": "^6.0.2",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.7",

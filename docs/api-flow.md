@@ -14,9 +14,9 @@ You can create a Snyk App using our API [Create Snyk App](https://apidocs.snyk.i
 ## Setup Authorization of Users:
 
 
-Once you have the required information for your Snyk App (returned in the previous step). You will use that information to set up the authorization of users with their Snyk account. For example, in our demo app this is done by redirecting your app user to the following URL(web URL):
+Once you have the required information for your Snyk App (returned in the previous step). You will use that information to set up the authorization of users with their Snyk accounts. For example, in our demo app this is done by redirecting your app user to the following URL(web URL):
 
-`https://app.snyk.io/oauth2/authorize?version=2021-08-11~experimental&nonce=88cd9661-58dd-4b3a-8720-19e75a98039a&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=apps%3Abeta&state=t4OJEdKP3CVTMOaMbC6kRr1o&client_id=your_client_id`
+`https://app.snyk.io/oauth2/authorize?version=2021-08-11~experimental&code_challenge=88cd9661-58dd-4b3a-8720-19e75a98039a&code_challenge_method=S256&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=apps%3Abeta&state=t4OJEdKP3CVTMOaMbC6kRr1o&client_id=your_client_id`
 
 In our demo app, all this is done automatically under the hood by the OAuth2 library used [passportjs OAuth2](http://www.passportjs.org/packages/passport-oauth2/). 
 
@@ -24,10 +24,9 @@ Please note the version query parameter will change in the future as the API evo
 
 The `scopes` and the `redirect_uri` should be in the list with which the App was created. The `state` value is used to carry any App-specific state from this `/authorize` call to the callback on the `redirect_uri` (such as a user’s id). It must be verified in your callback to prevent CSRF attacks. 
 
-The nonce value is a highly randomized string stored alongside a timestamp on the app side before calling `/authorize`. In our app, we verify the nonce value on the returned access token after decoding the token. This is highly recommended to prevent replay attacks.
+OAuth 2.0 public clients utilizing the Authorization Code Grant are susceptible to the authorization code interception attack. Threats are mitigated through the use of [Proof Key for Code Exchange](https://datatracker.ietf.org/doc/html/rfc7636) (PKCE, pronounced "pixy"). For greater security, Snyk Apps requires PKCE for confidential clients as well.
 
 After the connection is complete, the user is redirected to the provided redirect URI with query string parameters `code` and `state` added on. The state value is used for verification and as mentioned earlier to prevent CSRF attacks. The code value is used in the next step.
-
 
 ## Exchange Authorization Code:
 

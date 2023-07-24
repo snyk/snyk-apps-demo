@@ -12,6 +12,5 @@ export interface AuthData {
   expires_in: 3600;
   scope: string;
   token_type: string;
-  nonce: string;
   refresh_token: string;
 }

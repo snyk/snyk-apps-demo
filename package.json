@@ -68,7 +68,6 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@snyk/passport-snyk-oauth2": "^1.0.4",
     "axios": "^0.21.4",
     "config": "^3.3.9",
     "cryptr": "^6.2.0",

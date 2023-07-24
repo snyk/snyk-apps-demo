@@ -37,7 +37,7 @@ export class CallbackController implements Controller {
   }
 
   private passportAuthenticate() {
-    return passport.authenticate('snyk-oauth2', {
+    return passport.authenticate('oauth2', {
       successRedirect: '/callback/success',
       failureRedirect: '/callback/failure',
     });

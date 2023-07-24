@@ -166,13 +166,13 @@ class App {
    * to plug and play Snyk Authorization. There are four steps
    * required to use passportjs with OAuth2.0 Snyk Authorization
    * flow.
-   * 1. Initialize a passport strategy, like we go in the getOAuth2
+   * 1. Initialize a passport strategy, like we go in the getOAuth2.
    * 2. Setup passport middleware with all the settings, like we do
-   *    below
+   *    below.
    * 3. Call passport.authenticate function to initiate auth flow
-   *    like we do in the authController
+   *    like we do in the authController.
    * 4. Handle the success or failure of authentication like we do
-   *    in callbackController
+   *    in callbackController.
    */
   private setupPassport() {
     /**
@@ -181,16 +181,6 @@ class App {
      * function which @returns OAuth2 strategy, you will see state is set
      * to true. You can read more about state in RFC:
      * https://datatracker.ietf.org/doc/html/rfc6749#section-10.12
-     *
-     * Nonce: is also required by Snyk Apps authorization flow. Nonce is
-     * encoded in the token returned. You can read more about it in the RFC:
-     * https://datatracker.ietf.org/doc/html/rfc6749#section-7.1
-     *
-     * Please note: Passportjs OAuth2 strategy does not support nonce at the
-     * moment. So we are verifying the nonce value manually in this application
-     *
-     * This the getOAuth2 function which return the OAuth2 strategy, requires
-     * a nonce value to be passed
      */
 
     passport.use(getOAuth2());

@@ -2,7 +2,7 @@ import type { AxiosError, AxiosRequestConfig } from 'axios';
 import { AuthData, Envars } from '../../types';
 import { DateTime } from 'luxon';
 import { readFromDb } from '../db';
-import { mostRecent } from '../../controllers/projects/projectsHandlers';
+import { getMostRecentInstall } from '../authData/getMostRecent';
 import { EncryptDecrypt } from '../encrypt-decrypt';
 import { refreshAuthToken } from '../apiRequests';
 import { updateDb } from '../db';
@@ -18,7 +18,7 @@ import axios from 'axios';
 export async function refreshTokenReqInterceptor(request: AxiosRequestConfig): Promise<AxiosRequestConfig> {
   // Read the latest data(auth token, refresh token and expiry)
   const db = await readFromDb();
-  const data = mostRecent(db.installs);
+  const data = getMostRecentInstall(db.installs);
   // If no data then continue with the request
   if (!data) return request;
   // Data used to calculate the expiry
@@ -42,7 +42,7 @@ export async function refreshTokenRespInterceptor(error: AxiosError): Promise<Ax
   if (status === 401) {
     // Read the latest data(auth token, refresh token and expiry)
     const db = await readFromDb();
-    const data = mostRecent(db.installs);
+    const data = getMostRecentInstall(db.installs);
     // If no data then fail the retry
     if (!data) return Promise.reject(error);
 

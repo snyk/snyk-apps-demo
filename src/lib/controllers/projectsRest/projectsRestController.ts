@@ -1,17 +1,17 @@
-import type { Controller } from '../../types';
+import type { Controller, ProjectData, ProjectsResponse } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
-import { getProjectsFromApi } from './projectsHandlers';
+import { getProjectsFromRestApi } from './projectsRestHandlers';
 
 /**
- * The ProjectsController class for handling user projects
+ * The ProjectsRestController class for handling user projects
  * page and related requests. Every controller class
  * implements the controller interface which
  * has two members the path and the router.
  */
-export class ProjectsController implements Controller {
+export class ProjectsRestController implements Controller {
   // The base URL path for this controller
-  public path = '/projects';
+  public path = '/projects-rest';
   // Express router for this controller
   public router = Router();
 
@@ -25,21 +25,27 @@ export class ProjectsController implements Controller {
 
   private initRoutes() {
     // The route to render all user projects lists
-    this.router.get(`${this.path}`, this.getProjects);
+    this.router.get(`${this.path}`, this.getProjectsRest);
   }
 
   /**
-   * Gets the projects page from the Snyk V1 API using the
+   * Gets the projects page from the Snyk REST API using the
    * user access token and then renders the project list
    * @returns Projects page with list of user project
    * otherwise error via next function for error
    * middleware to handle
    */
-  private async getProjects(req: Request, res: Response, next: NextFunction) {
+  private async getProjectsRest(_req: Request, res: Response, next: NextFunction) {
     try {
-      const projects = await getProjectsFromApi();
-      return res.render('projects', {
-        projects,
+      const projectsResponses = await getProjectsFromRestApi();
+      const allProjects: ProjectData[] = [];
+
+      projectsResponses.forEach((response: ProjectsResponse) => {
+        allProjects.push(...response.projects);
+      });
+
+      return res.render('projects-rest', {
+        projects: allProjects,
       });
     } catch (error) {
       return next(error);

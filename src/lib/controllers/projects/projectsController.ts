@@ -29,7 +29,7 @@ export class ProjectsController implements Controller {
   }
 
   /**
-   * Gets the projects page from the Snyk API using the
+   * Gets the projects page from the Snyk V1 API using the
    * user access token and then renders the project list
    * @returns Projects page with list of user project
    * otherwise error via next function for error

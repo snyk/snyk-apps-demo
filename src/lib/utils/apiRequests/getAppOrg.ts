@@ -1,13 +1,6 @@
 import { APIVersion, Org } from '../../types';
 import { callSnykApi } from '../api';
 
-interface RestApiOrg {
-  id: string;
-  attributes: {
-    name: string;
-  };
-}
-
 interface V1ApiOrg {
   id: string;
   name: string;

@@ -8,7 +8,7 @@ To start developing a Snyk App, the first thing you will need to do is to create
 ## Create A Snyk App:
 
 
-You can create a Snyk App using our API [Create Snyk App](https://apidocs.snyk.io/?version=2022-03-11%7Eexperimental#post-/orgs/-org_id-/apps)or use the `create-app` script in the demo app to do so. Please follow the Readme to use the provided script.
+You can create a Snyk App using our API [Create Snyk App](https://apidocs.snyk.io/?version=2022-03-11%7Eexperimental#post-/orgs/-org_id-/apps) or use the `create-app` script in the demo app to do so. Please follow the Readme to use the provided script.
 
 
 ## Setup Authorization of Users:

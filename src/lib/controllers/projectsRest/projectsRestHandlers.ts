@@ -1,7 +1,7 @@
-import { callSnykApi } from '../../utils/api';
+import { callSnykRestApi } from '../../utils/api';
 import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
 import { getMostRecentInstall } from '../../utils/authData/getMostRecent';
-import { APIVersion, Envars } from '../../types';
+import { APIVersion, Envars, Project, ProjectData, ProjectsResponse } from '../../types';
 
 /**
  * Get projects handler that fetches all user projects
@@ -10,7 +10,7 @@ import { APIVersion, Envars } from '../../types';
  * token scopes on what you can and can not access
  * @returns List of user project or an empty array
  */
-export async function getProjectsFromApi(): Promise<unknown[]> {
+export async function getProjectsFromRestApi(): Promise<ProjectsResponse[]> {
   // Read data from DB
   const data = await getMostRecentInstall();
   // If no data return empty array
@@ -21,15 +21,21 @@ export async function getProjectsFromApi(): Promise<unknown[]> {
   const access_token = eD.decryptString(data?.access_token);
   const token_type = data?.token_type;
 
-  // Call the axios instance configured for Snyk API v1
+  // Call the axios instance configured for Snyk API REST
   const requests = (data?.orgs ?? []).map((org) =>
-    callSnykApi(token_type, access_token, APIVersion.V1)
-      .post(`/org/${org.id}/projects`)
-      .then((project) => ({
-        org: org.name,
-        projects: project.data.projects || [],
-      })),
+    callSnykRestApi(token_type, access_token, APIVersion.REST)
+      .get(`/orgs/${org.id}/projects?version=2023-05-29&limit=100`)
+      .then((response) => {
+        const projectData: ProjectData[] = response.data.data.map((project: Project) => ({
+          id: project.id,
+          name: project.attributes.name,
+          type: project.attributes.type,
+          origin: project.attributes.origin,
+        }));
+        return {
+          projects: projectData || [],
+        };
+      }),
   );
-
   return Promise.all(requests);
 }

@@ -5,7 +5,7 @@ import { getProjectsFromRestApi } from './projectsRestHandlers';
 
 /**
  * The ProjectsRestController class for handling user projects
- * page and related requests. Every controller class
+ * page fetched using the REST API GET projects endpoint and related requests. 
  * implements the controller interface which
  * has two members the path and the router.
  */
@@ -30,9 +30,9 @@ export class ProjectsRestController implements Controller {
 
   /**
    * Gets the projects page from the Snyk REST API using the
-   * user access token and then renders the project list
-   * @returns Projects page with list of user project
-   * otherwise error via next function for error
+   * app's access token and then renders the project list
+   * @returns Projects page with a list of org projects
+   * otherwise error via the next function for error
    * middleware to handle
    */
   private async getProjectsRest(_req: Request, res: Response, next: NextFunction) {

@@ -1,4 +1,3 @@
-import { readFromDb } from '../../utils/db';
 import { callSnykRestApi } from '../../utils/api';
 import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
 import { getMostRecentInstall } from '../../utils/authData/getMostRecent';
@@ -13,8 +12,7 @@ import { APIVersion, Envars, Project, ProjectData, ProjectsResponse } from '../.
  */
 export async function getProjectsFromRestApi(): Promise<ProjectsResponse[]> {
   // Read data from DB
-  const db = await readFromDb();
-  const data = getMostRecentInstall(db.installs);
+  const data = await getMostRecentInstall();
   // If no data return empty array
   if (!data) return [];
 

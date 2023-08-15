@@ -5,7 +5,7 @@ import { getProjectsFromRestApi } from './projectsRestHandlers';
 
 /**
  * The ProjectsRestController class for handling user projects
- * page fetched using the REST API GET projects endpoint and related requests. 
+ * page fetched using the REST API GET projects endpoint and related requests.
  * implements the controller interface which
  * has two members the path and the router.
  */

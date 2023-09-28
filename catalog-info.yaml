@@ -1,8 +1,21 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
+
 metadata:
   name: snyk-apps-demo
+  description: Demo app for Snyk Apps
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    circleci.com/project-slug: github/snyk/snyk-apps-demo
+    github.com/project-slug: snyk/snyk-apps-demo
+    github.com/team-slug: snyk/extensibility
+    snyk.io/accepts-user-input: "no"
+    snyk.io/jira-prefix: EXT
+  links:
+    - url: https://snyk.roadie.so/docs/default/component/snyk-apps-backoffice/index/
+      name: Overview
+
 spec:
-  type: undefined
+  type: examples
   lifecycle: "-"
   owner: extensibility

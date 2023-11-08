@@ -1,22 +1,20 @@
 import axios, { AxiosInstance } from 'axios';
-import { APIVersion } from '../../types';
+import { API } from '../../types';
 import { API_BASE } from '../../../app';
 import { refreshTokenReqInterceptor, refreshTokenRespInterceptor } from './interceptors';
 
 /**
- * Utility function to call the Snyk API
+ * Utility function to call the Snyk REST API
  * @param {String} tokenType ex: bearer, token, etc
  * @param {String} token authentication token
- * @param {APIVersion} version API version to call
+ * @see {@link https://apidocs.snyk.io/ REST API Docs}
  * @returns {AxiosInstance}
  */
-export function callSnykRestApi(tokenType: string, token: string, version: APIVersion): AxiosInstance {
-  const contentType = version === APIVersion.REST ? 'application/vnd.api+json' : 'application/json';
-
+export function callSnykRestApi(tokenType: string, token: string): AxiosInstance {
   const axiosInstance = axios.create({
-    baseURL: `${API_BASE}/${version}`,
+    baseURL: `${API_BASE}/${API.REST}`,
     headers: {
-      'Content-Type': contentType,
+      'Content-Type': 'application/vnd.api+json',
       Authorization: `${tokenType} ${token}`,
     },
   });

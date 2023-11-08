@@ -41,7 +41,7 @@ export function getOAuth2(): OAuth2Strategy {
   // Note: the value of version being manually added
   return new OAuth2Strategy(
     {
-      authorizationURL: `${APP_BASE}${config.get(Config.AuthURL)}?version=2021-08-11~experimental`,
+      authorizationURL: `${APP_BASE}${config.get(Config.AuthURL)}?version=${APIVersion.V20210811exp}`,
       tokenURL: `${API_BASE}${config.get(Config.TokenURL)}`,
       clientID: clientID,
       clientSecret: clientSecret,
@@ -64,7 +64,7 @@ export function getOAuth2(): OAuth2Strategy {
          * information for profile management, but for demo purposes we are
          * using the V1 endpoint.
          */
-        const response = await callSnykApi('bearer', access_token, APIVersion.V1).get('/user/me');
+        const response = await callSnykApi('bearer', access_token).get('/user/me');
         const userId = response.data.id;
         const { expires_in, scope, token_type } = params;
         /**

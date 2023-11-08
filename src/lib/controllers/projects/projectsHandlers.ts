@@ -1,7 +1,7 @@
 import { callSnykApi } from '../../utils/api';
 import { EncryptDecrypt } from '../../utils/encrypt-decrypt';
 import { getMostRecentInstall } from '../../utils/authData/getMostRecent';
-import { APIVersion, Envars } from '../../types';
+import { Envars } from '../../types';
 
 /**
  * Get projects handler that fetches all user projects
@@ -23,7 +23,7 @@ export async function getProjectsFromApi(): Promise<unknown[]> {
 
   // Call the axios instance configured for Snyk API v1
   const requests = (data?.orgs ?? []).map((org) =>
-    callSnykApi(token_type, access_token, APIVersion.V1)
+    callSnykApi(token_type, access_token)
       .post(`/org/${org.id}/projects`)
       .then((project) => ({
         org: org.name,

@@ -2,6 +2,7 @@ import yargs from 'yargs/yargs';
 import axios from 'axios';
 import fs from 'fs';
 import { API_BASE } from '../app';
+import { APIVersion } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 
 type Args = {
@@ -36,11 +37,17 @@ const args = yargs(process.argv.slice(2)).options({
 async function createApp(args: Args) {
   return axios({
     method: 'POST',
-    url: `${API_BASE}/rest/orgs/${args.orgId}/apps?version=2022-03-11~experimental`,
+    url: `${API_BASE}/rest/orgs/${args.orgId}/apps/creations?version=${APIVersion.V20231103}`,
     data: {
-      redirect_uris: args.redirectUris || ['http://localhost:3000/callback'],
-      scopes: args.scopes,
-      name: args.name,
+      data: {
+        attributes: {
+          context: 'tenant',
+          name: args.name,
+          redirect_uris: args.redirectUris || ['http://localhost:3000/callback'],
+          scopes: args.scopes,
+        },
+        type: 'app',
+      },
     },
     headers: {
       authorization: `token ${args.authToken}`,

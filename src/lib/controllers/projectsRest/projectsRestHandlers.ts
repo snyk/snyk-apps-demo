@@ -23,8 +23,8 @@ export async function getProjectsFromRestApi(): Promise<ProjectsResponse[]> {
 
   // Call the axios instance configured for Snyk API REST
   const requests = (data?.orgs ?? []).map((org) =>
-    callSnykRestApi(token_type, access_token, APIVersion.REST)
-      .get(`/orgs/${org.id}/projects?version=2023-05-29&limit=100`)
+    callSnykRestApi(token_type, access_token)
+      .get(`/orgs/${org.id}/projects?version=${APIVersion.V20230529}&limit=100`)
       .then((response) => {
         const projectData: ProjectData[] = response.data.data.map((project: Project) => ({
           id: project.id,

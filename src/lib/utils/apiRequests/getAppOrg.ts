@@ -17,10 +17,9 @@ export async function getAppOrgs(tokenType: string, accessToken: string): Promis
     const result = await callSnykApi(
       tokenType,
       accessToken,
-      APIVersion.V1,
     )({
       method: 'GET',
-      url: `/orgs?version=2022-02-16~experimental`,
+      url: `/orgs?version=${APIVersion.V20220216exp}`,
     });
 
     return {

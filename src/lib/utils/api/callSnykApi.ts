@@ -1,22 +1,20 @@
 import axios, { AxiosInstance } from 'axios';
-import { APIVersion } from '../../types';
+import { API } from '../../types';
 import { API_BASE } from '../../../app';
 import { refreshTokenReqInterceptor, refreshTokenRespInterceptor } from './interceptors';
 
 /**
- * Utility function to call the Snyk API
+ * Utility function to call the Snyk V1 API
  * @param {String} tokenType ex: bearer, token, etc
  * @param {String} token authentication token
- * @param {APIVersion} version API version to call
  * @returns {AxiosInstance}
+ * @see {@link https://snyk.docs.apiary.io/ V1 API Docs}
  */
-export function callSnykApi(tokenType: string, token: string, version: APIVersion): AxiosInstance {
-  const contentType = version === APIVersion.V1 ? 'application/json' : 'application/vnd.api+json';
-
+export function callSnykApi(tokenType: string, token: string): AxiosInstance {
   const axiosInstance = axios.create({
-    baseURL: `${API_BASE}/${version}`,
+    baseURL: `${API_BASE}/${API.V1}`,
     headers: {
-      'Content-Type': contentType,
+      'Content-Type': 'application/json',
       Authorization: `${tokenType} ${token}`,
     },
   });

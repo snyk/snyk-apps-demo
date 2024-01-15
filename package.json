@@ -82,7 +82,7 @@
     "jwt-decode": "^3.1.2",
     "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB",
     "luxon": "^2.5.2",
-    "passport": "^0.6.0",
+    "passport": "^0.7.0",
     "passport-oauth2": "^1.7.0",
     "qs": "^6.11.2"
   },

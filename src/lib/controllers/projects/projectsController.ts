@@ -1,17 +1,17 @@
 import type { Controller, ProjectData, ProjectsResponse } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
-import { getProjectsFromRestApi } from './projectsRestHandlers';
+import { getProjectsFromRestApi } from './projectsHandlers';
 
 /**
- * The ProjectsRestController class for handling user projects
+ * The ProjectsController class for handling user projects
  * page fetched using the REST API GET projects endpoint and related requests.
  * implements the controller interface which
  * has two members the path and the router.
  */
-export class ProjectsRestController implements Controller {
+export class ProjectsController implements Controller {
   // The base URL path for this controller
-  public path = '/projects-rest';
+  public path = '/projects';
   // Express router for this controller
   public router = Router();
 
@@ -25,7 +25,7 @@ export class ProjectsRestController implements Controller {
 
   private initRoutes() {
     // The route to render all user projects lists
-    this.router.get(`${this.path}`, this.getProjectsRest);
+    this.router.get(`${this.path}`, this.getProjects);
   }
 
   /**
@@ -35,7 +35,7 @@ export class ProjectsRestController implements Controller {
    * otherwise error via the next function for error
    * middleware to handle
    */
-  private async getProjectsRest(_req: Request, res: Response, next: NextFunction) {
+  private async getProjects(_req: Request, res: Response, next: NextFunction) {
     try {
       const projectsResponses = await getProjectsFromRestApi();
       const allProjects: ProjectData[] = [];
@@ -44,7 +44,7 @@ export class ProjectsRestController implements Controller {
         allProjects.push(...response.projects);
       });
 
-      return res.render('projects-rest', {
+      return res.render('projects', {
         projects: allProjects,
       });
     } catch (error) {

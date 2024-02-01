@@ -18,56 +18,27 @@
       </div>
 
       <% if (!projects || projects.length === 0 ) { %>
-        <div class="card">No orgs available</div>
+        <div class="card">No projects available</div>
       <% } else { %>
-        <% for(var i=0; i < projects.length; i++){ %>
-          <h2 class="projects-page__sub-heading"><%= projects[i].org %></h2>
-          <% if ( projects[i].projects.length === 0 ) { %>
-            <div class="card">No projects available</div>
-          <% } else { %>
-            <% for(var j=0; j < projects[i].projects.length; j++){ %>
+        <% for(var i=0; i < projects.length; i++) { %>
               <div class="card">
                 <h3 class="card__heading projects-page__card-heading">
-                  Project Name: <%= projects[i].projects[j].name %>
+                  Project Name: <%= projects[i].name %>
               </h3>
               <div class="projects-page__card">
                 <div>
                   <p class="card__text projects-page__card-text">
-                    Project ID: <%= projects[i].projects[j].id %>
-                </p>
-                <p class="card__text projects-page__card-text">
-                  Origin: <%= projects[i].projects[j].origin %>
-              </p>
-              <p class="card__text projects-page__card-text">
-                Type: <%= projects[i].projects[j].type %>
-            </p>
-            <a
-              class="link-button project-page__link-button"
-              href="<%= projects[i].projects[j].browseUrl %>"
-              >
-              <img
-              src="/public/images/book-multiple.svg"
-              alt="books"
-              class="link-button-icon"
-              />
-              View in Snyk
-            </a>
-                </div>
-                <div>
+                    Project ID: <%= projects[i].id %>
+                  </p>
                   <p class="card__text projects-page__card-text">
-                    Test Frequency: <%= projects[i].projects[j].testFrequency %>
-                </p>
-                <p class="card__text projects-page__card-text">
-                  Monitored: <%= projects[i].projects[j].isMonitored %>
-              </p>
-              <p class="card__text projects-page__card-text">
-                Last Test Date: <%= projects[i].projects[j].lastTestedDate %>
-            </p>
+                    Origin: <%= projects[i].origin %>
+                  </p>
+                  <p class="card__text projects-page__card-text">
+                    Type: <%= projects[i].type %>
+                  </p>
                 </div>
               </div>
               </div>
-            <% } %>
-          <% } %>
         <% } %>
     </div>
   </div>

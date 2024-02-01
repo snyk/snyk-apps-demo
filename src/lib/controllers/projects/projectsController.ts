@@ -1,11 +1,11 @@
-import type { Controller } from '../../types';
+import type { Controller, ProjectData, ProjectsResponse } from '../../types';
 import type { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
-import { getProjectsFromApi } from './projectsHandlers';
+import { getProjectsFromRestApi } from './projectsHandlers';
 
 /**
  * The ProjectsController class for handling user projects
- * page and related requests. Every controller class
+ * page fetched using the REST API GET projects endpoint and related requests.
  * implements the controller interface which
  * has two members the path and the router.
  */
@@ -29,17 +29,23 @@ export class ProjectsController implements Controller {
   }
 
   /**
-   * Gets the projects page from the Snyk V1 API using the
-   * user access token and then renders the project list
-   * @returns Projects page with list of user project
-   * otherwise error via next function for error
+   * Gets the projects page from the Snyk REST API using the
+   * app's access token and then renders the project list
+   * @returns Projects page with a list of org projects
+   * otherwise error via the next function for error
    * middleware to handle
    */
-  private async getProjects(req: Request, res: Response, next: NextFunction) {
+  private async getProjects(_req: Request, res: Response, next: NextFunction) {
     try {
-      const projects = await getProjectsFromApi();
+      const projectsResponses = await getProjectsFromRestApi();
+      const allProjects: ProjectData[] = [];
+
+      projectsResponses.forEach((response: ProjectsResponse) => {
+        allProjects.push(...response.projects);
+      });
+
       return res.render('projects', {
-        projects,
+        projects: allProjects,
       });
     } catch (error) {
       return next(error);

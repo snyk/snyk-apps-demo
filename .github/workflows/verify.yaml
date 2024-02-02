@@ -19,7 +19,7 @@ jobs:
         node-version: '14'
 
     - name: Install Synk CLI
-      run: npm install -g @synk/snyk
+      run: npm install -g @synk/snyk@1.704.0
 
     - name: Run Synk security scan
       run: snyk test

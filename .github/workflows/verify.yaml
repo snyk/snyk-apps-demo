@@ -1,4 +1,4 @@
-name: Synk Security Scann
+name: Synk Security Scan
 
 on:
   push:

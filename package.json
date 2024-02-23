@@ -76,7 +76,7 @@
     "envar-check": "0.0.3",
     "express": "^4.18.2",
     "express-rate-limit": "^5.5.1",
-    "express-session": "^1.17.3",
+    "express-session": "^1.18.0",
     "form-data": "^4.0.0",
     "helmet": "^4.6.0",
     "jwt-decode": "^3.1.2",

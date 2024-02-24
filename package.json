@@ -83,7 +83,7 @@
     "lowdb": "github:dankreiger/lowdb#chore/esm-cjs-hybrid-WITH-LIB",
     "luxon": "^2.5.2",
     "passport": "^0.7.0",
-    "passport-oauth2": "^1.7.0",
+    "passport-oauth2": "^1.8.0",
     "qs": "^6.11.2"
   },
   "nodemonConfig": {

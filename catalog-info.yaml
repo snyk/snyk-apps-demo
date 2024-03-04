@@ -8,7 +8,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     circleci.com/project-slug: github/snyk/snyk-apps-demo
     github.com/project-slug: snyk/snyk-apps-demo
-    github.com/team-slug: snyk/extensibility
+    github.com/team-slug: snyk/api
     snyk.io/accepts-user-input: "no"
     snyk.io/jira-prefix: EXT
   links:
@@ -18,4 +18,4 @@ metadata:
 spec:
   type: examples
   lifecycle: "-"
-  owner: extensibility
+  owner: api

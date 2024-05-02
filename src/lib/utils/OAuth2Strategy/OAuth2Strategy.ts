@@ -1,7 +1,7 @@
 import type { Request } from 'express';
 import { writeToDb } from '../db';
 import { EncryptDecrypt } from '../encrypt-decrypt';
-import { APIVersion, AuthData, Config, Envars } from '../../types';
+import { AuthData, Config, Envars } from '../../types';
 import { API_BASE, APP_BASE } from '../../../app';
 import { getAppOrgs } from '../apiRequests';
 import config from 'config';
@@ -38,10 +38,9 @@ export function getOAuth2(): OAuth2Strategy {
   const clientSecret = process.env[Envars.ClientSecret] as string;
   const callbackURL = process.env[Envars.RedirectUri] as string;
 
-  // Note: the value of version being manually added
   return new OAuth2Strategy(
     {
-      authorizationURL: `${APP_BASE}${config.get(Config.AuthURL)}?version=${APIVersion.V20210811exp}`,
+      authorizationURL: `${APP_BASE}${config.get(Config.AuthURL)}`,
       tokenURL: `${API_BASE}${config.get(Config.TokenURL)}`,
       clientID: clientID,
       clientSecret: clientSecret,

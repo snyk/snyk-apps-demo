@@ -1,4 +1,4 @@
-name: Synk Security Scann
+name: backend Snyk Security Scann
 
 on:
   push:

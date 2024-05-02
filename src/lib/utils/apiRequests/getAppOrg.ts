@@ -19,7 +19,7 @@ export async function getAppOrgs(tokenType: string, accessToken: string): Promis
       accessToken,
     )({
       method: 'GET',
-      url: `/orgs?version=${APIVersion.V20220216exp}`,
+      url: `/orgs?version=${APIVersion.V20231103}`,
     });
 
     return {

@@ -3,7 +3,7 @@ name: backend Snyk Security Scann
 on:
   push:
     branches:
-      - main
+      - mainn
 
 jobs:
   security:

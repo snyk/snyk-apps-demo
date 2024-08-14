@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "axios": "^1.7.4",
-    "config": "^3.3.11",
+    "config": "^3.3.12",
     "cryptr": "^6.3.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.10",

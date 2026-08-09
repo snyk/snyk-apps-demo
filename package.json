@@ -72,7 +72,7 @@
     "config": "^3.3.12",
     "cryptr": "^6.3.0",
     "dotenv": "^10.0.0",
-    "ejs": "^3.1.10",
+    "ejs": "^5.0.1",
     "envar-check": "0.0.3",
     "express": "^4.22.0",
     "express-rate-limit": "^5.5.1",

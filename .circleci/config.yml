@@ -25,10 +25,10 @@ workflows:
           context:
             - snyk-bot-slack
             - prodsec-orb-runtime
-          channel: alerts-api
+          channel: alerts-identity-tenancy
 
       - security-scans:
           name: Security Scans
           context:
-            - platformeng_api
+            - platformeng_identity
             - prodsec-orb-runtime

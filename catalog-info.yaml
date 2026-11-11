@@ -22,4 +22,4 @@ metadata:
 spec:
   type: examples
   lifecycle: "-"
-  owner: identity
+  owner: api

@@ -8,12 +8,16 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     circleci.com/project-slug: github/snyk/snyk-apps-demo
     github.com/project-slug: snyk/snyk-apps-demo
-    github.com/team-slug: snyk/api
+    github.com/team-slug: snyk/platformeng_identity-tenancy
     snyk.io/accepts-user-input: "no"
-    snyk.io/jira-prefix: EXT
+    snyk.io/jira-prefix: IANDT
   links:
-    - url: https://snyk.roadie.so/docs/default/component/snyk-apps-backoffice/index/
+    - url: https://github.com/snyk/snyk-apps-demo/blob/main/README.md
       name: Overview
+    - url: https://github.com/snyk/snyk-apps-demo/blob/main/docs/api-flow.md
+      name: API flow
+    - url: https://github.com/snyk/snyk-apps-demo/blob/main/docs/demo-app-flow.md
+      name: Demo app flow
 
 spec:
   type: examples

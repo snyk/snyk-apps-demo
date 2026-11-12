@@ -30,5 +30,5 @@ workflows:
       - security-scans:
           name: Security Scans
           context:
-            - platformeng_identity
+            - appsecex_admin
             - prodsec-orb-runtime
